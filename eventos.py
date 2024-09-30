@@ -1,18 +1,17 @@
 import sys
 
-from PyQt6 import QtWidgets
-from PyQt6.uic.properties import QtWidgets, QtGui
+from PyQt6 import QtWidgets, QtGui
 
 
 class eventos():
     def mensajeSalir(self=None):
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
-        mbox.setIconWindow(QtGui.QIcon('./img/inmoteis.ico'))
+        mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
         mbox.setWindowTitle('Salir')
         mbox.setText('¿Desea usted salir?')
-        mbox.setStandardButton(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-        mbox.setDefaultButton(QtWidgets.QMessageBox.No)
+        mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
         mbox.button(QtWidgets.QMessageBox.StandardButton.Yes).setText('Sí')
         mbox.button(QtWidgets.QMessageBox.StandardButton.No).setText('No')
 

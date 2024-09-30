@@ -1,13 +1,18 @@
+import conexion
 import eventos
 from venPrincipal import *
 import sys
 import var
+import styles
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
+        self.setStyleSheet(styles.load_stylesheet())
+        conexion.Conexion.db_conexion(self)
+        eventos.Eventos.cargarProv(self)
 
 
         '''
@@ -16,7 +21,7 @@ class Main(QtWidgets.QMainWindow):
         
         '''
 
-        var.ui.actionSalir.triggered.connect(eventos.eventos.mensajeSalir)
+        var.ui.actionSalir.triggered.connect(eventos.Eventos.mensajeSalir)
 
 
 

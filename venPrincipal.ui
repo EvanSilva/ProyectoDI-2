@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>img/Inmoteis.ico</normaloff>img/Inmoteis.ico</iconset>
+    <normaloff>C:/Users/a20evansg/.designer/backup/img/Inmoteis.ico</normaloff>C:/Users/a20evansg/.designer/backup/img/Inmoteis.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -521,7 +521,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="btlGrabarcli">
+           <widget class="QPushButton" name="btnGrabarcli">
             <property name="minimumSize">
              <size>
               <width>80</width>
@@ -534,7 +534,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btlModifcli">
+           <widget class="QPushButton" name="btnModifcli">
             <property name="minimumSize">
              <size>
               <width>80</width>
@@ -547,7 +547,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="btlElimcli">
+           <widget class="QPushButton" name="btnElimcli">
             <property name="minimumSize">
              <size>
               <width>80</width>

@@ -4,6 +4,7 @@ from venPrincipal import *
 import sys
 import var
 import styles
+import clientes
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -23,6 +24,21 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.actionSalir.triggered.connect(eventos.Eventos.mensajeSalir)
 
+        '''
+        
+        EVENTOS DE LOS BOTONES
+        
+        '''
+
+        var.ui.btnGrabarcli.clicked.connect(clientes.Clientes.altaCliente)
+
+        '''
+        
+        EVENTOS DE CAJAS DE TEXTO
+        
+        '''
+
+        var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
 
 
 if __name__ == '__main__':
@@ -30,4 +46,7 @@ if __name__ == '__main__':
     window = Main()
     window.showMaximized()
     sys.exit(app.exec())
+
+
+
 

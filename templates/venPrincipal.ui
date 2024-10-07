@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/Users/a20evansg/.designer/backup/img/Inmoteis.ico</normaloff>C:/Users/a20evansg/.designer/backup/img/Inmoteis.ico</iconset>
+    <normaloff>../img/inmoteis.ico</normaloff>../img/inmoteis.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -514,7 +514,7 @@
            <widget class="QLineEdit" name="txtAltacli"/>
           </item>
           <item row="0" column="7">
-           <widget class="QPushButton" name="btnCalendarcli">
+           <widget class="QPushButton" name="btnAltacli">
             <property name="maximumSize">
              <size>
               <width>32</width>
@@ -538,7 +538,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>img/calendar.ico</normaloff>img/calendar.ico</iconset>
+              <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
             </property>
            </widget>
           </item>
@@ -700,6 +700,24 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>txtDnicli</tabstop>
+  <tabstop>txtAltacli</tabstop>
+  <tabstop>txtApelCli</tabstop>
+  <tabstop>txtNomcli</tabstop>
+  <tabstop>txtEmailcli</tabstop>
+  <tabstop>txtMovilcli</tabstop>
+  <tabstop>txtDircli</tabstop>
+  <tabstop>cmbProvcli</tabstop>
+  <tabstop>cmbMunicli_2</tabstop>
+  <tabstop>btnGrabarcli</tabstop>
+  <tabstop>btnModifcli</tabstop>
+  <tabstop>btnElimcli</tabstop>
+  <tabstop>btnAltacli</tabstop>
+  <tabstop>tablaClientes</tabstop>
+  <tabstop>chkHistoriacli</tabstop>
+  <tabstop>panPrincipal</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

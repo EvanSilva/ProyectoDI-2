@@ -1,5 +1,6 @@
 from PyQt6 import QtWidgets
 
+import conexion
 import eventos
 import var
 
@@ -20,8 +21,8 @@ class Clientes:
             print("error check cliente", e)
 
     def altaCliente(self):
-        dni = var.ui.txtDnicli.text()
-        print(dni)
+        nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.txt(), var.ui.txtApelcli.text(), var.ui.txtNomecli.txt(), var.txtEmailcli.txt(), var.ui.txtMovilcli.txt(), var.ui.txtDircli.txt(), var.ui.cmbProvcli.currentText(), var.ui.cmbMunicli.currentText()]
+        conexion.Conexion.altaCliente(nuevocli)
 
     def checkEmail(mail):
         try:

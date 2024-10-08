@@ -17,6 +17,7 @@ class Main(QtWidgets.QMainWindow):
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
         eventos.Eventos.cargarProv(self)
+        eventos.Eventos.cargarMuni(self)
 
         '''
 
@@ -43,6 +44,16 @@ class Main(QtWidgets.QMainWindow):
         '''
 
         var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
+
+        '''
+        
+        EVENTOS DE LOS COMOBOX
+        
+        '''
+
+        var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
+
+
 
 
 if __name__ == '__main__':

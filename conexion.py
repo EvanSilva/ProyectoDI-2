@@ -49,3 +49,14 @@ class Conexion:
             while query.next():
                 listarProv.append(query.value(1))
         return listarProv
+
+    @staticmethod
+    def listarMunicli(provincia):
+        listamunicipios = []
+        query = QtSql.QSqlQuery()
+        query.prepare("SELECT * FROM municipios where idprov = (select idprov from provincias where provincia = :provincia)")
+        query.bindValue(":provincia", provincia)
+        if query.exec():
+            while query.next():
+                listamunicipios.append(query.value(1))
+        return listamunicipios

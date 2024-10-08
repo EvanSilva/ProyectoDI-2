@@ -2,7 +2,7 @@ import sys
 import time
 
 import var
-from PyQt6 import QtWidgets, QtGui
+from PyQt6 import QtWidgets, QtGui, QtSql
 
 import conexion
 import var
@@ -25,12 +25,15 @@ class Eventos():
         else:
             mbox.hide()
 
-
-
     def cargarProv(self):
         var.ui.cmbProvcli.clear()
         listado = conexion.Conexion.listarProv(self)
         var.ui.cmbProvcli.addItems(listado)
+
+    def cargarMuni(self):
+        var.ui.cmbMunicli.clear()
+        municipios = conexion.Conexion.listarMunicli(var.ui.cmbProvcli.currentText())
+        var.ui.cmbMunicli.addItems(municipios)
 
     def validarDNI(dni):
         try:
@@ -70,3 +73,6 @@ class Eventos():
             return data
         except Exception as error:
             print("error en cargar fecha: ", error)
+
+
+

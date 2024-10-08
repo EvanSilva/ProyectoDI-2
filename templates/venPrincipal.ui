@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../img/inmoteis.ico</normaloff>../img/inmoteis.ico</iconset>
+    <normaloff>C:/Users/a20evansg/.designer/img/inmoteis.ico</normaloff>C:/Users/a20evansg/.designer/img/inmoteis.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -359,7 +359,7 @@
            </widget>
           </item>
           <item row="3" column="9" colspan="3">
-           <widget class="QComboBox" name="cmbMunicli_2">
+           <widget class="QComboBox" name="cmbMunicli">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -511,7 +511,14 @@
            </widget>
           </item>
           <item row="0" column="6">
-           <widget class="QLineEdit" name="txtAltacli"/>
+           <widget class="QLineEdit" name="txtAltacli">
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>20</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="0" column="7">
            <widget class="QPushButton" name="btnAltacli">
@@ -538,7 +545,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+              <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
             </property>
            </widget>
           </item>
@@ -709,7 +716,7 @@
   <tabstop>txtMovilcli</tabstop>
   <tabstop>txtDircli</tabstop>
   <tabstop>cmbProvcli</tabstop>
-  <tabstop>cmbMunicli_2</tabstop>
+  <tabstop>cmbMunicli</tabstop>
   <tabstop>btnGrabarcli</tabstop>
   <tabstop>btnModifcli</tabstop>
   <tabstop>btnElimcli</tabstop>

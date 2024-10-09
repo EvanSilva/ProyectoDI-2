@@ -1,4 +1,5 @@
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets, QtGui
+
 
 import conexion
 import eventos
@@ -21,8 +22,29 @@ class Clientes:
             print("error check cliente", e)
 
     def altaCliente(self):
-        nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.txt(), var.ui.txtApelcli.text(), var.ui.txtNomecli.txt(), var.txtEmailcli.txt(), var.ui.txtMovilcli.txt(), var.ui.txtDircli.txt(), var.ui.cmbProvcli.currentText(), var.ui.cmbMunicli.currentText()]
-        conexion.Conexion.altaCliente(nuevocli)
+        print("suputamadre")
+        nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomecli.text(), var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(), var.ui.cmbMunicli.currentText()]
+        if conexion.Conexion.altaCliente(nuevocli):
+            mbox = QtWidgets.QMessageBox()
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+            mbox.setWindowTitle('Aviso')
+            print("suputamadre2")
+            mbox.setText('Alta Cliente en Base de Datos')
+            mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+            mbox.button(QtWidgets.QMessageBox.StandardButton.No).setText('Aceptar')
+            mbox.exec()
+        else:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setWindowTitle('Aviso')
+            print("suputamadre3")
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+            mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+            mbox.setText('Error Faltan datos o Cliente existe')
+            mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Cancel)
+            mbox.exec()
+
 
     def checkEmail(mail):
         try:

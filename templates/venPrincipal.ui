@@ -311,7 +311,7 @@
            </spacer>
           </item>
           <item row="1" column="5" colspan="5">
-           <widget class="QLineEdit" name="txtNomcli">
+           <widget class="QLineEdit" name="txtNomecli">
             <property name="minimumSize">
              <size>
               <width>300</width>
@@ -330,7 +330,7 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QLineEdit" name="txtApelCli">
+           <widget class="QLineEdit" name="txtApelcli">
             <property name="minimumSize">
              <size>
               <width>300</width>
@@ -545,7 +545,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
+              <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
             </property>
            </widget>
           </item>
@@ -710,8 +710,8 @@
  <tabstops>
   <tabstop>txtDnicli</tabstop>
   <tabstop>txtAltacli</tabstop>
-  <tabstop>txtApelCli</tabstop>
-  <tabstop>txtNomcli</tabstop>
+  <tabstop>txtApelcli</tabstop>
+  <tabstop>txtNomecli</tabstop>
   <tabstop>txtEmailcli</tabstop>
   <tabstop>txtMovilcli</tabstop>
   <tabstop>txtDircli</tabstop>

@@ -1,4 +1,7 @@
 import os
+import sqlite3
+from csv import excel
+
 from PyQt6 import QtSql, QtWidgets
 
 class Conexion:
@@ -39,8 +42,6 @@ class Conexion:
                                            QtWidgets.QMessageBox.StandardButton.Cancel)
             return False
 
-
-    @staticmethod
     def listarProv(self):
         listarProv = []
         query = QtSql.QSqlQuery()
@@ -50,7 +51,6 @@ class Conexion:
                 listarProv.append(query.value(1))
         return listarProv
 
-    @staticmethod
     def listarMunicli(provincia):
         listamunicipios = []
         query = QtSql.QSqlQuery()
@@ -61,10 +61,12 @@ class Conexion:
                 listamunicipios.append(query.value(1))
         return listamunicipios
 
-    def altlaCliente(nuevocli):
+    def altaCliente(nuevocli):
+        print("suputamadr4")
         try:
+            print("suputamadr5")
             query = QtSql.QSqlQuery()
-            query.prepare("INSERT INTO clientes ( dnicli, altacli, apelcli, nomecli, emailcli, movilcli, dircli, provcli, municli ) VALUES(:dnicli, :altacli, :apelcli, :nomecli, :emailcli, :movilcli, :dircli, :provcli, :municli )")
+            query.prepare( "INSERT INTO clientes ( dnicli, altacli, apelcli, nomecli, emailcli, movilcli, dircli, provcli, municli ) VALUES ( :dnicli, :altacli, :apelcli, :nomecli, :emailcli, :movilcli, :dircli, :provcli, :municli ) " )
             query.bindValue(":dnicli", str(nuevocli[0]))
             query.bindValue(":altacli",  str(nuevocli[1]))
             query.bindValue(":apelcli",  str(nuevocli[2]))
@@ -75,12 +77,10 @@ class Conexion:
             query.bindValue(":provcli",  str(nuevocli[7]))
             query.bindValue(":municli",  str(nuevocli[8]))
 
-            query.bindValue(nuevocli)
-                if query.exec():
-                    return True
-                else:
-                    QtWidgets.QMessageBox.critical(None, 'Error', QtWidgets.QMessageBox.StandardButton.Cancel)
-
-        except Exception as e:
-                print("Error alta cliente", e)
+            if query.exec():
+                return True
+            else:
+                return False
+        except sqlite3.IntegrityError:
+                return False
 

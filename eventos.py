@@ -82,4 +82,15 @@ class Eventos():
         else:
             return False
 
+    def resizeTablaClientes(self):
+        try:
+            header = var.ui.tablaClientes.horizontalHeader()
+            for i in range(header.count()):
+                if i <= 1:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                else:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+        except Exception as error:
+            print("error en resize tabla clientes ", error)
+
 

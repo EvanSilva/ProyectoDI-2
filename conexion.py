@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from csv import excel
+from idlelib import query
 
 from PyQt6 import QtSql, QtWidgets
 
@@ -62,9 +63,8 @@ class Conexion:
         return listamunicipios
 
     def altaCliente(nuevocli):
-        print("suputamadr4")
         try:
-            print("suputamadr5")
+
             query = QtSql.QSqlQuery()
             query.prepare( "INSERT INTO clientes ( dnicli, altacli, apelcli, nomecli, emailcli, movilcli, dircli, provcli, municli ) VALUES ( :dnicli, :altacli, :apelcli, :nomecli, :emailcli, :movilcli, :dircli, :provcli, :municli ) " )
             query.bindValue(":dnicli", str(nuevocli[0]))
@@ -83,4 +83,20 @@ class Conexion:
                 return False
         except sqlite3.IntegrityError:
                 return False
+
+    def listadoClientes(self):
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM CLIENTES ORDER BY apelcli, nomecli ASC")
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range (query.record().count())]
+                    listado.append(fila)
+
+            print(listado)
+            return listado
+
+        except Exception as e:
+            print("Error Listado en Conexion", e)
 

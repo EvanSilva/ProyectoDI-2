@@ -1,5 +1,6 @@
 import conexion
-import eventos
+import conexionserver
+
 from venAux import *
 from venPrincipal import *
 import sys
@@ -14,11 +15,14 @@ class Main(QtWidgets.QMainWindow):
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
         var.uicalendar = Calendar()
+        var.dlgAbrir = FileDialogAbrir()
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
         eventos.Eventos.cargarProv(self)
         eventos.Eventos.cargarMuni(self)
         clientes.Clientes.cargaTablaClientes(self)
+        # conexionserver.ConexionServer()
+
         '''
 
         ZONA DE EVENTOS DEL MENUBAR
@@ -26,6 +30,8 @@ class Main(QtWidgets.QMainWindow):
         '''
 
         var.ui.actionSalir.triggered.connect(eventos.Eventos.mensajeSalir)
+        var.ui.actionCrearBackup.triggered.connect(eventos.Eventos.crearBackup)
+        var.ui.actionRestaurar.triggered.connect(eventos.Eventos.restaurarBackup(self))
 
         '''
 

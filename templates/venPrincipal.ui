@@ -545,7 +545,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+              <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
             </property>
            </widget>
           </item>
@@ -734,12 +734,36 @@
     </property>
     <addaction name="actionSalir"/>
    </widget>
+   <widget class="QMenu" name="menuHerramientas">
+    <property name="title">
+     <string>Herramientas</string>
+    </property>
+    <addaction name="actionCrearBackup"/>
+    <addaction name="actionRestaurar"/>
+   </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuHerramientas"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSalir">
    <property name="text">
     <string>Salir</string>
+   </property>
+  </action>
+  <action name="actionCrearBackup">
+   <property name="text">
+    <string>CrearBackup</string>
+   </property>
+  </action>
+  <action name="actionRestaurar">
+   <property name="text">
+    <string>Restaurar</string>
    </property>
   </action>
  </widget>

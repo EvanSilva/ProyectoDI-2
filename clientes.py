@@ -71,47 +71,28 @@ class Clientes:
         except Exception as error:
             print("error check cliente", error)
 
+    @staticmethod
     def cargaTablaClientes(self):
         try:
             listado = conexion.Conexion.listadoClientes(self)
-            print(listado)
-
-            if not listado:
-                print("No se encontraron clientes.")
-                return
-
-            var.ui.tablaClientes.setRowCount(0)  # Limpiar tabla antes de rellenarla
-
             index = 0
             for registro in listado:
                 var.ui.tablaClientes.setRowCount(index + 1)
-
-                item_apellido = QtWidgets.QTableWidgetItem(registro[2])  # Apellido
-                item_nombre = QtWidgets.QTableWidgetItem(registro[3])  # Nombre
-                item_movil = QtWidgets.QTableWidgetItem(registro[5])  # Movil
-                item_provincia = QtWidgets.QTableWidgetItem(registro[7])  # Provincia
-                item_municipio = QtWidgets.QTableWidgetItem(registro[8])  # Municipio
-                item_fecha_baja = QtWidgets.QTableWidgetItem(registro[9])  # FechaBaja
-
-                # Añadir items a la tabla
-                var.ui.tablaClientes.setItem(index, 0, item_apellido)
-                var.ui.tablaClientes.setItem(index, 1, item_nombre)
-                var.ui.tablaClientes.setItem(index, 2, item_movil)
-                var.ui.tablaClientes.setItem(index, 3, item_provincia)
-                var.ui.tablaClientes.setItem(index, 4, item_municipio)
-                var.ui.tablaClientes.setItem(index, 5, item_fecha_baja)
-
-                # Alineación de textos
-                item_apellido.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-                item_nombre.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-                item_movil.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                item_provincia.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-                item_municipio.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft)
-                item_fecha_baja.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-
+                var.ui.tablaClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[2]))
+                var.ui.tablaClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[3]))
+                var.ui.tablaClientes.setItem(index, 2, QtWidgets.QTableWidgetItem("  " + registro[5] + "  "))
+                var.ui.tablaClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[7]))
+                var.ui.tablaClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[8]))
+                var.ui.tablaClientes.setItem(index, 5, QtWidgets.QTableWidgetItem("  " + registro[9] + "  "))
+                var.ui.tablaClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.tablaClientes.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaClientes.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaClientes.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
                 index += 1
 
         except Exception as e:
-            print("Error CargaTablaCliente", e)
+            print("error cargaTablaCientes", e)
             import traceback
             print(traceback.format_exc())

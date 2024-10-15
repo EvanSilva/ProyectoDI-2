@@ -100,12 +100,17 @@ class Eventos():
         try:
             header = var.ui.tablaClientes.horizontalHeader()
             for i in range(header.count()):
-                if i <= 1:
+                if (i == 1 or i == 2 or i == 4 or i == 5):
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
                 else:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+                    header_items = var.ui.tablaClientes.horizontalHeaderItem(i)
+                    font = header_items.font()
+                    font.setBold(True)
+                    header_items.setFont(font)
         except Exception as error:
             print("error en resize tabla clientes ", error)
+
 
     def crearBackup(self):
         try:
@@ -151,9 +156,7 @@ class Eventos():
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
-                conexion.Conexion.db_conexion(self)
-                eventos.Eventos.cargarProv(self)
-                clientes.Clientes.cargaTablaClientes(self)
+
 
         except Exception as error:
             print("error en crear backup: ", error)

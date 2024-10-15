@@ -5,6 +5,9 @@ from idlelib import query
 
 from PyQt6 import QtSql, QtWidgets
 
+import var
+
+
 class Conexion:
     '''
 
@@ -99,4 +102,43 @@ class Conexion:
 
         except Exception as e:
             print("Error Listado en Conexion", e)
+
+    def datosOneCliente(dni):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM CLIENTES WHERE dnicli = :dni")
+            query.bindValue(":dni", str(dni))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(query.value(i))
+            print(registro)
+            return registro
+
+        except Exception as e:
+            print("Error datos un Cliente", e)
+
+    def modifCliente(registro):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE clientes set altacli = :altacli,  apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli, movicli = :movicli, dircli = :dircli, provcli = :provcli, municli = :municli WHERE dnicli = :dnicli")
+
+            query.bindValue("dnicli", str(registro[0]))
+            query.bindValue("altacli", str(registro[1]))
+            query.bindValue("apelcli", str(registro[2]))
+            query.bindValue("nomecli", str(registro[3]))
+            query.bindValue("emailcli", str(registro[4]))
+            query.bindValue("movicli", str(registro[5]))
+            query.bindValue("dircli", str(registro[6]))
+            query.bindValue("provcli", str(registro[7]))
+            query.bindValue("municli", str(registro[8]))
+            if query.exec():
+                return True
+            else:
+                print(query.lastError().text())
+                return False
+
+        except Exception as e:
+            print("Error datos un modifCliente", e)
 

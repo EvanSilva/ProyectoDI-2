@@ -1,5 +1,6 @@
 import conexion
 import conexionserver
+import eventos
 
 from venAux import *
 from venPrincipal import *
@@ -20,8 +21,22 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.db_conexion(self)
         eventos.Eventos.cargarProv(self)
         eventos.Eventos.cargarMuni(self)
-        clientes.Clientes.cargaTablaClientes(self)
+
         # conexionserver.ConexionServer()
+
+
+
+
+
+        '''
+        
+        EVENTOS DE TABLAS
+        '''
+
+        clientes.Clientes.cargaTablaClientes(self)
+        eventos.Eventos.resizeTablaClientes(self)
+        var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
+
 
         '''
 
@@ -31,7 +46,7 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.actionSalir.triggered.connect(eventos.Eventos.mensajeSalir)
         var.ui.actionCrearBackup.triggered.connect(eventos.Eventos.crearBackup)
-        var.ui.actionRestaurar.triggered.connect(eventos.Eventos.restaurarBackup(self))
+        var.ui.actionRestaurar.triggered.connect(eventos.Eventos.restaurarBackup)
 
         '''
 
@@ -41,6 +56,7 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnGrabarcli.clicked.connect(clientes.Clientes.altaCliente)
         var.ui.btnAltacli.clicked.connect(lambda:  eventos.Eventos.abrirCalendar(0))
+        var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCliente)
 
 
         '''

@@ -119,7 +119,16 @@ class Clientes:
 
     def modifCliente(self):
         try:
-            modifcli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomecli.text(), var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(), var.ui.cmbMunicli.currentText()]
+            modifcli = [var.ui.txtDnicli.text(),
+                        var.ui.txtAltacli.text(),
+                        var.ui.txtApelcli.text(),
+                        var.ui.txtNomecli.text(),
+                        var.ui.txtEmailcli.text(),
+                        var.ui.txtMovilcli.text(),
+                        var.ui.txtDircli.text(),
+                        var.ui.cmbProvcli.currentText(),
+                        var.ui.cmbMunicli.currentText()]
+
 
             print (modifcli)
             if conexion.Conexion.modifCliente(modifcli):
@@ -134,7 +143,6 @@ class Clientes:
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
                 Clientes.cargaTablaClientes(self)
-                clientes.Clientes.cargaTablaClientes()
             else:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
@@ -149,3 +157,35 @@ class Clientes:
 
         except Exception as e:
             print("Error en modifCliente", e)
+
+
+    def bajaCliente(self):
+        try:
+            datos = [var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]
+            if conexion.Conexion.bajaCliente(datos):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Cliente Dado de Baja')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Clientes.cargaTablaClientes(self)
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('ERROR AL DAR DE BAJA AL CLIENTE')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Clientes.cargaTablaClientes(self)
+
+        except Exception as e:
+            print("Error en bajaCliente", e)

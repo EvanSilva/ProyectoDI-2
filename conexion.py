@@ -122,7 +122,7 @@ class Conexion:
     def modifCliente(registro):
         try:
             query = QtSql.QSqlQuery()
-            query.prepare("UPDATE clientes set altacli = :altacli,  apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli, movicli = :movicli, dircli = :dircli, provcli = :provcli, municli = :municli WHERE dnicli = :dnicli")
+            query.prepare(" UPDATE clientes set altacli = :altacli,  apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli, movicli = :movicli, dircli = :dircli, provcli = :provcli, municli = :municli WHERE dnicli = :dnicli ")
 
             query.bindValue("dnicli", str(registro[0]))
             query.bindValue("altacli", str(registro[1]))
@@ -141,4 +141,18 @@ class Conexion:
 
         except Exception as e:
             print("Error datos un modifCliente", e)
+
+    def bajaCliente(datos):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE clientes SET bajacli = :bajacli WHERE DNICLI = :dni")
+            query.bindValue(":bajacli", str(datos[0]))
+            query.bindValue(":dni", str(datos[1]))
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            print("Error bajaCliente", e)
 

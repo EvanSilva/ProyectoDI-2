@@ -7,3 +7,4 @@ global ui
 global calendar
 global panel
 global dlgAbrir
+global btn

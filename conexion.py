@@ -121,19 +121,27 @@ class Conexion:
 
     def modifCliente(registro):
         try:
-            query = QtSql.QSqlQuery()
-            query.prepare(" UPDATE clientes set altacli = :altacli,  apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli, movicli = :movicli, dircli = :dircli, provcli = :provcli, municli = :municli WHERE dnicli = :dnicli ")
 
-            query.bindValue("dnicli", str(registro[0]))
-            query.bindValue("altacli", str(registro[1]))
-            query.bindValue("apelcli", str(registro[2]))
-            query.bindValue("nomecli", str(registro[3]))
-            query.bindValue("emailcli", str(registro[4]))
-            query.bindValue("movicli", str(registro[5]))
-            query.bindValue("dircli", str(registro[6]))
-            query.bindValue("provcli", str(registro[7]))
-            query.bindValue("municli", str(registro[8]))
+
+            query = QtSql.QSqlQuery()
+            query.prepare(" UPDATE clientes set altacli = :altacli,  apelcli = :apelcli, nomecli = :nomecli, "
+                          " emailcli = :emailcli, movilcli = :movicli, dircli = :dircli, provcli = :provcli, "
+                          " municli = :municli, bajacli = :bajacli WHERE dnicli = :dnicli ")
+
+
+            query.bindValue(":dnicli", str(registro[0]))
+            query.bindValue(":altacli", str(registro[1]))
+            query.bindValue(":apelcli", str(registro[2]))
+            query.bindValue(":nomecli", str(registro[3]))
+            query.bindValue(":emailcli", str(registro[4]))
+            query.bindValue(":movicli", str(registro[5]))
+            query.bindValue(":dircli", str(registro[6]))
+            query.bindValue(":provcli", str(registro[7]))
+            query.bindValue(":municli", str(registro[8]))
+            query.bindValue(":bajacli", str(registro[9]))
+
             if query.exec():
+                print(registro)
                 return True
             else:
                 print(query.lastError().text())

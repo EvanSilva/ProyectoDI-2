@@ -184,4 +184,18 @@ class Eventos():
 
             eventos.Eventos.cargarProv(dato)
 
+    def validarMovil(telefono):
+        regex = r"^[67]\d{8}$"
+        if re.match(regex, telefono):
+            return True
+        else:
+            return False
+
+    def checkTxtVacio(string):
+        if string == "":
+            return False
+        else:
+            return True
+
+
 

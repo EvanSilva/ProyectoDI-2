@@ -1,3 +1,5 @@
+from time import sleep
+
 from PyQt6 import QtWidgets, QtGui, QtCore
 
 import clientes
@@ -20,6 +22,63 @@ class Clientes:
                 var.ui.txtDnicli.setFocus()
         except Exception as e:
             print("error check cliente", e)
+
+    def checkEmail(mail):
+        try:
+            mail = str(var.ui.txtEmailcli.text())
+            if eventos.Eventos.validarMail(mail):
+                var.ui.txtEmailcli.setStyleSheet('background-color: rgb(255, 255, 255);')
+                var.ui.txtEmailcli.setText(mail.lower())
+
+            else:
+                var.ui.txtEmailcli.setStyleSheet('background-color:#FFC0CB; font-style: italic;')
+                var.ui.txtEmailcli.setText(None)
+                var.ui.txtEmailcli.setText("correo no válido")
+                var.ui.txtEmailcli.setFocus()
+
+        except Exception as error:
+            print("error check cliente", error)
+
+
+    def checkNumero(numero):
+        try:
+
+            var.ui.txtMovilcli.setText(str(numero))
+            check = eventos.Eventos.validarMovil(numero)
+            if check:
+                var.ui.txtMovilcli.setStyleSheet("background-color: #BEEEBA;")
+            else:
+                var.ui.txtMovilcli.setStyleSheet('background-color:#FFC0CB;')
+                var.ui.txtMovilcli.setText(None)
+                var.ui.txtMovilcli.setFocus()
+
+        except Exception as e:
+            print("error check cliente", e)
+
+    def checkObligatorios():
+        try:
+
+            textos = [var.ui.txtDnicli.text(),
+                      var.ui.txtAltacli.text(),
+                      var.ui.txtApelcli.text(),
+                      var.ui.txtNomecli.text(),
+                      var.ui.txtEmailcli.text(),
+                      var.ui.txtDircli.text(),
+                      var.ui.cmbProvcli.currentText()]
+
+            for texto in textos:
+                if not eventos.Eventos.checkTxtVacio(texto):
+
+
+
+
+
+
+
+
+        except Exception as e:
+            print("error check cliente", e)
+
 
     def altaCliente(self):
 
@@ -53,25 +112,6 @@ class Clientes:
             print("error altaCliente", e)
 
 
-
-
-
-
-    def checkEmail(mail):
-        try:
-            mail = str(var.ui.txtEmailcli.text())
-            if eventos.Eventos.validarMail(mail):
-                var.ui.txtEmailcli.setStyleSheet('background-color: rgb(255, 255, 255);')
-                var.ui.txtEmailcli.setText(mail.lower())
-
-            else:
-                var.ui.txtEmailcli.setStyleSheet('background-color:#FFC0CB; font-style: italic;')
-                var.ui.txtEmailcli.setText(None)
-                var.ui.txtEmailcli.setText("correo no válido")
-                var.ui.txtEmailcli.setFocus()
-
-        except Exception as error:
-            print("error check cliente", error)
 
     @staticmethod
     def cargaTablaClientes(self):
@@ -127,10 +167,9 @@ class Clientes:
                         var.ui.txtMovilcli.text(),
                         var.ui.txtDircli.text(),
                         var.ui.cmbProvcli.currentText(),
-                        var.ui.cmbMunicli.currentText()]
+                        var.ui.cmbMunicli.currentText(),
+                        var.ui.txtBajacli.text()]
 
-
-            print (modifcli)
             if conexion.Conexion.modifCliente(modifcli):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)

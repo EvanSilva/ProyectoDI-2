@@ -193,9 +193,9 @@ class Eventos():
 
     def checkTxtVacio(string):
         if string == "":
-            return False
-        else:
             return True
+        else:
+            return False
 
 
 

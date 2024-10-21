@@ -1,6 +1,7 @@
 from time import sleep
 
 from PyQt6 import QtWidgets, QtGui, QtCore
+from fontTools.varLib.plot import stops
 
 import clientes
 import conexion
@@ -55,26 +56,20 @@ class Clientes:
         except Exception as e:
             print("error check cliente", e)
 
-    def checkObligatorios():
+    def checkObligatorios(self):
         try:
-
             textos = [var.ui.txtDnicli.text(),
                       var.ui.txtAltacli.text(),
                       var.ui.txtApelcli.text(),
                       var.ui.txtNomecli.text(),
-                      var.ui.txtEmailcli.text(),
+                      var.ui.txtMovilcli.text(),
                       var.ui.txtDircli.text(),
                       var.ui.cmbProvcli.currentText()]
 
             for texto in textos:
-                if not eventos.Eventos.checkTxtVacio(texto):
-
-
-
-
-
-
-
+                if eventos.Eventos.checkTxtVacio(texto):
+                    return False
+            return True
 
         except Exception as e:
             print("error check cliente", e)
@@ -85,25 +80,36 @@ class Clientes:
         try:
             nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomecli.text(), var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(), var.ui.cmbMunicli.currentText()]
 
-            if conexion.Conexion.altaCliente(nuevocli):
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
-                mbox.setWindowTitle('Aviso')
-                mbox.setText('Cliente Alta en Base de Datos')
-                mbox.setStandardButtons(
-                    QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
-                mbox.exec()
-                Clientes.cargaTablaClientes(self)
-                return True
+            if clientes.Clientes.checkObligatorios(self):
+                if conexion.Conexion.altaCliente(nuevocli):
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setText('Cliente Alta en Base de Datos')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
+                    Clientes.cargaTablaClientes(self)
+                    return True
+                else:
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle("Aviso")
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                    mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                    mbox.setText("Error al dar de alta el cliente")
+                    mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Cancel)
+                    mbox.exec()
+                    return False
+
             else:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setWindowTitle("Aviso")
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
                 mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
-                mbox.setText("Error al dar de alta el cliente")
+                mbox.setText("Faltan Datos Obligatorios")
                 mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Cancel)
                 mbox.exec()
                 return False

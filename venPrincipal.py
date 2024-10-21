@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_venPrincipal(object):
     def setupUi(self, venPrincipal):
         venPrincipal.setObjectName("venPrincipal")
-        venPrincipal.resize(1097, 812)
+        venPrincipal.resize(1097, 844)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("C:/Users/a20evansg/.designer/img/inmoteis.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         venPrincipal.setWindowIcon(icon)
@@ -359,16 +359,16 @@ class Ui_venPrincipal(object):
     def retranslateUi(self, venPrincipal):
         _translate = QtCore.QCoreApplication.translate
         venPrincipal.setWindowTitle(_translate("venPrincipal", "Inmoteis"))
-        self.lblDircli.setText(_translate("venPrincipal", "Dirección:"))
+        self.lblDircli.setText(_translate("venPrincipal", "Dirección:(*)"))
         self.lblMovilcli.setText(_translate("venPrincipal", "Móvil:"))
-        self.lblProvcli.setText(_translate("venPrincipal", "Provincia:"))
-        self.lblMunicli_2.setText(_translate("venPrincipal", "Municipio:"))
-        self.lblEmailcli.setText(_translate("venPrincipal", "Email:"))
+        self.lblProvcli.setText(_translate("venPrincipal", "Provincia:(*)"))
+        self.lblMunicli_2.setText(_translate("venPrincipal", "Municipio:(*)"))
+        self.lblEmailcli.setText(_translate("venPrincipal", "Email:(*)"))
         self.chkHistoriacli.setText(_translate("venPrincipal", "Histórico"))
-        self.lblDnicli.setText(_translate("venPrincipal", "DNI/CIF:"))
-        self.lblNomcli.setText(_translate("venPrincipal", "Nombre:"))
-        self.lblApelcli.setText(_translate("venPrincipal", "Apellidos:"))
-        self.lblAltacli.setText(_translate("venPrincipal", "Fecha Alta:"))
+        self.lblDnicli.setText(_translate("venPrincipal", "DNI/CIF(*):"))
+        self.lblNomcli.setText(_translate("venPrincipal", "Nombre:(*)"))
+        self.lblApelcli.setText(_translate("venPrincipal", "Apellidos(*):"))
+        self.lblAltacli.setText(_translate("venPrincipal", "Fecha Alta:(*)"))
         self.lblBajacli.setText(_translate("venPrincipal", "Fecha Baja:"))
         self.btnGrabarcli.setText(_translate("venPrincipal", "Grabar"))
         self.btnModifcli.setText(_translate("venPrincipal", "Modificar"))

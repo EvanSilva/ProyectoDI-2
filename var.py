@@ -8,3 +8,4 @@ global calendar
 global panel
 global dlgAbrir
 global btn
+global historico

@@ -1,7 +1,5 @@
-from time import sleep
-
 from PyQt6 import QtWidgets, QtGui, QtCore
-from fontTools.varLib.plot import stops
+
 
 import clientes
 import conexion
@@ -234,3 +232,16 @@ class Clientes:
 
         except Exception as e:
             print("Error en bajaCliente", e)
+
+    def historicoCli(Self):
+        try:
+            if var.ui.chkHistoriacli.isChecked():
+                var.historico = 0
+
+            else:
+                var.historico = 1
+
+            Clientes.cargaTablaClientes(Self)
+        except Exception as Error:
+            print("Checkbox Historico", Error)
+

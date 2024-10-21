@@ -1,7 +1,4 @@
 import conexion
-import conexionserver
-import eventos
-
 from venAux import *
 from venPrincipal import *
 import sys
@@ -21,7 +18,7 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.db_conexion(self)
         eventos.Eventos.cargarProv(self)
         eventos.Eventos.cargarMuni(self)
-
+        var.historico = 1
         # conexionserver.ConexionServer()
 
 
@@ -88,6 +85,13 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionbarSalir.triggered.connect(eventos.Eventos.mensajeSalir)
         var.ui.actionbarLimpiar.triggered.connect(eventos.Eventos.limpiarPanel)
 
+        '''
+
+        EVENTOS CHECKBOX
+
+        '''
+
+        var.ui.chkHistoriacli.stateChanged.connect(clientes.Clientes.historicoCli)
 
 
 

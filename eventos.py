@@ -4,19 +4,13 @@ import time
 import re
 from datetime import datetime
 import os
-from fileinput import filename
-
 from PyQt6 import QtWidgets, QtGui, QtSql
-
-import clientes
 import conexion
 import eventos
 import var
-
 import zipfile
 import shutil
 
-from conexion import Conexion
 
 #Establecer configuracion regional.
 locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')

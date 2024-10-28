@@ -190,6 +190,10 @@ class Eventos():
             return True
         else:
             return False
-
+    def abrirTipoprop(self):
+        try:
+            var.dlggestion.show()
+        except Exception as error:
+            print("Error en abrir tipo tipo: ", error)
 
 

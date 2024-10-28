@@ -5,6 +5,7 @@ import sys
 import var
 import styles
 import clientes
+import propiedades
 
 
 class Main(QtWidgets.QMainWindow):
@@ -14,11 +15,13 @@ class Main(QtWidgets.QMainWindow):
         var.ui.setupUi(self)
         var.uicalendar = Calendar()
         var.dlgAbrir = FileDialogAbrir()
+        var.dlggestion = dlgGestionprop()
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
         eventos.Eventos.cargarProv(self)
         eventos.Eventos.cargarMuni(self)
         var.historico = 1
+        propiedades.Propiedades.altaTipopropiedad(self)
         # conexionserver.ConexionServer()
 
 
@@ -44,6 +47,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalir.triggered.connect(eventos.Eventos.mensajeSalir)
         var.ui.actionCrearBackup.triggered.connect(eventos.Eventos.crearBackup)
         var.ui.actionRestaurar.triggered.connect(eventos.Eventos.restaurarBackup)
+        var.ui.actionPropiedades.triggered.connect(eventos.Eventos.abrirTipoprop)
 
         '''
 
@@ -56,8 +60,6 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0, 1))
         var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnDelcli.clicked.connect(clientes.Clientes.bajaCliente)
-
-
         '''
 
         EVENTOS DE CAJAS DE TEXTO

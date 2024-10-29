@@ -2,6 +2,7 @@ import os
 import sqlite3
 from csv import excel
 from datetime import datetime
+from http.cookiejar import strip_quotes
 from idlelib import query
 
 from PyQt6 import QtSql, QtWidgets
@@ -191,3 +192,55 @@ class Conexion:
     GESTION CLIENTES
 
     '''
+
+    def altaTipoprop(tipo):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare( "insert into tipopropiedad (tipo) values (:tipo)")
+            query.bindValue(":tipo", str(tipo))
+            if query.exec():
+                query = QtSql.QSqlQuery()
+                query.prepare( "select tipo from tipopropiedad" )
+                if query.exec():
+                    registro = []
+                    while query.next():
+                        registro.append(str(query.value(0)))
+                    return registro
+            else:
+                return False
+        except Exception as e:
+            print("Error altaTipoprop", e)
+
+    def cargarTipoprop(self):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare( "select * from tipopropiedad ASC" )
+            if query.exec():
+                while query.next():
+                    registro.append(str(query.value(0)))
+                return registro
+        except Exception as e:
+            print("Error cargarTipoprop", e)
+
+    def bajaTipoprop(tipo):
+        try:
+            db = QtSql.QSqlDatabase.database()
+            if not db.isOpen():
+                db.open()  # Asegura que la conexión está abierta
+
+            query = QtSql.QSqlQuery(db)
+            query.prepare("DELETE FROM tipopropiedad WHERE tipo = :tipo")
+            query.bindValue(":tipo", str(tipo))
+
+            if query.exec():
+                db.commit()  # Realiza el commit explícito
+                print(f"Eliminación exitosa del tipo: {tipo}")
+                return True
+            else:
+                print("Error en query:", query.lastError().text())
+                return False
+        except Exception as e:
+            print("Error en bajaTipoprop:", e)
+            return False
+

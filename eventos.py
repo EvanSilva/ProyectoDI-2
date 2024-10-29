@@ -196,4 +196,11 @@ class Eventos():
         except Exception as error:
             print("Error en abrir tipo tipo: ", error)
 
+    def cargarTipoprop(self):
+        registro = conexion.Conexion.cargarTipoprop(self)
+        var.ui.cmbTipoprop.clear()
+        var.ui.cmbTipoprop.addItems(registro)
+
+
+
 

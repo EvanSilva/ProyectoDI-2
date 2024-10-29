@@ -9,3 +9,4 @@ global panel
 global dlgAbrir
 global btn
 global historico
+global dlggestion

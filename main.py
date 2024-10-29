@@ -1,4 +1,5 @@
 import conexion
+import eventos
 from venAux import *
 from venPrincipal import *
 import sys
@@ -21,8 +22,9 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.cargarProv(self)
         eventos.Eventos.cargarMuni(self)
         var.historico = 1
-        propiedades.Propiedades.altaTipopropiedad(self)
         # conexionserver.ConexionServer()
+
+        eventos.Eventos.cargarTipoprop(self)
 
 
 

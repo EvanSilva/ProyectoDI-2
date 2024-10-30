@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_dlg_tipoprop(object):
     def setupUi(self, dlg_tipoprop):
         dlg_tipoprop.setObjectName("dlg_tipoprop")
-        dlg_tipoprop.setWindowModality(QtCore.Qt.WindowModality.WindowModal)
+        dlg_tipoprop.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         dlg_tipoprop.resize(400, 300)
         dlg_tipoprop.setMinimumSize(QtCore.QSize(400, 300))
         dlg_tipoprop.setMaximumSize(QtCore.QSize(400, 300))

@@ -195,21 +195,31 @@ class Conexion:
 
     def altaTipoprop(tipo):
         try:
+            # Verificar si el tipo ya existe antes de intentar insertarlo
+            check_query = QtSql.QSqlQuery()
+            check_query.prepare("SELECT COUNT(*) FROM tipopropiedad WHERE tipo = :tipo")
+            check_query.bindValue(":tipo", str(tipo))
+            if check_query.exec() and check_query.next() and check_query.value(0) > 0:
+                return False  # Tipo ya existe, no se puede insertar
+
+            # Proceder a insertar el nuevo tipo de propiedad
             query = QtSql.QSqlQuery()
-            query.prepare( "insert into tipopropiedad (tipo) values (:tipo)")
+            query.prepare("INSERT INTO tipopropiedad (tipo) VALUES (:tipo)")
             query.bindValue(":tipo", str(tipo))
             if query.exec():
+                # Obtener todos los tipos de propiedad después de la inserción
                 query = QtSql.QSqlQuery()
-                query.prepare( "select tipo from tipopropiedad" )
+                query.prepare("SELECT tipo FROM tipopropiedad")
                 if query.exec():
                     registro = []
                     while query.next():
                         registro.append(str(query.value(0)))
                     return registro
             else:
-                return False
+                return False  # Inserción fallida
         except Exception as e:
-            print("Error altaTipoprop", e)
+            print("Error en altaTipoprop:", e)
+            return False  # Retornar False si ocurre un error
 
     def cargarTipoprop(self):
         try:
@@ -225,22 +235,29 @@ class Conexion:
 
     def bajaTipoprop(tipo):
         try:
-            db = QtSql.QSqlDatabase.database()
-            if not db.isOpen():
-                db.open()  # Asegura que la conexión está abierta
-
-            query = QtSql.QSqlQuery(db)
-            query.prepare("DELETE FROM tipopropiedad WHERE tipo = :tipo")
-            query.bindValue(":tipo", str(tipo))
-
-            if query.exec():
-                db.commit()  # Realiza el commit explícito
-                print(f"Eliminación exitosa del tipo: {tipo}")
-                return True
-            else:
-                print("Error en query:", query.lastError().text())
+            # Verifica si el tipo existe antes de intentar eliminarlo
+            check_query = QtSql.QSqlQuery()
+            check_query.prepare("SELECT COUNT(*) FROM tipopropiedad WHERE tipo = :tipo")
+            check_query.bindValue(":tipo", str(tipo))
+            check_query.exec()
+            check_query.next()
+            if check_query.value(0) == 0:
+                print(f"El tipo {tipo} no existe.")
                 return False
+            else:
+
+                query = QtSql.QSqlQuery()
+                query.prepare("DELETE FROM tipopropiedad WHERE tipo = :tipo")
+                query.bindValue(":tipo", str(tipo))
+
+                if query.exec() and query.numRowsAffected() == 1:
+                    print(f"Eliminación exitosa del tipo: {tipo}")
+                    return True
+
+                else:
+                    print("Error en query:", query.lastError().text())
+                    return False
+
         except Exception as e:
             print("Error en bajaTipoprop:", e)
             return False
-

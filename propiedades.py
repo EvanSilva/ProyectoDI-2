@@ -47,7 +47,7 @@ class Propiedades():
     def bajaTipopropiedad(self):
         try:
             tipo = var.dlggestion.ui.txtGestipoprop.text().title()
-            if conexion.Conexion.bajaTipoprop(tipo):
+            if (tipo):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
@@ -58,6 +58,10 @@ class Propiedades():
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
+                conexion.Conexion.bajaTipoprop(tipo)
+                registro = conexion.Conexion.cargarTipoprop(self)
+                var.ui.cmbTipoprop.clear()
+                var.ui.cmbTipoprop.addItems(registro)
                 print(tipo)
             else:
                 mbox = QtWidgets.QMessageBox()

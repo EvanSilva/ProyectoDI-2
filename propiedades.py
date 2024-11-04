@@ -81,10 +81,10 @@ class Propiedades():
 
     def altaPropiedad(self):
         try:
-            propiedad = [var.ui.txtAltaprop.text(), var.ui.txtBajaprop.text(), var.ui.txtDirprop.text(),
+            propiedades = [var.ui.txtAltaprop.text(), var.ui.txtDirprop.text(),
                          var.ui.cmbProvprop.currentText(), var.ui.cmbMuniprop.currentText(), var.ui.cmbTipoprop.currentText(),
-                         var.ui.spnHabprop.text(), var.ui.spnBanprop.text(), var.ui.txtSuperprop.text(),
-                         var.ui.txtPrecioalquilerprop.text(), var.ui.txtPrecioventaprop.text(), var.ui.CPprop.text(),
+                         var.ui.spnHabprop.text(), var.ui.spnBanosprop.text(), var.ui.txtSuperprop.text(),
+                         var.ui.txtPrecioalquilerprop.text(), var.ui.txtPrecioventaprop.text(), var.ui.txtCPprop.text(),
                          var.ui.txtObservaprop.toPlainText(), var.ui.txtNomeprop.text(), var.ui.txtMovilprop.text()
                          ]
             tipooper = []
@@ -98,16 +98,18 @@ class Propiedades():
                 tipooper.append(var.ui.chkInterprop.text())
 
             if var.ui.rbtDisponprop.isChecked():
-                propiedad.append(var.ui.rbtDisponprop.text())
+                propiedades.append(var.ui.rbtDisponprop.text())
             elif var.ui.rbtVentaprop.isChecked():
-                propiedad.append(var.ui.rbtVentaprop.text())
+                propiedades.append(var.ui.rbtVentaprop.text())
             elif var.ui.rbtAlquiprop.isChecked():
-                propiedad.append(var.ui.rbtAlquiprop.text())
+                propiedades.append(var.ui.rbtAlquiprop.text())
 
-            propiedad.append(var.ui.txtNomeprop.text())
-            propiedad.append(var.ui.txtMovilprop.text())
-            conexion.Conexion.altaPropiedad(propiedad)
+            propiedades.append(var.ui.txtNomeprop.text())
+            propiedades.append(var.ui.txtMovilprop.text())
+            conexion.Conexion.altaPropiedad(propiedades)
 
-            print(propiedad)
+
+            print(propiedades)
         except Exception as e:
-            print("Error en propiedades, altaPropiedad()")
+            print("Error en propiedades, altaPropiedad(), " + e)
+

@@ -1,5 +1,6 @@
 import conexion
 import eventos
+from propiedades import Propiedades
 from venAux import *
 from venPrincipal import *
 import sys
@@ -62,6 +63,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0, 1))
         var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnDelcli.clicked.connect(clientes.Clientes.bajaCliente)
+        var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
         '''
 
         EVENTOS DE CAJAS DE TEXTO

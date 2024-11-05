@@ -1,4 +1,5 @@
 from PyQt6 import QtWidgets, QtGui
+from PyQt6 import QtCore
 
 import conexion
 import var
@@ -38,7 +39,7 @@ class Propiedades():
                 mbox.setText(f'Tipo de propiedad "{tipo}", dado de alta.')
                 mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.exec()
-                var.dlgges.ui.txtGestipoprop.setText("")  # Limpiar solo si se da de alta
+                var.dlggestion.ui.txtGestipoprop.setText("")  # Limpiar solo si se da de alta
             print(tipo)
 
         except Exception as e:
@@ -85,8 +86,9 @@ class Propiedades():
                          var.ui.cmbProvprop.currentText(), var.ui.cmbMuniprop.currentText(), var.ui.cmbTipoprop.currentText(),
                          var.ui.spnHabprop.text(), var.ui.spnBanosprop.text(), var.ui.txtSuperprop.text(),
                          var.ui.txtPrecioalquilerprop.text(), var.ui.txtPrecioventaprop.text(), var.ui.txtCPprop.text(),
-                         var.ui.txtObservaprop.toPlainText(), var.ui.txtNomeprop.text(), var.ui.txtMovilprop.text()
+                         var.ui.txtObservaprop.toPlainText()
                          ]
+
             tipooper = []
             if var.ui.chkAlquiprop.isChecked():
                 tipooper.append(var.ui.chkAlquiprop.text())
@@ -96,7 +98,7 @@ class Propiedades():
 
             if var.ui.chkInterprop.isChecked():
                 tipooper.append(var.ui.chkInterprop.text())
-
+            propiedades.append(tipooper)
             if var.ui.rbtDisponprop.isChecked():
                 propiedades.append(var.ui.rbtDisponprop.text())
             elif var.ui.rbtVentaprop.isChecked():
@@ -107,9 +109,88 @@ class Propiedades():
             propiedades.append(var.ui.txtNomeprop.text())
             propiedades.append(var.ui.txtMovilprop.text())
             conexion.Conexion.altaPropiedad(propiedades)
+            Propiedades.cargaTablaPropiedades(self)
 
 
             print(propiedades)
         except Exception as e:
             print("Error en propiedades, altaPropiedad(), " + e)
+
+    def cargaTablaPropiedades(self):
+        try:
+            listado = conexion.Conexion.listadoPropiedades(self)
+            print("Registros obtenidos:", listado)  # Esto te mostrará si se obtuvieron varios registros o solo uno.
+            index = 0
+            for registro in listado:
+                var.ui.tablaProp.setRowCount(index + 1)
+                var.ui.tablaProp.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                var.ui.tablaProp.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[5])))
+                var.ui.tablaProp.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[6])))
+                var.ui.tablaProp.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[7])))
+                var.ui.tablaProp.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[8])))
+                if registro[10] == "":
+                    registro[10] = "-"
+                if registro[11] == "":
+                    registro[11] = "-"
+                var.ui.tablaProp.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[10]) + " €" ))
+                var.ui.tablaProp.setItem(index, 6, QtWidgets.QTableWidgetItem(str(registro[11]) + " €" ))
+
+                string_limpio = registro[14].replace("[", "").replace("]", "").replace("'", "").strip()
+
+                var.ui.tablaProp.setItem(index, 7, QtWidgets.QTableWidgetItem(string_limpio))
+                var.ui.tablaProp.setItem(index, 8, QtWidgets.QTableWidgetItem(str(registro[15])))
+
+                var.ui.tablaProp.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.tablaProp.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaProp.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaProp.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.tablaProp.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaProp.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.tablaProp.item(index, 6).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                index += 1
+
+        except Exception as e:
+            print("error cargaTablaCientes", e)
+            import traceback
+            print(traceback.format_exc())
+
+    def modifCliente(self):
+        try:
+            propiedad = [var.ui.txtDnicli.text(),
+                        var.ui.txtAltacli.text(),
+                        var.ui.txtApelcli.text(),
+                        var.ui.txtNomecli.text(),
+                        var.ui.txtEmailcli.text(),
+                        var.ui.txtMovilcli.text(),
+                        var.ui.txtDircli.text(),
+                        var.ui.cmbProvcli.currentText(),
+                        var.ui.cmbMunicli.currentText(),
+                        var.ui.txtBajacli.text()]
+
+            if conexion.Conexion.modifCliente(propiedad):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Datos Cliente Modificados')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Clientes.cargaTablaClientes(self)
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('ERROR AL MODIFICAR CLIENTE')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+
+        except Exception as e:
+            print("Error en modifCliente", e)
 

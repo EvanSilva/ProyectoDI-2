@@ -906,7 +906,7 @@
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                  <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
                 </property>
                </widget>
               </item>
@@ -1143,7 +1143,7 @@
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                  <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
                 </property>
                </widget>
               </item>
@@ -1721,12 +1721,27 @@
           </column>
           <column>
            <property name="text">
-            <string>Precio</string>
+            <string>Precio Alquiler</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>TipoOperación</string>
+            <string>Precio Venta</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Tipo Operación</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Estado</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Fecha de Baja</string>
            </property>
           </column>
          </widget>

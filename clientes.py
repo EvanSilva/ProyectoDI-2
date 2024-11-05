@@ -116,7 +116,6 @@ class Clientes:
             print("error altaCliente", e)
 
 
-
     @staticmethod
     def cargaTablaClientes(self):
         try:

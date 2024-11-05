@@ -26,6 +26,7 @@ class Main(QtWidgets.QMainWindow):
         # conexionserver.ConexionServer()
 
         eventos.Eventos.cargarTipoprop(self)
+        propiedades.Propiedades.cargaTablaPropiedades(self)
 
 
 
@@ -80,6 +81,7 @@ class Main(QtWidgets.QMainWindow):
         
         '''
         eventos.Eventos.cargarProv(self)
+        var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
 
         '''

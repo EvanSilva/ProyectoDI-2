@@ -292,3 +292,59 @@ class Conexion:
         except Exception as e:
             print("Error en altaPropiedad:", e)
             return False
+
+    def listadoPropiedades(self):
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM propiedades ORDER BY codigo ASC")
+
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+                print(listado)  # Para verificar todos los registros obtenidos
+                return listado
+
+            else:
+                print("Error al listar Propiedades")
+                return []  # En caso de error, retornar una lista vacía
+
+        except Exception as e:
+            print("Error Listado en Conexion", e)
+            return []  # En caso de excepción, retornar una lista vacía
+
+    def modifCliente(registro):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("select count(*) from propiedades where codigo = :codigo")
+            query.bindValue(":codigo", str(registro[0]))
+            if query.exec():
+                if query.next() and query.value(0) > 0:
+                    if query.exec():
+                        query = QtSql.QSqlQuery()
+                        query.prepare("UPDATE propiedades set altaprop = :altaprop,bajaprop = :bajaprop,dirprop = :dirprop, dirprop = :dirprop, dirprop = :dirprop, tipoprop = :tipoprop, habprop = :habprop, superprop = :superprop, prealquiprop = :prealquiprop, prevenprop = :prevenprop, cpprop = :cpprop, obserprop = :obserprop, tipooper = :tipooper, estadoprop = :estadoprop, nomeprop = :nomeprop, movilprop = :movilprop)
+
+                        query.bindValue(":dni", str(registro[0]))
+                        query.bindValue(":altacli", str(registro[1]))
+                        query.bindValue(":apelcli", str(registro[2]))
+                        query.bindValue(":nomecli", str(registro[3]))
+                        query.bindValue(":emailcli", str(registro[4]))
+                        query.bindValue(":movilcli", str(registro[5]))
+                        query.bindValue(":dircli", str(registro[6]))
+                        query.bindValue(":provcli", str(registro[7]))
+                        query.bindValue(":municli", str(registro[8]))
+                        if registro[9] == "":
+                            query.bindValue(":bajacli", QtCore.QVariant())
+                        else:
+                            query.bindValue(":bajacli", str(registro[9]))
+                        if query.exec():
+                            return True
+                        else:
+                            return False
+                    else:
+                        return False
+                else:
+                    return False
+        except Exception as error:
+            print("error modificar cliente", error)

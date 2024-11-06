@@ -2,6 +2,7 @@ from PyQt6 import QtWidgets, QtGui
 from PyQt6 import QtCore
 
 import conexion
+import propiedades
 import var
 
 
@@ -154,37 +155,65 @@ class Propiedades():
             import traceback
             print(traceback.format_exc())
 
-    def modifCliente(self):
+    def modifPropiedad(self):
         try:
-            propiedad = [var.ui.txtDnicli.text(),
-                        var.ui.txtAltacli.text(),
-                        var.ui.txtApelcli.text(),
-                        var.ui.txtNomecli.text(),
-                        var.ui.txtEmailcli.text(),
-                        var.ui.txtMovilcli.text(),
-                        var.ui.txtDircli.text(),
-                        var.ui.cmbProvcli.currentText(),
-                        var.ui.cmbMunicli.currentText(),
-                        var.ui.txtBajacli.text()]
+            propiedades = [ var.ui.txtProp.text(),
+                            var.ui.txtAltaprop.text(),
+                            var.ui.txtBajaprop.text(),
+                            var.ui.txtDirprop.text(),
+                            var.ui.cmbProvprop.currentText(),
+                            var.ui.cmbMuniprop.currentText(),
+                            var.ui.cmbTipoprop.currentText(),
+                            var.ui.spnHabprop.text(),
+                            var.ui.spnBanosprop.text(),
+                            var.ui.txtSuperprop.text(),
+                            var.ui.txtPrecioalquilerprop.text(),
+                            var.ui.txtPrecioventaprop.text(),
+                            var.ui.txtCPprop.text(),
+                            var.ui.txtObservaprop.toPlainText()
+                           ]
 
-            if conexion.Conexion.modifCliente(propiedad):
+            tipooper = []
+            if var.ui.chkAlquiprop.isChecked():
+                tipooper.append(var.ui.chkAlquiprop.text())
+
+            if var.ui.chkVentaprop.isChecked():
+                tipooper.append(var.ui.chkVentaprop.text())
+
+            if var.ui.chkInterprop.isChecked():
+                tipooper.append(var.ui.chkInterprop.text())
+            propiedades.append(tipooper)
+            if var.ui.rbtDisponprop.isChecked():
+                propiedades.append(var.ui.rbtDisponprop.text())
+            elif var.ui.rbtVentaprop.isChecked():
+                propiedades.append(var.ui.rbtVentaprop.text())
+            elif var.ui.rbtAlquiprop.isChecked():
+                propiedades.append(var.ui.rbtAlquiprop.text())
+
+            propiedades.append(var.ui.txtNomeprop.text())
+            propiedades.append(var.ui.txtMovilprop.text())
+
+            print("ESTAS SON LAS PROPIEDADES MODIFICAR: \n" )
+            print(propiedades)
+
+            if conexion.Conexion.modifPropiedad(propiedades):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
                 mbox.setWindowTitle('Aviso')
-                mbox.setText('Datos Cliente Modificados')
+                mbox.setText('Datos de la Propiedad Modificados')
                 mbox.setStandardButtons(
                     QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
-                Clientes.cargaTablaClientes(self)
+                Propiedades.cargaTablaPropiedades(self)
             else:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
                 mbox.setWindowTitle('Aviso')
-                mbox.setText('ERROR AL MODIFICAR CLIENTE')
+                mbox.setText('ERROR AL MODIFICAR PROPIEDAD')
                 mbox.setStandardButtons(
                     QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
@@ -194,3 +223,29 @@ class Propiedades():
         except Exception as e:
             print("Error en modifCliente", e)
 
+    def cargaOnePropiedad(self):
+        try:
+            fila = var.ui.tablaClientes.selectedItems()
+            datos = [dato.text() for dato in fila]
+            registro = conexion.Conexion.datosOneCliente(str(datos[0]))
+
+            listado = [var.ui.txtProp,
+                var.ui.txtAltaprop,
+                var.ui.txtBajaprop,
+                var.ui.txtDirprop,
+                var.ui.cmbProvprop,
+                var.ui.cmbMuniprop,
+                var.ui.cmbTipoprop,
+                var.ui.spnHabprop,
+                var.ui.spnBanosprop,
+                var.ui.txtSuperprop,
+                var.ui.txtPrecioalquilerprop,
+                var.ui.txtPrecioventaprop,
+                var.ui.txtCPprop,
+                var.ui.txtObservaprop
+                       ]
+
+            print(registro)
+
+        except Exception as e:
+            print("Error en cargaOneCliente", e)

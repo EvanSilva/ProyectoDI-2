@@ -303,7 +303,6 @@ class Conexion:
                 while query.next():
                     fila = [query.value(i) for i in range(query.record().count())]
                     listado.append(fila)
-                print(listado)  # Para verificar todos los registros obtenidos
                 return listado
 
             else:
@@ -314,8 +313,10 @@ class Conexion:
             print("Error Listado en Conexion", e)
             return []  # En caso de excepción, retornar una lista vacía
 
-    def modifCliente(registro):
+    def modifPropiedad(registro):
         try:
+
+            print("Tamaño de la lista propiedades:", len(registro))
             query = QtSql.QSqlQuery()
             query.prepare("select count(*) from propiedades where codigo = :codigo")
             query.bindValue(":codigo", str(registro[0]))
@@ -323,21 +324,33 @@ class Conexion:
                 if query.next() and query.value(0) > 0:
                     if query.exec():
                         query = QtSql.QSqlQuery()
-                        query.prepare("UPDATE propiedades set altaprop = :altaprop,bajaprop = :bajaprop,dirprop = :dirprop, dirprop = :dirprop, dirprop = :dirprop, tipoprop = :tipoprop, habprop = :habprop, superprop = :superprop, prealquiprop = :prealquiprop, prevenprop = :prevenprop, cpprop = :cpprop, obserprop = :obserprop, tipooper = :tipooper, estadoprop = :estadoprop, nomeprop = :nomeprop, movilprop = :movilprop)
+                        query.prepare(
+                            "UPDATE propiedades SET altaprop = :altaprop, bajaprop = :bajaprop, dirprop = :dirprop, provprop = :provprop, muniprop = :muniprop, tipoprop = :tipoprop, habprop = :habprop, banprop = :banprop, superprop = :superprop, prealquiprop = :prealquiprop, prevenprop = :prevenprop, cpprop = :cpprop, obserprop = :obserprop, tipooper = :tipooper, estadoprop = :estadoprop, nomeprop = :nomeprop, movilprop = :movilprop WHERE CODIGO = :codigo")
 
-                        query.bindValue(":dni", str(registro[0]))
-                        query.bindValue(":altacli", str(registro[1]))
-                        query.bindValue(":apelcli", str(registro[2]))
-                        query.bindValue(":nomecli", str(registro[3]))
-                        query.bindValue(":emailcli", str(registro[4]))
-                        query.bindValue(":movilcli", str(registro[5]))
-                        query.bindValue(":dircli", str(registro[6]))
-                        query.bindValue(":provcli", str(registro[7]))
-                        query.bindValue(":municli", str(registro[8]))
+                        # Asignación de parámetros
+                        query.bindValue(":codigo", str(registro[0]))
+                        query.bindValue(":altaprop", str(registro[1]))
+                        query.bindValue(":bajaprop", str(registro[2]))
+                        query.bindValue(":dirprop", str(registro[3]))
+                        query.bindValue(":provprop", str(registro[4]))
+                        query.bindValue(":muniprop", str(registro[5]))
+                        query.bindValue(":tipoprop", str(registro[6]))
+                        query.bindValue(":habprop", int(registro[7]))
+                        query.bindValue(":banprop", int(registro[8]))
+                        query.bindValue(":superprop", str(registro[9]))
+                        query.bindValue(":prealquiprop", str(registro[10]))
+                        query.bindValue(":prevenprop", str(registro[11]))
+                        query.bindValue(":cpprop", str(registro[12]))
+                        query.bindValue(":obserprop", str(registro[13]))
+                        query.bindValue(":tipooper", str(registro[14]))
+                        query.bindValue(":estadoprop", str(registro[15]))
+                        query.bindValue(":nomeprop", str(registro[16]))
+                        query.bindValue(":movilprop", int(registro[17]))
+
                         if registro[9] == "":
-                            query.bindValue(":bajacli", QtCore.QVariant())
+                            query.bindValue(":bajaprop", QtCore.QVariant())
                         else:
-                            query.bindValue(":bajacli", str(registro[9]))
+                            query.bindValue(":bajaprop", str(registro[1]))
                         if query.exec():
                             return True
                         else:
@@ -347,4 +360,21 @@ class Conexion:
                 else:
                     return False
         except Exception as error:
-            print("error modificar cliente", error)
+            print("error modificar propiedad (Conexion)", error)
+
+
+def datosOnePropiedad(codigo):
+    try:
+        registro = []
+        query = QtSql.QSqlQuery()
+        query.prepare("SELECT * FROM PROPIEDADES WHERE dnicli = :codigo")
+        query.bindValue(":codigo", str(codigo))
+        if query.exec():
+            while query.next():
+                for i in range(query.record().count()):
+                    registro.append(query.value(i))
+        print(registro)
+        return registro
+
+    except Exception as e:
+        print("Error datos un Cliente", e)

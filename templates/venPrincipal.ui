@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1255</width>
-    <height>846</height>
+    <width>1401</width>
+    <height>901</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -746,34 +746,18 @@
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
              <layout class="QGridLayout" name="gridLayout_5">
-              <item row="4" column="6">
-               <spacer name="verticalSpacer_5">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+              <item row="0" column="6">
+               <widget class="QLabel" name="lblAltaprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
+                <property name="text">
+                 <string>Publicación:</string>
                 </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>5</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="0" column="4" rowspan="2">
-               <spacer name="horizontalSpacer_5">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
+               </widget>
               </item>
               <item row="0" column="1" colspan="3">
                <widget class="QLineEdit" name="txtProp">
@@ -794,20 +778,36 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="5">
-               <widget class="QLabel" name="lblAltaprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+              <item row="4" column="7">
+               <spacer name="verticalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
                 </property>
-                <property name="text">
-                 <string>Publicación:</string>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
                 </property>
-               </widget>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>5</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
-              <item row="3" column="2" colspan="3">
+              <item row="0" column="5" rowspan="2">
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="3" column="2" colspan="4">
                <widget class="QLineEdit" name="txtDirprop">
                 <property name="minimumSize">
                  <size>
@@ -826,7 +826,20 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="5">
+              <item row="0" column="0">
+               <widget class="QLabel" name="lblProp">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>ID:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="6">
                <widget class="QLabel" name="lblProvprop">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -839,7 +852,7 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="6" colspan="3">
+              <item row="3" column="7" colspan="3">
                <widget class="QComboBox" name="cmbProvprop">
                 <property name="minimumSize">
                  <size>
@@ -855,33 +868,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0" colspan="3" alignment="Qt::AlignLeft">
-               <widget class="QLabel" name="lblTipoprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Tipo de Propiedad:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="lblProp">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>ID:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="7" rowspan="2" colspan="2">
+              <item row="0" column="8" rowspan="2" colspan="2">
                <widget class="QPushButton" name="btnAltaprop">
                 <property name="maximumSize">
                  <size>
@@ -910,27 +897,8 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="6" rowspan="2">
-               <widget class="QLineEdit" name="txtAltaprop">
-                <property name="minimumSize">
-                 <size>
-                  <width>80</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>80</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="14" rowspan="2" colspan="2" alignment="Qt::AlignRight">
-               <widget class="QLabel" name="lblCPprop">
+              <item row="5" column="0" colspan="3" alignment="Qt::AlignLeft">
+               <widget class="QLabel" name="lblTipoprop">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -938,7 +906,20 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Código Postal:</string>
+                 <string>Tipo de Propiedad:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="5">
+               <widget class="QLabel" name="lblHabprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>N. Habitaciones:</string>
                 </property>
                </widget>
               </item>
@@ -971,8 +952,27 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="4">
-               <widget class="QLabel" name="lblHabprop">
+              <item row="0" column="7" rowspan="2">
+               <widget class="QLineEdit" name="txtAltaprop">
+                <property name="minimumSize">
+                 <size>
+                  <width>80</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>80</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="15" rowspan="2" colspan="2" alignment="Qt::AlignRight">
+               <widget class="QLabel" name="lblCPprop">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -980,11 +980,24 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>N. Habitaciones:</string>
+                 <string>Código Postal:</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="12" rowspan="2" colspan="2">
+              <item row="5" column="7" colspan="2" alignment="Qt::AlignRight">
+               <widget class="QLabel" name="lblBanosprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>N. de baños:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="13" rowspan="2" colspan="2">
                <widget class="QComboBox" name="cmbMuniprop">
                 <property name="minimumSize">
                  <size>
@@ -1000,7 +1013,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="16" rowspan="2">
+              <item row="2" column="17" rowspan="2">
                <widget class="QLineEdit" name="txtCPprop">
                 <property name="minimumSize">
                  <size>
@@ -1022,7 +1035,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="9" rowspan="2" colspan="3" alignment="Qt::AlignRight">
+              <item row="2" column="10" rowspan="2" colspan="3" alignment="Qt::AlignRight">
                <widget class="QLabel" name="lblMuniprop">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1035,71 +1048,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="6" colspan="2" alignment="Qt::AlignRight">
-               <widget class="QLabel" name="lblBanosprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>N. de baños:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="5">
-               <widget class="QSpinBox" name="spnHabprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>60</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="8" colspan="2">
-               <widget class="QSpinBox" name="spnBanosprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>60</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="9">
-               <widget class="QLabel" name="lblBajaprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Baja:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="10">
+              <item row="0" column="11">
                <widget class="QLineEdit" name="txtBajaprop">
                 <property name="minimumSize">
                  <size>
@@ -1118,7 +1067,20 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="11">
+              <item row="0" column="10">
+               <widget class="QLabel" name="lblBajaprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Baja:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="12">
                <widget class="QPushButton" name="btnBajaprop">
                 <property name="maximumSize">
                  <size>
@@ -1147,20 +1109,52 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="10">
-               <widget class="QLabel" name="lblSuperprop">
+              <item row="5" column="6">
+               <widget class="QSpinBox" name="spnHabprop">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>60</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
-                <property name="text">
-                 <string>Superficie:</string>
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="5" column="11">
+              <item row="5" column="9" colspan="2">
+               <widget class="QSpinBox" name="spnBanosprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>60</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="16">
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>/</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="12">
                <widget class="QLineEdit" name="txtSuperprop">
                 <property name="minimumSize">
                  <size>
@@ -1179,7 +1173,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="13">
+              <item row="5" column="14">
                <widget class="QLabel" name="lblPrecioprop">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1192,14 +1186,39 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="15">
-               <widget class="QLabel" name="label">
+              <item row="5" column="11">
+               <widget class="QLabel" name="lblSuperprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="text">
-                 <string>/</string>
+                 <string>Superficie:</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="14">
+              <item row="5" column="17">
+               <widget class="QLineEdit" name="txtPrecioalquilerprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>120</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>120</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="placeholderText">
+                 <string>Precio Alquiler €</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="15">
                <widget class="QLineEdit" name="txtPrecioventaprop">
                 <property name="minimumSize">
                  <size>
@@ -1221,24 +1240,21 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="16">
-               <widget class="QLineEdit" name="txtPrecioalquilerprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>120</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+              <item row="5" column="4">
+               <spacer name="horizontalSpacer_24">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="minimumSize">
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
                  <size>
-                  <width>120</width>
-                  <height>0</height>
+                  <width>2</width>
+                  <height>20</height>
                  </size>
                 </property>
-                <property name="placeholderText">
-                 <string>Precio Alquiler €</string>
-                </property>
-               </widget>
+               </spacer>
               </item>
              </layout>
             </item>
@@ -1288,6 +1304,9 @@
                <widget class="QRadioButton" name="rbtDisponprop">
                 <property name="text">
                  <string>Disponible</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                 <attribute name="buttonGroup">
                  <string notr="true">buttonGroup_2</string>
@@ -1757,7 +1776,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1255</width>
+     <width>1401</width>
      <height>21</height>
     </rect>
    </property>

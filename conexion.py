@@ -363,18 +363,29 @@ class Conexion:
             print("error modificar propiedad (Conexion)", error)
 
 
-def datosOnePropiedad(codigo):
-    try:
-        registro = []
-        query = QtSql.QSqlQuery()
-        query.prepare("SELECT * FROM PROPIEDADES WHERE dnicli = :codigo")
-        query.bindValue(":codigo", str(codigo))
-        if query.exec():
-            while query.next():
-                for i in range(query.record().count()):
-                    registro.append(query.value(i))
-        print(registro)
-        return registro
+    def datosOnePropiedad(codigo):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM PROPIEDADES WHERE codigo = :codigo")
+            query.bindValue(":codigo", str(codigo))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(query.value(i))
+            print(registro)
+            return registro
 
-    except Exception as e:
-        print("Error datos un Cliente", e)
+        except Exception as e:
+            print("Error datos un Cliente", e)
+
+    def bajaPropiedad(datos):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE propiedades SET bajaprop = :bajaprop WHERE codigo = :codigo")
+            query.bindValue(":bajaprop", datetime.now().strftime("%d/%m/%Y"))
+            query.bindValue(":codigo", int(datos[1]))
+            return query.exec()
+
+        except Exception as e:
+            print("Error bajaCliente", e)

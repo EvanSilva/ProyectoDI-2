@@ -140,6 +140,7 @@ class Propiedades():
 
                 var.ui.tablaProp.setItem(index, 7, QtWidgets.QTableWidgetItem(string_limpio))
                 var.ui.tablaProp.setItem(index, 8, QtWidgets.QTableWidgetItem(str(registro[15])))
+                var.ui.tablaProp.setItem(index, 9, QtWidgets.QTableWidgetItem(str(registro[2])))
 
                 var.ui.tablaProp.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
                 var.ui.tablaProp.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
@@ -225,9 +226,14 @@ class Propiedades():
 
     def cargaOnePropiedad(self):
         try:
-            fila = var.ui.tablaClientes.selectedItems()
+            fila = var.ui.tablaProp.selectedItems()
+
+            print("ESTA ES LA LINEA DE CARGAONEPROPIEDAD")
+            print(fila)
+
             datos = [dato.text() for dato in fila]
-            registro = conexion.Conexion.datosOneCliente(str(datos[0]))
+
+            registro = conexion.Conexion.datosOnePropiedad(str(datos[0]))
 
             listado = [var.ui.txtProp,
                 var.ui.txtAltaprop,
@@ -242,10 +248,83 @@ class Propiedades():
                 var.ui.txtPrecioalquilerprop,
                 var.ui.txtPrecioventaprop,
                 var.ui.txtCPprop,
-                var.ui.txtObservaprop
+                var.ui.txtObservaprop,
+                var.ui.chkAlquiprop,
+                var.ui.rbtDisponprop,
+                var.ui.txtNomeprop,
+                var.ui.txtMovilprop
                        ]
 
-            print(registro)
+            for i, casilla in enumerate(listado):
+                if isinstance(casilla, QtWidgets.QLineEdit):
+                    casilla.setText(str(registro[i]))
+                if isinstance(casilla, QtWidgets.QComboBox):
+                    casilla.setCurrentText(registro[i])
+                if isinstance(casilla, QtWidgets.QSpinBox):
+                    casilla.setValue(registro[i])
+                if isinstance(casilla, QtWidgets.QTextEdit):
+                    casilla.setText(str(registro[i]))
+
+                if isinstance(casilla, QtWidgets.QCheckBox):
+                    dato = registro[i]
+                    if "Alquiler" in dato :
+                        var.ui.chkAlquiprop.setChecked(True)
+                    else:
+                        var.ui.chkAlquiprop.setChecked(False)
+                    if "Venta" in dato :
+                        var.ui.chkVentaprop.setChecked(True)
+                    else:
+                        var.ui.chkVentaprop.setChecked(False)
+                    if "Intercambio" in dato :
+                        var.ui.chkInterprop.setChecked(True)
+                    else:
+                        var.ui.chkInterprop.setChecked(False)
+
+                if isinstance(casilla, QtWidgets.QRadioButton):
+                    dato = registro[i]
+                    if dato == 'Disponible':
+                        var.ui.rbtDisponprop.setChecked(True)
+                    elif dato == 'Alquilado':
+                        var.ui.rbtAlquiprop.setChecked(True)
+                    else:
+                        var.ui.rbtVentaprop.setChecked(True)
+
+            print(len(listado))
+            print(len(registro))
+
 
         except Exception as e:
             print("Error en cargaOneCliente", e)
+
+    def bajaPropiedad(self):
+        try:
+            datos = [var.ui.txtBajaprop.text(), var.ui.txtProp.text()]
+            if conexion.Conexion.bajaPropiedad(datos):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Cliente Dado de Baja')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                Propiedades.cargaTablaPropiedades(self)
+                mbox.exec()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('ERROR AL DAR DE BAJA AL CLIENTE')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+
+
+
+
+        except Exception as e:
+            print("Error en bajaCliente", e)

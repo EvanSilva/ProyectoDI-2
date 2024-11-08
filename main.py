@@ -40,6 +40,8 @@ class Main(QtWidgets.QMainWindow):
         clientes.Clientes.cargaTablaClientes(self)
         eventos.Eventos.resizeTablaClientes(self)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
+        var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
+
 
 
         '''
@@ -66,6 +68,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnDelcli.clicked.connect(clientes.Clientes.bajaCliente)
         var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
         var.ui.btnModifprop.clicked.connect(propiedades.Propiedades.modifPropiedad)
+        var.ui.btnDelprop.clicked.connect(propiedades.Propiedades.bajaPropiedad)
         '''
 
         EVENTOS DE CAJAS DE TEXTO
@@ -83,7 +86,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         eventos.Eventos.cargarProv(self)
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
-        var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
+        var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniProp)
 
         '''
 

@@ -11,10 +11,10 @@ import var
 import zipfile
 import shutil
 
-
-#Establecer configuracion regional.
+# Establecer configuracion regional.
 locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
 locale.setlocale(locale.LC_MONETARY, 'es_ES.UTF-8')
+
 
 class Eventos():
     def mensajeSalir(self=None):
@@ -37,13 +37,24 @@ class Eventos():
         var.ui.cmbProvcli.clear()
         listado = conexion.Conexion.listarProv(self)
         var.ui.cmbProvcli.addItems(listado)
-        var.ui.cmbProvprop.addItems(listado)
 
     def cargarMuni(self):
         var.ui.cmbMunicli.clear()
         municipios = conexion.Conexion.listarMunicli(var.ui.cmbProvcli.currentText())
         var.ui.cmbMunicli.addItems(municipios)
+
+
+    def cargarProvProp(self):
+        var.ui.cmbProvprop.clear()
+        listado = conexion.Conexion.listarProv(self)
+        var.ui.cmbProvprop.addItems(listado)
+
+    def cargarMuniProp(self):
+        var.ui.cmbMuniprop.clear()
+        municipios = conexion.Conexion.listarMunicli(var.ui.cmbProvprop.currentText())
         var.ui.cmbMuniprop.addItems(municipios)
+
+
 
     def validarDNI(dni):
         try:
@@ -59,7 +70,7 @@ class Eventos():
                 if len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23] == dig_control:
                     return True
                 else:
-                   return False
+                    return False
             else:
                 return False
 
@@ -111,12 +122,11 @@ class Eventos():
         except Exception as error:
             print("error en resize tabla clientes ", error)
 
-
     def crearBackup(self):
         try:
             fecha = datetime.now()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
-            copia = str(fecha)+"_backup.zip"
+            copia = str(fecha) + "_backup.zip"
             directorio, fichero = var.dlgAbrir.getSaveFileName(None, "Guardar Copia Seguridad", copia, '.zip')
             if var.dlgAbrir.accept and fichero:
                 fichzip = zipfile.ZipFile(fichero, 'w')
@@ -162,23 +172,48 @@ class Eventos():
             print("error en crear backup: ", error)
 
     def limpiarPanel(self):
-        objetosPanel = [var.ui.txtDnicli,
-                    var.ui.txtAltacli,
-                    var.ui.txtApelcli,
-                    var.ui.txtNomecli,
-                    var.ui.txtEmailcli,
-                    var.ui.txtMovilcli,
-                    var.ui.txtDircli,
-                    var.ui.cmbProvcli,
-                    var.ui.cmbMunicli]
+        if var.ui.panPrincipal.currentIndex() == 0:
+            objetosPanel = [
+                var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
+                var.ui.txtNomecli, var.ui.txtEmailcli, var.ui.txtMovilcli,
+                var.ui.txtDircli, var.ui.cmbProvcli, var.ui.cmbMunicli
+            ]
 
-        for i, dato in enumerate(objetosPanel):
-            if i == 7 or i == 8:
-                pass
-            else:
-                dato.setText("")
+            for i, dato in enumerate(objetosPanel):
+                if i == 7 or i == 8:
+                    pass  # Se omiten las acciones para `cmbProvcli` y `cmbMunicli`
+                else:
+                    dato.setText("")  # Limpia el texto en los campos
 
-            eventos.Eventos.cargarProv(dato)
+            # Cargar provincias solo en los ComboBox
+            eventos.Eventos.cargarProv(var.ui.cmbProvcli)
+            eventos.Eventos.cargarProv(var.ui.cmbMunicli)
+
+        elif var.ui.panPrincipal.currentIndex() == 1:
+            objetosPanel = [
+                var.ui.txtProp, var.ui.txtAltaprop, var.ui.txtBajaprop,
+                var.ui.txtDirprop, var.ui.cmbProvprop, var.ui.cmbMuniprop,
+                var.ui.cmbTipoprop, var.ui.spnHabprop, var.ui.spnBanosprop,
+                var.ui.txtSuperprop, var.ui.txtPrecioalquilerprop,
+                var.ui.txtPrecioventaprop, var.ui.txtCPprop, var.ui.txtObservaprop,
+                var.ui.chkAlquiprop, var.ui.chkVentaprop, var.ui.chkInterprop,
+                var.ui.rbtDisponprop, var.ui.rbtAlquiprop, var.ui.rbtVentaprop,
+                var.ui.txtNomeprop, var.ui.txtMovilprop
+            ]
+
+            for casilla in objetosPanel:
+                if isinstance(casilla, QtWidgets.QComboBox):
+                    casilla.setCurrentText("")
+                elif isinstance(casilla, QtWidgets.QCheckBox):
+                    casilla.setChecked(False)
+                elif isinstance(casilla, QtWidgets.QRadioButton):
+                    var.ui.rbtDisponprop.setChecked(True)  # Selecciona este radio botón por defecto
+                elif isinstance(casilla, QtWidgets.QSpinBox):
+                    casilla.setValue(0)  # Usa 0 como valor por defecto
+                elif isinstance(casilla, QtWidgets.QTextEdit):
+                    casilla.setPlainText("")  # Limpia el contenido de QTextEdit
+                else:
+                    casilla.setText("")  # Limpia los QLineEdit
 
     def validarMovil(telefono):
         regex = r"^[67]\d{8}$"
@@ -192,6 +227,7 @@ class Eventos():
             return True
         else:
             return False
+
     def abrirTipoprop(self):
         try:
             var.dlggestion.show()
@@ -202,7 +238,3 @@ class Eventos():
         registro = conexion.Conexion.cargarTipoprop(self)
         var.ui.cmbTipoprop.clear()
         var.ui.cmbTipoprop.addItems(registro)
-
-
-
-

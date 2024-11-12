@@ -26,6 +26,8 @@ class Main(QtWidgets.QMainWindow):
         # conexionserver.ConexionServer()
 
         eventos.Eventos.cargarTipoprop(self)
+        eventos.Eventos.cargarProvProp(self)
+        eventos.Eventos.cargarMuniProp(self)
         propiedades.Propiedades.cargaTablaPropiedades(self)
 
 
@@ -40,7 +42,10 @@ class Main(QtWidgets.QMainWindow):
         clientes.Clientes.cargaTablaClientes(self)
         eventos.Eventos.resizeTablaClientes(self)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
+
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
+        eventos.Eventos.resizeTablaPropiedades(self)
+
 
 
 
@@ -64,11 +69,15 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnGrabarcli.clicked.connect(clientes.Clientes.altaCliente)
         var.ui.btnAltacli.clicked.connect(lambda:  eventos.Eventos.abrirCalendar(0, 0))
         var.ui.btnBajacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0, 1))
+        var.ui.btnAltaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 0))
+        var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 1))
         var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnDelcli.clicked.connect(clientes.Clientes.bajaCliente)
         var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
         var.ui.btnModifprop.clicked.connect(propiedades.Propiedades.modifPropiedad)
         var.ui.btnDelprop.clicked.connect(propiedades.Propiedades.bajaPropiedad)
+        var.ui.btnBuscaTipoProp.clicked.connect(propiedades.Propiedades.cargaTablaPropiedades)
+
         '''
 
         EVENTOS DE CAJAS DE TEXTO
@@ -85,6 +94,7 @@ class Main(QtWidgets.QMainWindow):
         
         '''
         eventos.Eventos.cargarProv(self)
+        eventos.Eventos.cargarProvProp(self)
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
         var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniProp)
 
@@ -96,6 +106,9 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.actionbarSalir.triggered.connect(eventos.Eventos.mensajeSalir)
         var.ui.actionbarLimpiar.triggered.connect(eventos.Eventos.limpiarPanel)
+        var.ui.actionFiltrado.triggered.connect(propiedades.Propiedades.filtrar)
+        var.ui.actionAddTipoPropiedad.triggered.connect(eventos.Eventos.abrirTipoprop)
+
 
         '''
 
@@ -104,6 +117,9 @@ class Main(QtWidgets.QMainWindow):
         '''
 
         var.ui.chkHistoriacli.stateChanged.connect(clientes.Clientes.historicoCli)
+        var.ui.chkHistoricoprop.stateChanged.connect(propiedades.Propiedades.historicoProp)
+
+
 
 
 

@@ -88,10 +88,15 @@ class Eventos():
     def cargaFecha(qDate):
         try:
             data = ('{:02d}/{:02d}/{:4d}'.format(qDate.day(), qDate.month(), qDate.year()))
-            if var.panel == var.ui.panPrincipal.currentIndex() and var.btn == 0:
+            if var.panel == 0 and var.btn == 0:
                 var.ui.txtAltacli.setText(str(data))
-            elif var.panel == var.ui.panPrincipal.currentIndex() and var.btn == 1:
+            elif var.panel == 0 and var.btn == 1:
                 var.ui.txtBajacli.setText(str(data))
+            elif var.panel == 1 and var.btn == 0:
+                var.ui.txtAltaprop.setText(str(data))
+            elif var.panel == 1 and var.btn == 1:
+                var.ui.txtBajaprop.setText(str(data))
+
 
             time.sleep(0.5)
             var.uicalendar.hide()
@@ -116,6 +121,25 @@ class Eventos():
                 else:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
                     header_items = var.ui.tablaClientes.horizontalHeaderItem(i)
+                    font = header_items.font()
+                    font.setBold(True)
+                    header_items.setFont(font)
+        except Exception as error:
+            print("error en resize tabla clientes ", error)
+
+    def resizeTablaPropiedades(self):
+        try:
+            header = var.ui.tablaProp.horizontalHeader()
+            for i in range(header.count()):
+                if (i == 1 or i == 6 or i == 7 or i == 8):
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                    header_items = var.ui.tablaProp.horizontalHeaderItem(i)
+                    font = header_items.font()
+                    font.setBold(True)
+                    header_items.setFont(font)
+                else:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+                    header_items = var.ui.tablaProp.horizontalHeaderItem(i)
                     font = header_items.font()
                     font.setBold(True)
                     header_items.setFont(font)

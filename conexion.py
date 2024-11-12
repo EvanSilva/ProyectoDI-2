@@ -285,7 +285,6 @@ class Conexion:
             query.bindValue(":nomeprop", str(propiedades[14]))
             query.bindValue(":movilprop", str(propiedades[15]))
 
-
             if query.exec():
                 return True
 
@@ -293,25 +292,52 @@ class Conexion:
             print("Error en altaPropiedad:", e)
             return False
 
-    def listadoPropiedades(self):
+
+    # Menos mal que Yelko es un máquina, el resto de '''mi codigo''' tiene mas deuda tecnica que Venezuela. Llamen a Javier Milei.
+
+    def listadoPropiedades():
         try:
             listado = []
-            query = QtSql.QSqlQuery()
-            query.prepare("SELECT * FROM propiedades ORDER BY codigo ASC")
-
-            if query.exec():
-                while query.next():
-                    fila = [query.value(i) for i in range(query.record().count())]
-                    listado.append(fila)
-                return listado
-
+            historico = var.ui.chkHistoricoprop.isChecked()
+            municipio = var.ui.cmbMuniprop.currentText()
+            filtrado = var.ui.btnBuscaTipoProp.isChecked()
+            tipoSeleccionado = var.ui.cmbTipoprop.currentText()
+            if not historico and filtrado:
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM PROPIEDADES where bajaprop is null and estadoprop = 'Disponible' and tipoprop = :tipo_propiedad  and muniprop = :municipio order by muniprop asc" )
+                query.bindValue(":tipo_propiedad", str(tipoSeleccionado))
+                query.bindValue(":municipio", str(municipio))
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
+            elif historico and not filtrado:
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM propiedades ORDER BY muniprop ASC")
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
+            elif historico and filtrado:
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM PROPIEDADES where estadoprop = 'Disponible' and tipoprop = :tipo_propiedad and muniprop = :municipio order by muniprop asc" )
+                query.bindValue(":tipo_propiedad", str(tipoSeleccionado))
+                query.bindValue(":municipio", str(municipio))
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
             else:
-                print("Error al listar Propiedades")
-                return []  # En caso de error, retornar una lista vacía
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM propiedades where bajaprop is null ORDER BY muniprop ASC")
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
+            return listado
 
         except Exception as e:
-            print("Error Listado en Conexion", e)
-            return []  # En caso de excepción, retornar una lista vacía
+            print("Error al listar propiedades en listadoPropiedades", e)
 
     def modifPropiedad(registro):
         try:
@@ -347,10 +373,10 @@ class Conexion:
                         query.bindValue(":nomeprop", str(registro[16]))
                         query.bindValue(":movilprop", int(registro[17]))
 
-                        if registro[9] == "":
+                        if registro[2] == "":
                             query.bindValue(":bajaprop", QtCore.QVariant())
                         else:
-                            query.bindValue(":bajaprop", str(registro[1]))
+                            query.bindValue(":bajaprop", str(registro[2]))
                         if query.exec():
                             return True
                         else:

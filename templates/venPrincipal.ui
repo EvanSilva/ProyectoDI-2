@@ -755,7 +755,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Publicación:</string>
+                 <string>Publicación:(*)</string>
                 </property>
                </widget>
               </item>
@@ -893,7 +893,7 @@
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
+                  <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
                 </property>
                </widget>
               </item>
@@ -932,7 +932,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Dirección:</string>
+                 <string>Dirección:(*)</string>
                 </property>
                </widget>
               </item>
@@ -980,7 +980,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Código Postal:</string>
+                 <string>Código Postal:(*)</string>
                 </property>
                </widget>
               </item>
@@ -1105,7 +1105,7 @@
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
+                  <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
                 </property>
                </widget>
               </item>
@@ -1195,7 +1195,7 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Superficie:</string>
+                 <string>Superficie:(*)</string>
                 </property>
                </widget>
               </item>
@@ -1276,28 +1276,27 @@
             </item>
             <item>
              <layout class="QGridLayout" name="gridLayout_4">
+              <item row="1" column="3">
+               <spacer name="horizontalSpacer_21">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>15</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
               <item row="1" column="4">
                <widget class="QCheckBox" name="chkAlquiprop">
                 <property name="text">
                  <string>Alquiler</string>
                 </property>
-               </widget>
-              </item>
-              <item row="1" column="5">
-               <widget class="QCheckBox" name="chkVentaprop">
-                <property name="text">
-                 <string>Venta</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="5">
-               <widget class="QRadioButton" name="rbtAlquiprop">
-                <property name="text">
-                 <string>Alquilado</string>
-                </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_2</string>
-                </attribute>
                </widget>
               </item>
               <item row="3" column="4">
@@ -1307,6 +1306,16 @@
                 </property>
                 <property name="checked">
                  <bool>true</bool>
+                </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_2</string>
+                </attribute>
+               </widget>
+              </item>
+              <item row="3" column="5">
+               <widget class="QRadioButton" name="rbtAlquiprop">
+                <property name="text">
+                 <string>Alquilado</string>
                 </property>
                 <attribute name="buttonGroup">
                  <string notr="true">buttonGroup_2</string>
@@ -1329,21 +1338,48 @@
                 </property>
                </spacer>
               </item>
-              <item row="1" column="3">
-               <spacer name="horizontalSpacer_21">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+              <item row="1" column="5">
+               <widget class="QCheckBox" name="chkVentaprop">
+                <property name="text">
+                 <string>Venta</string>
                 </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="lblDescriprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>15</width>
-                  <height>20</height>
-                 </size>
+                <property name="text">
+                 <string>Observaciones:</string>
                 </property>
-               </spacer>
+               </widget>
+              </item>
+              <item row="5" column="2" colspan="3" alignment="Qt::AlignRight">
+               <widget class="QLabel" name="lblMovilprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Movil Prop:(*)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="6">
+               <widget class="QRadioButton" name="rbtVentaprop">
+                <property name="text">
+                 <string>Vendido</string>
+                </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_2</string>
+                </attribute>
+               </widget>
               </item>
               <item row="0" column="3">
                <spacer name="horizontalSpacer_4">
@@ -1396,55 +1432,6 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="2" colspan="3" alignment="Qt::AlignRight">
-               <widget class="QLabel" name="lblMovilprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Movil Prop:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="6">
-               <widget class="QRadioButton" name="rbtVentaprop">
-                <property name="text">
-                 <string>Vendido</string>
-                </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_2</string>
-                </attribute>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="lblDescriprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Observaciones:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="4" colspan="2">
-               <widget class="QLabel" name="lblDnicli_14">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Estado:</string>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="1" rowspan="4" colspan="2">
                <widget class="QTextEdit" name="txtObservaprop">
                 <property name="minimumSize">
@@ -1467,8 +1454,8 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="lblNomeprop">
+              <item row="2" column="4" colspan="2">
+               <widget class="QLabel" name="lblDnicli_14">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -1476,11 +1463,11 @@
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Propietario:</string>
+                 <string>Estado:</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="5" colspan="5">
+              <item row="5" column="5" colspan="4">
                <widget class="QLineEdit" name="txtMovilprop">
                 <property name="minimumSize">
                  <size>
@@ -1499,26 +1486,6 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="4" colspan="4">
-               <widget class="QLabel" name="lblDnicli_17">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Tipo de operación:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="6">
-               <widget class="QCheckBox" name="chkInterprop">
-                <property name="text">
-                 <string>Intercambio</string>
-                </property>
-               </widget>
-              </item>
               <item row="4" column="1">
                <spacer name="verticalSpacer_4">
                 <property name="orientation">
@@ -1534,6 +1501,60 @@
                  </size>
                 </property>
                </spacer>
+              </item>
+              <item row="1" column="6">
+               <widget class="QCheckBox" name="chkInterprop">
+                <property name="text">
+                 <string>Intercambio</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="4" colspan="4">
+               <widget class="QLabel" name="lblDnicli_17">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Tipo de operación:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="lblNomeprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Propietario:(*)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="8">
+               <widget class="QPushButton" name="btnBuscaTipoProp">
+                <property name="text">
+                 <string>Filtrar</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../img/magnifying.ico</normaloff>../img/magnifying.ico</iconset>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="8">
+               <widget class="QCheckBox" name="chkHistoricoprop">
+                <property name="text">
+                 <string>Historico</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -1832,6 +1853,8 @@
    <addaction name="actionbarSalir"/>
    <addaction name="separator"/>
    <addaction name="actionbarLimpiar"/>
+   <addaction name="actionAddTipoPropiedad"/>
+   <addaction name="actionFiltrado"/>
   </widget>
   <action name="actionSalir">
    <property name="text">
@@ -1851,7 +1874,7 @@
   <action name="actionbarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/a20evansg/.designer/img/Exit-80_icon-icons.com_57325.ico</normaloff>C:/Users/a20evansg/.designer/img/Exit-80_icon-icons.com_57325.ico</iconset>
+     <normaloff>../img/Exit-80_icon-icons.com_57325.ico</normaloff>../img/Exit-80_icon-icons.com_57325.ico</iconset>
    </property>
    <property name="text">
     <string>barSalir</string>
@@ -1869,7 +1892,7 @@
   <action name="actionbarLimpiar">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/a20evansg/.designer/img/reload1_78509.ico</normaloff>C:/Users/a20evansg/.designer/img/reload1_78509.ico</iconset>
+     <normaloff>../img/reload1_78509.ico</normaloff>../img/reload1_78509.ico</iconset>
    </property>
    <property name="text">
     <string>varLimpiar</string>
@@ -1884,6 +1907,24 @@
   <action name="actionPropiedades">
    <property name="text">
     <string>Propiedades</string>
+   </property>
+  </action>
+  <action name="actionFiltrado">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/magnifying.ico</normaloff>../img/magnifying.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Filtrado</string>
+   </property>
+  </action>
+  <action name="actionAddTipoPropiedad">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/construction_project_plan_building_architect_design_develop-60_icon-icons.com_60240.ico</normaloff>../img/construction_project_plan_building_architect_design_develop-60_icon-icons.com_60240.ico</iconset>
+   </property>
+   <property name="text">
+    <string>AñadirTipoPropiedad</string>
    </property>
   </action>
  </widget>

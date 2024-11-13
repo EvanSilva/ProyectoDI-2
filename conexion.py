@@ -5,8 +5,7 @@ from datetime import datetime
 from http.cookiejar import strip_quotes
 from idlelib import query
 
-from PyQt6 import QtSql, QtWidgets
-from PyQt6.uic.Compiler.qtproxies import QtCore
+from PyQt6 import QtSql, QtWidgets, QtCore
 
 import var
 
@@ -302,42 +301,46 @@ class Conexion:
             municipio = var.ui.cmbMuniprop.currentText()
             filtrado = var.ui.btnBuscaTipoProp.isChecked()
             tipoSeleccionado = var.ui.cmbTipoprop.currentText()
-            if not historico and filtrado:
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM PROPIEDADES where bajaprop is null and estadoprop = 'Disponible' and tipoprop = :tipo_propiedad  and muniprop = :municipio order by muniprop asc" )
+
+            # Construir la base de la consulta
+            base_query = "SELECT * FROM propiedades WHERE 1=1"
+
+            # Condiciones para el filtro de historico
+            if historico:
+                base_query = base_query + " ORDER BY muniprop ASC"
+
+            # Condiciones adicionales para filtro por bajaprop y disponibilidad
+            if not historico:
+                base_query = base_query + " AND bajaprop IS NULL AND estadoprop IN ('Disponible', 'Alquilado', 'Vendido') "
+
+            # Filtrar por tipo de propiedad y municipio si está activado el filtro
+            if filtrado:
+                base_query += " AND tipoprop = :tipo_propiedad AND muniprop = :municipio"
+
+            query = QtSql.QSqlQuery()
+            query.prepare(base_query)
+
+            # Vincular parámetros de la consulta si se necesitan
+            if filtrado:
                 query.bindValue(":tipo_propiedad", str(tipoSeleccionado))
                 query.bindValue(":municipio", str(municipio))
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
-            elif historico and not filtrado:
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM propiedades ORDER BY muniprop ASC")
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
-            elif historico and filtrado:
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM PROPIEDADES where estadoprop = 'Disponible' and tipoprop = :tipo_propiedad and muniprop = :municipio order by muniprop asc" )
-                query.bindValue(":tipo_propiedad", str(tipoSeleccionado))
-                query.bindValue(":municipio", str(municipio))
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
-            else:
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM propiedades where bajaprop is null ORDER BY muniprop ASC")
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
+
+            # Ejecutar la consulta
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+
             return listado
 
         except Exception as e:
-            print("Error al listar propiedades en listadoPropiedades", e)
+            print("Error al listar propiedades en listadoPropiedades:", e)
+            return []
+
+
+        except Exception as e:
+            print("Error al listar propiedades en listadoPropiedades:", e)
+            return []
 
     def modifPropiedad(registro):
         try:
@@ -356,7 +359,6 @@ class Conexion:
                         # Asignación de parámetros
                         query.bindValue(":codigo", str(registro[0]))
                         query.bindValue(":altaprop", str(registro[1]))
-                        query.bindValue(":bajaprop", str(registro[2]))
                         query.bindValue(":dirprop", str(registro[3]))
                         query.bindValue(":provprop", str(registro[4]))
                         query.bindValue(":muniprop", str(registro[5]))
@@ -371,7 +373,7 @@ class Conexion:
                         query.bindValue(":tipooper", str(registro[14]))
                         query.bindValue(":estadoprop", str(registro[15]))
                         query.bindValue(":nomeprop", str(registro[16]))
-                        query.bindValue(":movilprop", int(registro[17]))
+                        query.bindValue(":movilprop", (registro[17]))
 
                         if registro[2] == "":
                             query.bindValue(":bajaprop", QtCore.QVariant())

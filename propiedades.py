@@ -260,7 +260,7 @@ class Propiedades():
                 mbox.exec()
 
         except Exception as e:
-            print("Error en modifCliente", e)
+            print("Error en Modifpropiedad", e)
 
     def cargaOnePropiedad(self):
         try:

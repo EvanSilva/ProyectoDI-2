@@ -18,6 +18,7 @@ class Main(QtWidgets.QMainWindow):
         var.uicalendar = Calendar()
         var.dlgAbrir = FileDialogAbrir()
         var.dlggestion = dlgGestionprop()
+        var.dlgAbout = dlgAbout()
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
         eventos.Eventos.cargarProv(self)
@@ -30,9 +31,8 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.cargarMuniProp(self)
         propiedades.Propiedades.cargaTablaPropiedades(self)
 
-
-
-
+        var.ui.chkVentaprop.setEnabled(False)
+        var.ui.chkAlquiprop.setEnabled(False)
 
         '''
         
@@ -43,7 +43,9 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.resizeTablaClientes(self)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
 
+
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
+        var.ui.tablaProp.clicked.connect(propiedades.Propiedades.habilitarCompraVenta)
         eventos.Eventos.resizeTablaPropiedades(self)
 
 
@@ -59,7 +61,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionCrearBackup.triggered.connect(eventos.Eventos.crearBackup)
         var.ui.actionRestaurar.triggered.connect(eventos.Eventos.restaurarBackup)
         var.ui.actionPropiedades.triggered.connect(eventos.Eventos.abrirTipoprop)
-
+        var.ui.actionExportar_Propiedades_CSV.triggered.connect(eventos.Eventos.exportCSVProp)
+        var.ui.actionExportar_Propiedades_JSON.triggered.connect(eventos.Eventos.exportJSONProp)
+        var.ui.actionAbout.triggered.connect(eventos.Eventos.exportJSONProp)
         '''
 
         EVENTOS DE LOS BOTONES
@@ -87,6 +91,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
         var.ui.txtEmailcli.editingFinished.connect(lambda: clientes.Clientes.checkEmail(var.ui.txtEmailcli.text()))
         var.ui.txtMovilcli.editingFinished.connect(lambda: clientes.Clientes.checkNumero(var.ui.txtMovilcli.text()))
+        var.ui.txtPrecioalquilerprop.textChanged.connect(propiedades.Propiedades.habilitarCompraVenta)
+        var.ui.txtPrecioventaprop.textChanged.connect(propiedades.Propiedades.habilitarCompraVenta)
 
         '''
         

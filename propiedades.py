@@ -1,3 +1,5 @@
+import time
+
 from PyQt6 import QtWidgets, QtGui
 from PyQt6 import QtCore
 
@@ -83,6 +85,7 @@ class Propiedades():
             print(e)
 
     def altaPropiedad(self):
+        print("ALTAPROPIEDAD")
         try:
             propiedades = [var.ui.txtAltaprop.text(), var.ui.txtDirprop.text(),
                          var.ui.cmbProvprop.currentText(), var.ui.cmbMuniprop.currentText(), var.ui.cmbTipoprop.currentText(),
@@ -90,6 +93,8 @@ class Propiedades():
                          var.ui.txtPrecioalquilerprop.text(), var.ui.txtPrecioventaprop.text(), var.ui.txtCPprop.text(),
                          var.ui.txtObservaprop.toPlainText()
                          ]
+
+            print("PRETIPOOPER")
 
             tipooper = []
             if var.ui.chkAlquiprop.isChecked():
@@ -110,8 +115,11 @@ class Propiedades():
 
             propiedades.append(var.ui.txtNomeprop.text())
             propiedades.append(var.ui.txtMovilprop.text())
+            print("PRECOMPROBACION")
 
-            if Propiedades.checkObligatoriosProp(self):
+            if Propiedades.checkObligatoriosProp(self) and Propiedades.esMovilValido(propiedades[-1]):
+                print("PASO DE CHECKOBLIGATORIOSY ESMOVILVALIDO")
+
                 if conexion.Conexion.altaPropiedad(propiedades):
                     mbox = QtWidgets.QMessageBox()
                     mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
@@ -140,7 +148,7 @@ class Propiedades():
                 mbox.setWindowTitle("Aviso")
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
                 mbox.setWindowIcon(QtGui.QIcon('./img/icono.ico'))
-                mbox.setText("Faltan Datos Obligatorios")
+                mbox.setText("Faltan Datos Obligatorios, o los ofrecidos están mal formados")
                 mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Cancel)
                 mbox.exec()
                 return False
@@ -368,10 +376,20 @@ class Propiedades():
             for texto in textos:
                 if eventos.Eventos.checkTxtVacio(texto):
                     return False
+
             return True
 
         except Exception as e:
             print("error check obligatorios", e)
+
+    def esMovilValido(movil):
+
+        print("LLEGO AL VALIDADOR DEL MOVIL")
+        if len(movil) == 13 and movil.startswith("+") and movil[3] == " " and movil[4:].isdigit():
+            print("- TRUE")
+            return True
+        return False
+        print("- FALSE")
 
     def filtrar(self):
         checkeado = var.ui.btnBuscaTipoProp.isChecked()
@@ -390,5 +408,26 @@ class Propiedades():
             Propiedades.cargaTablaPropiedades(Self)
         except Exception as Error:
             print("Checkbox Historico", Error)
+
+    def habilitarCompraVenta(self):
+
+        txtCompraVenta = [var.ui.txtPrecioventaprop, var.ui.txtPrecioalquilerprop]
+
+        lblCompraVenta = [var.ui.chkVentaprop, var.ui.chkAlquiprop]
+
+        if var.ui.txtPrecioventaprop.text() == "":
+            var.ui.chkVentaprop.setChecked(False)
+            var.ui.chkVentaprop.setEnabled(False)
+        else:
+            var.ui.chkVentaprop.setChecked(True)
+            var.ui.chkVentaprop.setEnabled(True)
+
+        if var.ui.txtPrecioalquilerprop.text() == "":
+            var.ui.chkAlquiprop.setChecked(False)
+            var.ui.chkAlquiprop.setEnabled(False)
+
+        else:
+            var.ui.chkAlquiprop.setChecked(True)
+            var.ui.chkAlquiprop.setEnabled(True)
 
 

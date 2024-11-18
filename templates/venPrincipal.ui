@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1401</width>
-    <height>901</height>
+    <width>1153</width>
+    <height>846</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -893,7 +893,7 @@
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                  <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
                 </property>
                </widget>
               </item>
@@ -1105,7 +1105,7 @@
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                  <normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</normaloff>C:/Users/a20evansg/.designer/img/calendar.ico</iconset>
                 </property>
                </widget>
               </item>
@@ -1542,7 +1542,7 @@
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../img/magnifying.ico</normaloff>../img/magnifying.ico</iconset>
+                  <normaloff>C:/Users/a20evansg/.designer/img/magnifying.ico</normaloff>C:/Users/a20evansg/.designer/img/magnifying.ico</iconset>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1797,7 +1797,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1401</width>
+     <width>1153</width>
      <height>21</height>
     </rect>
    </property>
@@ -1815,8 +1815,8 @@
      <property name="title">
       <string>Exportar Datos</string>
      </property>
-     <addaction name="actionExportar_Clientes_CSV"/>
-     <addaction name="actionExportar_Clientes_JSON"/>
+     <addaction name="actionExportar_Propiedades_CSV"/>
+     <addaction name="actionExportar_Propiedades_JSON"/>
     </widget>
     <addaction name="actionCrearBackup"/>
     <addaction name="actionRestaurar"/>
@@ -1827,6 +1827,7 @@
     <property name="title">
      <string>Ayuda</string>
     </property>
+    <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuGesti_n">
     <property name="title">
@@ -1886,7 +1887,7 @@
   <action name="actionbarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../img/Exit-80_icon-icons.com_57325.ico</normaloff>../img/Exit-80_icon-icons.com_57325.ico</iconset>
+     <normaloff>C:/Users/a20evansg/.designer/img/Exit-80_icon-icons.com_57325.ico</normaloff>C:/Users/a20evansg/.designer/img/Exit-80_icon-icons.com_57325.ico</iconset>
    </property>
    <property name="text">
     <string>barSalir</string>
@@ -1904,7 +1905,7 @@
   <action name="actionbarLimpiar">
    <property name="icon">
     <iconset>
-     <normaloff>../img/reload1_78509.ico</normaloff>../img/reload1_78509.ico</iconset>
+     <normaloff>C:/Users/a20evansg/.designer/img/reload1_78509.ico</normaloff>C:/Users/a20evansg/.designer/img/reload1_78509.ico</iconset>
    </property>
    <property name="text">
     <string>varLimpiar</string>
@@ -1924,7 +1925,7 @@
   <action name="actionFiltrado">
    <property name="icon">
     <iconset>
-     <normaloff>../img/magnifying.ico</normaloff>../img/magnifying.ico</iconset>
+     <normaloff>C:/Users/a20evansg/.designer/img/magnifying.ico</normaloff>C:/Users/a20evansg/.designer/img/magnifying.ico</iconset>
    </property>
    <property name="text">
     <string>Filtrado</string>
@@ -1933,20 +1934,25 @@
   <action name="actionAddTipoPropiedad">
    <property name="icon">
     <iconset>
-     <normaloff>../img/construction_project_plan_building_architect_design_develop-60_icon-icons.com_60240.ico</normaloff>../img/construction_project_plan_building_architect_design_develop-60_icon-icons.com_60240.ico</iconset>
+     <normaloff>C:/Users/a20evansg/.designer/img/construction_project_plan_building_architect_design_develop-60_icon-icons.com_60240.ico</normaloff>C:/Users/a20evansg/.designer/img/construction_project_plan_building_architect_design_develop-60_icon-icons.com_60240.ico</iconset>
    </property>
    <property name="text">
     <string>AñadirTipoPropiedad</string>
    </property>
   </action>
-  <action name="actionExportar_Clientes_CSV">
+  <action name="actionExportar_Propiedades_CSV">
    <property name="text">
     <string>Exportar Clientes CSV</string>
    </property>
   </action>
-  <action name="actionExportar_Clientes_JSON">
+  <action name="actionExportar_Propiedades_JSON">
    <property name="text">
     <string>Exportar Clientes JSON</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

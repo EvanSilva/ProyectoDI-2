@@ -325,3 +325,20 @@ class Eventos():
 
         except Exception as e:
             print("Error al intentar exportar a CSV en Eventos exportCSVProp ", e)
+
+    def abrirAbout(self):
+        try:
+            var.dlgAbout.show()
+        except Exception as error:
+            print("error en al abrir About ", error)
+
+    def creditsToBua(self):
+        mbox = QtWidgets.QMessageBox()
+        mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+        mbox.setWindowTitle("BUA TEIJEIRO")
+        mbox.setText("IDEA EASTER EGG POR DAVID BUA")
+        mbox.setStandardButtons(
+            QtWidgets.QMessageBox.StandardButton.Ok)
+        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+        mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+        mbox.exec()

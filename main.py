@@ -19,6 +19,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgAbrir = FileDialogAbrir()
         var.dlggestion = dlgGestionprop()
         var.dlgAbout = dlgAbout()
+
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
         eventos.Eventos.cargarProv(self)
@@ -63,7 +64,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionPropiedades.triggered.connect(eventos.Eventos.abrirTipoprop)
         var.ui.actionExportar_Propiedades_CSV.triggered.connect(eventos.Eventos.exportCSVProp)
         var.ui.actionExportar_Propiedades_JSON.triggered.connect(eventos.Eventos.exportJSONProp)
-        var.ui.actionAbout.triggered.connect(eventos.Eventos.exportJSONProp)
+        var.ui.actionAbout.triggered.connect(eventos.Eventos.abrirAbout)
         '''
 
         EVENTOS DE LOS BOTONES
@@ -81,6 +82,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifprop.clicked.connect(propiedades.Propiedades.modifPropiedad)
         var.ui.btnDelprop.clicked.connect(propiedades.Propiedades.bajaPropiedad)
         var.ui.btnBuscaTipoProp.clicked.connect(propiedades.Propiedades.cargaTablaPropiedades)
+        var.ui.btnBuscarCli.clicked.connect(clientes.Clientes.buscarOneCliente)
 
         '''
 
@@ -124,6 +126,8 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.chkHistoriacli.stateChanged.connect(clientes.Clientes.historicoCli)
         var.ui.chkHistoricoprop.stateChanged.connect(propiedades.Propiedades.historicoProp)
+
+
 
 
 

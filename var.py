@@ -11,3 +11,5 @@ global dlgAbout
 global btn
 global historico
 global dlggestion
+
+global tablaActual

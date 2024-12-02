@@ -1,6 +1,4 @@
 import conexion
-import eventos
-from propiedades import Propiedades
 from venAux import *
 from venPrincipal import *
 import sys
@@ -34,6 +32,8 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.chkVentaprop.setEnabled(False)
         var.ui.chkAlquiprop.setEnabled(False)
+
+        var.tablaActual = 0;
 
         '''
         
@@ -83,6 +83,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnDelprop.clicked.connect(propiedades.Propiedades.bajaPropiedad)
         var.ui.btnBuscaTipoProp.clicked.connect(propiedades.Propiedades.cargaTablaPropiedades)
         var.ui.btnBuscarCli.clicked.connect(clientes.Clientes.buscarOneCliente)
+        var.ui.btnTablaAlante.clicked.connect(eventos.Eventos.avanzarTabla)
+        var.ui.btnTablaAtras.clicked.connect(eventos.Eventos.retrocederTabla)
 
         '''
 

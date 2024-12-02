@@ -7,8 +7,11 @@ import re
 from datetime import datetime
 import os
 from PyQt6 import QtWidgets, QtGui, QtSql
+
+import clientes
 import conexion
 import eventos
+import propiedades
 import var
 import zipfile
 import shutil
@@ -342,3 +345,63 @@ class Eventos():
         mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
         mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
         mbox.exec()
+
+    def retrocederTabla(self):
+        try:
+            if var.tablaActual <= 0:
+                var.tablaActual = 0
+            else:
+                var.tablaActual -= 1
+                eventos.Eventos.aplicarTabla(self)
+
+
+        except Exception as error:
+            print("error en avanzar tabla ", error)
+
+    def avanzarTabla(self):
+        try:
+
+
+            tablamaxima = eventos.Eventos.calcularTablaMaxima(self)
+
+            if var.tablaActual >=  tablamaxima:
+                var.tablaActual = tablamaxima
+            else:
+                var.tablaActual += 1
+                eventos.Eventos.aplicarTabla(self)
+
+
+        except Exception as error:
+            print("error en avanzar tabla ", error)
+
+    def calcularTablaMaxima(self):
+        try:
+            listado = conexion.Conexion.listadoClientes(self)
+            total = len(listado)
+            tablaMaxima = total // 5
+            resto = total % 5
+            if resto > 0:
+                tablaMaxima += 1
+            return tablaMaxima
+
+        except Exception as error:
+            print("error en calcular tabla maxima ", error)
+
+    def cortaClientes(self):
+        listado = conexion.Conexion.listadoClientes(self)
+
+        x = (var.tablaActual * 5) - 1
+        y = x - 5
+        listadoCortado = listado[y:x]
+        return listadoCortado
+
+
+    def aplicarTabla(self):
+        try:
+            print("tabla actual: ", var.tablaActual)
+
+            clientes.Clientes.cargaTablaCincoClientes(self, eventos.Eventos.cortaClientes(self))
+
+        except Exception as error:
+            print("error en aplicar tabla ", error)
+

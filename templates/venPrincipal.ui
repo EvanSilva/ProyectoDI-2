@@ -19,7 +19,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QTabWidget" name="panPrincipal">
       <property name="enabled">
        <bool>true</bool>
@@ -44,7 +44,75 @@
         <string>CLIENTES</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="2" column="0">
+        <item row="5" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <spacer name="horizontalSpacer_25">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnTablaAtras">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Anterior</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnTablaAlante">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>80</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Siguiente</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_26">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0" colspan="2">
          <widget class="Line" name="line">
           <property name="lineWidth">
            <number>3</number>
@@ -111,7 +179,7 @@
           </column>
          </widget>
         </item>
-        <item row="0" column="0">
+        <item row="0" column="0" colspan="2">
          <layout class="QGridLayout" name="gridLayout">
           <item row="3" column="0">
            <spacer name="horizontalSpacer_14">
@@ -649,16 +717,6 @@
           </item>
          </layout>
         </item>
-        <item row="5" column="0">
-         <widget class="Line" name="line_2">
-          <property name="lineWidth">
-           <number>3</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -730,6 +788,23 @@
            </spacer>
           </item>
          </layout>
+        </item>
+        <item row="8" column="0" colspan="2">
+         <widget class="Line" name="line_2">
+          <property name="lineWidth">
+           <number>3</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

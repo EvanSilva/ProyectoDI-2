@@ -22,3 +22,13 @@ QPushButton {
     border-radius: 5px;
 
 }
+
+QPushButton:disabled {
+
+    background-color: #808080;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+
+}
+

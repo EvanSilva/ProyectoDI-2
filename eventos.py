@@ -346,62 +346,152 @@ class Eventos():
         mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
         mbox.exec()
 
-    def retrocederTabla(self):
+
+
+    #############################################  CLIENTES   #############################################
+
+    def retrocederTablaCli(self):
         try:
-            if var.tablaActual <= 0:
-                var.tablaActual = 0
+            if var.tablaActualCli <= 1:
+                var.tablaActualCli = 1
+
             else:
-                var.tablaActual -= 1
-                eventos.Eventos.aplicarTabla(self)
+                var.tablaActualCli -= 1
+                eventos.Eventos.aplicarTablaCli(self)
 
 
         except Exception as error:
             print("error en avanzar tabla ", error)
 
-    def avanzarTabla(self):
+    def avanzarTablaCli(self):
         try:
 
+            tablamaxima = eventos.Eventos.calcularTablaMaximaCli(self)
 
-            tablamaxima = eventos.Eventos.calcularTablaMaxima(self)
-
-            if var.tablaActual >=  tablamaxima:
-                var.tablaActual = tablamaxima
+            if var.tablaActualCli >=  tablamaxima:
+                var.tablaActualCli = tablamaxima
             else:
-                var.tablaActual += 1
-                eventos.Eventos.aplicarTabla(self)
-
+                var.tablaActualCli += 1
+                eventos.Eventos.aplicarTablaCli(self)
 
         except Exception as error:
             print("error en avanzar tabla ", error)
 
-    def calcularTablaMaxima(self):
+    def calcularTablaMaximaCli(self):
         try:
             listado = conexion.Conexion.listadoClientes(self)
             total = len(listado)
-            tablaMaxima = total // 5
-            resto = total % 5
-            if resto > 0:
-                tablaMaxima += 1
-            return tablaMaxima
 
+            tablaMaxima = (total + 4) // 5
+
+            return tablaMaxima
+        except Exception as e:
+            # Maneja posibles errores durante el cálculo.
+            print(f"Error al calcular la tabla máxima: {e}")
+            return 0  # Devuelve un valor predeterminado si ocurre un error.
         except Exception as error:
             print("error en calcular tabla maxima ", error)
 
     def cortaClientes(self):
         listado = conexion.Conexion.listadoClientes(self)
 
-        x = (var.tablaActual * 5) - 1
+        x = (var.tablaActualCli * 5)
         y = x - 5
         listadoCortado = listado[y:x]
         return listadoCortado
 
 
-    def aplicarTabla(self):
+    def aplicarTablaCli(self):
         try:
-            print("tabla actual: ", var.tablaActual)
+            print("tabla actual: ", var.tablaActualCli)
 
             clientes.Clientes.cargaTablaCincoClientes(self, eventos.Eventos.cortaClientes(self))
+
+            var.ui.lblNumPaginaCli.setText(f"Página {var.tablaActualCli}/{eventos.Eventos.calcularTablaMaximaCli(self)}")
+
+            tablamaxima = eventos.Eventos.calcularTablaMaximaCli(self)
+
+            if var.tablaActualCli == tablamaxima:
+                var.ui.btnTablaAlante.setDisabled(True)
+            else:
+                var.ui.btnTablaAlante.setEnabled(True)
+
+            if var.tablaActualCli == 1:
+                var.ui.btnTablaAtras.setDisabled(True)
+            else:
+                var.ui.btnTablaAtras.setEnabled(True)
 
         except Exception as error:
             print("error en aplicar tabla ", error)
 
+    #############################################  PROPIEDADES  #############################################
+
+    def retrocederTablaProp(self):
+        try:
+            if var.tablaActualProp <= 1:
+                var.tablaActualProp = 1
+
+            else:
+                var.tablaActualProp -= 1
+                eventos.Eventos.aplicarTablaProp(self)
+
+
+        except Exception as error:
+            print("error en avanzar tabla ", error)
+
+    def avanzarTablaProp(self):
+        try:
+
+            tablaMaximaProp = eventos.Eventos.calcularTablaMaximaProp(self)
+
+            if var.tablaActualProp >=  tablaMaximaProp:
+                var.tablaActualProp = tablaMaximaProp
+            else:
+                var.tablaActualProp += 1
+                eventos.Eventos.aplicarTablaProp(self)
+
+        except Exception as error:
+            print("error en avanzar tabla ", error)
+
+    def calcularTablaMaximaProp(self):
+        try:
+            listadoProp = conexion.Conexion.listadoPropiedades()
+            total = len(listadoProp)
+
+            tablaMaximaProp = (total + 1) // 2
+
+            return tablaMaximaProp
+        except Exception as e:
+            print(f"Error al calcular la tabla máxima: {e}")
+            return 0
+        except Exception as error:
+            print("error en calcular tabla maxima ", error)
+
+    def cortaPropiedades(self):
+        listadoProp = conexion.Conexion.listadoPropiedades()
+
+        x = (var.tablaActualProp * 2)
+        y = x - 2
+        listadoCortadoProp = listadoProp[y:x]
+        return listadoCortadoProp
+
+    def aplicarTablaProp(self):
+        try:
+            propiedades.Propiedades.cargaDosPropiedades(self, eventos.Eventos.cortaPropiedades(self))
+
+            var.ui.lblNumPaginaProp.setText(f"Página {var.tablaActualProp}/{eventos.Eventos.calcularTablaMaximaProp(self)}")
+
+            tablaMaximaProp = eventos.Eventos.calcularTablaMaximaProp(self)
+
+            if var.tablaActualProp == tablaMaximaProp:
+                var.ui.btnAlanteProp.setDisabled(True)
+            else:
+                var.ui.btnAlanteProp.setEnabled(True)
+
+            if var.tablaActualProp == 1:
+                var.ui.btnAtrasProp.setDisabled(True)
+            else:
+                var.ui.btnAtrasProp.setEnabled(True)
+
+        except Exception as error:
+            print("error en aplicar tabla ", error)

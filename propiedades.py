@@ -202,6 +202,47 @@ class Propiedades():
             import traceback
             print(traceback.format_exc())
 
+    def cargaDosPropiedades(self, listado):
+        try:
+            index = 0
+            var.ui.tablaProp.setRowCount(len(listado))
+            for registro in listado:
+
+                var.ui.tablaProp.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                var.ui.tablaProp.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[5])))
+                var.ui.tablaProp.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[6])))
+                var.ui.tablaProp.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[7])))
+                var.ui.tablaProp.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[8])))
+                if registro[10] == "":
+                    registro[10] = "-"
+                if registro[11] == "":
+                    registro[11] = "-"
+                var.ui.tablaProp.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[10]) + " €" ))
+                var.ui.tablaProp.setItem(index, 6, QtWidgets.QTableWidgetItem(str(registro[11]) + " €" ))
+
+                string_limpio = registro[14].replace("[", "").replace("]", "").replace("'", "").strip()
+
+                var.ui.tablaProp.setItem(index, 7, QtWidgets.QTableWidgetItem(string_limpio))
+                var.ui.tablaProp.setItem(index, 8, QtWidgets.QTableWidgetItem(str(registro[15])))
+                var.ui.tablaProp.setItem(index, 9, QtWidgets.QTableWidgetItem(str(registro[2])))
+
+                var.ui.tablaProp.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.tablaProp.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaProp.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaProp.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tablaProp.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tablaProp.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tablaProp.item(index, 6).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tablaProp.item(index, 7).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.tablaProp.item(index, 8).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.tablaProp.item(index, 9).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                index += 1
+
+        except Exception as e:
+            print("error cargaTablaCientes", e)
+            import traceback
+            print(traceback.format_exc())
+
     def modifPropiedad(self):
         try:
             propiedades = [ var.ui.txtProp.text(),

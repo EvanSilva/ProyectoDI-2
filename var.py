@@ -2,6 +2,7 @@
 
 Fichero de variables globales
 '''
+from PIL.ImageStat import Global
 
 global ui
 global calendar
@@ -12,4 +13,5 @@ global btn
 global historico
 global dlggestion
 
-global tablaActual
+global tablaActualCli
+global tablaActualProp

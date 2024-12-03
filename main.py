@@ -33,7 +33,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.chkVentaprop.setEnabled(False)
         var.ui.chkAlquiprop.setEnabled(False)
 
-        var.tablaActual = 0;
+        var.tablaActualCli = 1;
+        var.tablaActualProp = 1;
 
         '''
         
@@ -83,8 +84,13 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnDelprop.clicked.connect(propiedades.Propiedades.bajaPropiedad)
         var.ui.btnBuscaTipoProp.clicked.connect(propiedades.Propiedades.cargaTablaPropiedades)
         var.ui.btnBuscarCli.clicked.connect(clientes.Clientes.buscarOneCliente)
-        var.ui.btnTablaAlante.clicked.connect(eventos.Eventos.avanzarTabla)
-        var.ui.btnTablaAtras.clicked.connect(eventos.Eventos.retrocederTabla)
+
+        var.ui.btnTablaAlante.clicked.connect(eventos.Eventos.avanzarTablaCli)
+        var.ui.btnTablaAtras.clicked.connect(eventos.Eventos.retrocederTablaCli)
+
+        var.ui.btnAtrasProp.clicked.connect(eventos.Eventos.retrocederTablaProp)
+        var.ui.btnAlanteProp.clicked.connect(eventos.Eventos.avanzarTablaProp)
+
 
         '''
 

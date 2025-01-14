@@ -45,9 +45,10 @@ class Eventos():
 
     def cargarMuni(self):
         var.ui.cmbMunicli.clear()
-        municipios = conexion.Conexion.listarMunicli(var.ui.cmbProvcli.currentText())
+        municipios = conexion.Conexion.listarMunicipios()
         var.ui.cmbMunicli.addItems(municipios)
 
+    # ARREGLAR ESTO
 
     def cargarProvProp(self):
         var.ui.cmbProvprop.clear()
@@ -58,6 +59,11 @@ class Eventos():
         var.ui.cmbMuniprop.clear()
         municipios = conexion.Conexion.listarMunicli(var.ui.cmbProvprop.currentText())
         var.ui.cmbMuniprop.addItems(municipios)
+
+    def cargarProvVendedores(self):
+        var.ui.cmbProvprop.clear()
+        listado = conexion.Conexion.listarProv(self)
+        var.ui.cmbProvVendedor.addItems(listado)
 
 
 
@@ -126,6 +132,21 @@ class Eventos():
                 else:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
                     header_items = var.ui.tablaClientes.horizontalHeaderItem(i)
+                    font = header_items.font()
+                    font.setBold(True)
+                    header_items.setFont(font)
+        except Exception as error:
+            print("error en resize tabla clientes ", error)
+
+    def resizeTablaVendedor(self):
+        try:
+            header = var.ui.tablaVendedor.horizontalHeader()
+            for i in range(header.count()):
+                if (i == 1 or i == 2 or i == 4 or i == 5):
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                else:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+                    header_items = var.ui.tablaVendedor.horizontalHeaderItem(i)
                     font = header_items.font()
                     font.setBold(True)
                     header_items.setFont(font)
@@ -335,6 +356,8 @@ class Eventos():
         except Exception as error:
             print("error en al abrir About ", error)
 
+
+
     def creditsToBua(self):
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
@@ -495,3 +518,74 @@ class Eventos():
 
         except Exception as error:
             print("error en aplicar tabla ", error)
+
+    def comprobarFechaBaja(self):
+
+        try:
+
+            fechaActual = datetime.now()
+            fechaBaja = var.ui.txtBajaprop.text()
+            fechaBaja = datetime.strptime(fechaBaja, '%d/%m/%Y')
+
+            if fechaActual < fechaBaja:
+                return True
+            else:
+                return False
+
+        except Exception as error:
+            print("La fecha de baja es ", error)
+
+    #############################################  PRUEBAS  #############################################
+
+    def abrirPrueba(self):
+        try:
+            var.dlgPrueba.show()
+        except Exception as error:
+            print("error en al abrir Prueba ", error)
+
+    def exportJSONVendedor(self):
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+            file = (str(fecha) + '_DatosVendedores.json')
+            directorio, fichero = var.dlgAbrir.getSaveFileName(None, "Exporta Datos en JSON", file, ".json")
+            if fichero:
+                keys = ["ID", "DNI", "Nombre", "Alta", "Baja", "Movil", "Mail", "Delegacion"]
+                registros = conexion.Conexion.listadoVendedores(self)
+                lista_propiedades = [dict(zip(keys, registro)) for registro in registros]
+                with open(fichero, 'w', newline='', encoding='utf-8') as jsonfile:
+                    json.dump(lista_propiedades, jsonfile, ensure_ascii=False, indent=4)
+                shutil.move(fichero, directorio)
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowTitle("Exportacion Exitosa")
+                mbox.setText("Datos exportados adecuadamente")
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
+                mbox.setWindowTitle("Error")
+                mbox.setText("Error Exportación de Datos propiedades.")
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+
+        except Exception as e:
+            print("Error al intentar exportar a CSV en Eventos exportCSVProp ", e)
+
+    #############################################  INFORMES  #############################################
+
+    def abrirInformeProp(self):
+        try:
+            var.dlgInformeProp.show()
+        except Exception as error:
+            print("error en al abrir informeprop ", error)
+
+
+

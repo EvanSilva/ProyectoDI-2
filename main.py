@@ -1,4 +1,6 @@
 import conexion
+import eventos
+import vendedores
 from venAux import *
 from venPrincipal import *
 import sys
@@ -6,20 +8,24 @@ import var
 import styles
 import clientes
 import propiedades
+import informes
+
 
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
+        conexion.Conexion.db_conexion(self)
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
         var.uicalendar = Calendar()
         var.dlgAbrir = FileDialogAbrir()
         var.dlggestion = dlgGestionprop()
         var.dlgAbout = dlgAbout()
+        var.dlgInformeProp = dlgInformeProp()
 
         self.setStyleSheet(styles.load_stylesheet())
-        conexion.Conexion.db_conexion(self)
+
         eventos.Eventos.cargarProv(self)
         eventos.Eventos.cargarMuni(self)
         var.historico = 1
@@ -29,13 +35,15 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.cargarProvProp(self)
         eventos.Eventos.cargarMuniProp(self)
         propiedades.Propiedades.cargaTablaPropiedades(self)
+        vendedores.Vendedores.cargaTablaVendedores(self)
 
         var.ui.chkVentaprop.setEnabled(False)
         var.ui.chkAlquiprop.setEnabled(False)
 
-        var.tablaActualCli = 1;
-        var.tablaActualProp = 1;
+        var.tablaActualCli = 0;
+        var.tablaActualProp = 0;
 
+        var.ui.txtIdVendedor.setDisabled(True)
         '''
         
         EVENTOS DE TABLAS
@@ -49,6 +57,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.habilitarCompraVenta)
         eventos.Eventos.resizeTablaPropiedades(self)
+
+        var.ui.tablaVendedor.clicked.connect(vendedores.Vendedores.cargaOneVendedor)
+        eventos.Eventos.resizeTablaVendedor(self)
 
 
 
@@ -66,6 +77,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionExportar_Propiedades_CSV.triggered.connect(eventos.Eventos.exportCSVProp)
         var.ui.actionExportar_Propiedades_JSON.triggered.connect(eventos.Eventos.exportJSONProp)
         var.ui.actionAbout.triggered.connect(eventos.Eventos.abrirAbout)
+        var.ui.actionExportar_Vendedores_JSON.triggered.connect(eventos.Eventos.exportJSONVendedor)
+        var.ui.actionListado_Clientes.triggered.connect(informes.Informes.reportClientes)
+        var.ui.actionListado_Propiedades.triggered.connect(eventos.Eventos.abrirInformeProp)
+
         '''
 
         EVENTOS DE LOS BOTONES
@@ -91,6 +106,13 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAtrasProp.clicked.connect(eventos.Eventos.retrocederTablaProp)
         var.ui.btnAlanteProp.clicked.connect(eventos.Eventos.avanzarTablaProp)
 
+                                 ####### VENDEDORES #######
+
+        var.ui.btnGrabarVendedor.clicked.connect(vendedores.Vendedores.altaVendedor)
+        var.ui.btnModifVebdedor.clicked.connect(vendedores.Vendedores.modifVendedor)
+        var.ui.btnDelVendedor.clicked.connect(vendedores.Vendedores.bajaVendedor)
+
+
 
         '''
 
@@ -104,6 +126,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtPrecioalquilerprop.textChanged.connect(propiedades.Propiedades.habilitarCompraVenta)
         var.ui.txtPrecioventaprop.textChanged.connect(propiedades.Propiedades.habilitarCompraVenta)
 
+        var.ui.txtDniVendedor.editingFinished.connect(lambda: vendedores.Vendedores.checkDNI(var.ui.txtDniVendedor.text()))
+        var.ui.txtMailVendedor.editingFinished.connect(lambda: vendedores.Vendedores.checkEmail(var.ui.txtMailVendedor.text()))
+        var.ui.txtMovilVendedor.editingFinished.connect(lambda: vendedores.Vendedores.checkNumero(var.ui.txtMovilVendedor.text()))
+
+
         '''
         
         EVENTOS DE LOS COMOBOX
@@ -111,8 +138,12 @@ class Main(QtWidgets.QMainWindow):
         '''
         eventos.Eventos.cargarProv(self)
         eventos.Eventos.cargarProvProp(self)
+        eventos.Eventos.cargarProvVendedores(self)
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
         var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniProp)
+
+
+
 
         '''
 
@@ -134,6 +165,8 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.chkHistoriacli.stateChanged.connect(clientes.Clientes.historicoCli)
         var.ui.chkHistoricoprop.stateChanged.connect(propiedades.Propiedades.historicoProp)
+        var.ui.chkHistoricoVendedores.stateChanged.connect(vendedores.Vendedores.historicoVendedor)
+
 
 
 

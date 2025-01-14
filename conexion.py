@@ -22,6 +22,17 @@ class Conexion:
 
     @staticmethod
     def db_conexion(self):
+        """
+
+        :param self: None
+        :type self: None
+        :return: False/True
+        :rtype: bool
+
+        Módulo que realiza la conexión con la base de datos SQLite.
+        Si exito devuelve True, si no False.
+
+        """
         # Verifica si el archivo de base de datos existe
         if not os.path.isfile('bbdd.sqlite'):
             QtWidgets.QMessageBox.critical(None, 'Error', 'El archivo de la base de datos no existe.',
@@ -50,6 +61,15 @@ class Conexion:
             return False
 
     def listarProv(self):
+        """
+        :param self: None
+        :type self: None
+        :return: lista de provincias
+        :rtype: list
+
+        Método que devuelve una lista con las provincias almacenadas en la base de datos.
+
+        """
         listarProv = []
         query = QtSql.QSqlQuery()
         query.prepare("SELECT * FROM provincias")
@@ -59,6 +79,15 @@ class Conexion:
         return listarProv
 
     def listarMunicli(provincia):
+        """
+        :param provincia: nombre de la provincia
+        :type provincia: str
+        :return: lista de municipios
+        :rtype: list
+
+        Método que devuelve una lista con los municipios de una provincia almacenados en la base de datos.
+
+        """
         listamunicipios = []
         query = QtSql.QSqlQuery()
         query.prepare("SELECT * FROM municipios where idprov = (select idprov from provincias where provincia = :provincia)")
@@ -68,7 +97,35 @@ class Conexion:
                 listamunicipios.append(query.value(1))
         return listamunicipios
 
+    def listarMunicipios():
+        """
+        :param provincia: none
+        :type provincia: none
+        :return: lista de municipios
+        :rtype: list
+
+        Método que devuelve una lista con los municipios de una provincia almacenados en la base de datos.
+
+        """
+        listamunicipios = []
+        query = QtSql.QSqlQuery()
+        query.prepare("SELECT municipio FROM municipios")
+        if query.exec():
+            while query.next():
+                listamunicipios.append(query.value(0))
+        return listamunicipios
+
+
     def altaCliente(nuevocli):
+        """
+        :param nuevocli: lista con los datos del nuevo cliente
+        :type nuevocli: list
+        :return: True/False
+        :rtype: bool
+
+        Método que inserta un nuevo cliente en la base de datos.
+
+        """
         try:
 
             query = QtSql.QSqlQuery()
@@ -91,6 +148,15 @@ class Conexion:
                 return False
 
     def listadoClientes(self):
+        """
+        :param self: None
+        :type self: None
+        :return: listado de clientes
+        :rtype: list
+
+        Método que devuelve un listado con los clientes almacenados en la base de datos.
+
+        """
         try:
             listado = []
             if var.historico == 1:
@@ -112,7 +178,6 @@ class Conexion:
                         listado.append(fila)
                 return listado
 
-
             print(listado)
             return listado
 
@@ -120,6 +185,15 @@ class Conexion:
             print("Error Listado en Conexion", e)
 
     def datosOneCliente(dni):
+        """
+        :param dni: dni del cliente
+        :type dni: str
+        :return: datos del cliente
+        :rtype: list
+
+        Método que devuelve los datos de un cliente en concreto.
+
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -136,6 +210,15 @@ class Conexion:
             print("Error datos un Cliente", e)
 
     def modifCliente(registro):
+        """
+        :param registro: datos del cliente a modificar
+        :type registro: list
+        :return: True/False
+        :rtype: bool
+
+        Método que modifica los datos de un cliente en concreto.
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("select count(*) from clientes where dnicli = :dni")
@@ -172,6 +255,15 @@ class Conexion:
             print("error modificar cliente", error)
 
     def bajaCliente(datos):
+        """
+        :param datos: dni del cliente
+        :type datos: str
+        :return: True/False
+        :rtype: bool
+
+        Método que da de baja a un cliente en concreto.
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE clientes SET bajacli = :bajacli WHERE DNICLI = :dni")
@@ -193,6 +285,15 @@ class Conexion:
     '''
 
     def altaTipoprop(tipo):
+        """
+        :param tipo: tipo de propiedad
+        :type tipo: str
+        :return: registro
+        :rtype: list
+
+        Método que inserta un nuevo tipo de propiedad en la base de datos.
+
+        """
         try:
             # Verificar si el tipo ya existe antes de intentar insertarlo
             check_query = QtSql.QSqlQuery()
@@ -221,6 +322,15 @@ class Conexion:
             return False  # Retornar False si ocurre un error
 
     def cargarTipoprop(self):
+        """
+        :param self: None
+        :type self: None
+        :return: registro
+        :rtype: list
+
+        Método que carga los tipos de propiedad almacenados en la base de datos.
+
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -233,6 +343,15 @@ class Conexion:
             print("Error cargarTipoprop", e)
 
     def bajaTipoprop(tipo):
+        """
+        :param tipo: tipo de propiedad
+        :type tipo: str
+        :return: True/False
+        :rtype: bool
+
+        Método que da de baja un tipo de propiedad en concreto.
+
+        """
         try:
             # Verifica si el tipo existe antes de intentar eliminarlo
             check_query = QtSql.QSqlQuery()
@@ -262,6 +381,16 @@ class Conexion:
             return False
 
     def altaPropiedad(propiedades):
+        """
+
+        :param propiedades: lista con los datos de la propiedad
+        :type propiedades: list
+        :return: True/False
+        :rtype: bool
+
+        Método que inserta una nueva propiedad en la base de datos.
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
@@ -295,6 +424,14 @@ class Conexion:
     # Menos mal que Yelko es un máquina, el resto de '''mi codigo''' tiene mas deuda tecnica que Venezuela. Llamen a Javier Milei.
 
     def listadoPropiedades():
+        """
+
+        :return: listado
+        :rtype: list
+
+        Método que devuelve un listado con las propiedades almacenadas en la base de datos.
+
+        """
         try:
             listado = []
             historico = var.ui.chkHistoricoprop.isChecked()
@@ -343,6 +480,15 @@ class Conexion:
             return []
 
     def modifPropiedad(registro):
+        """
+        :param registro: datos de la propiedad a modificar
+        :type registro: list
+        :return: True/False
+        :rtype: bool
+
+        Método que modifica los datos de una propiedad en concreto.
+
+        """
         try:
 
             print("Tamaño de la lista propiedades:", len(registro))
@@ -392,6 +538,15 @@ class Conexion:
 
 
     def datosOnePropiedad(codigo):
+        """
+        :param codigo: código de la propiedad
+        :type codigo: str
+        :return: registro
+        :rtype: list
+
+        Método que devuelve los datos de una propiedad en concreto.
+
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -408,6 +563,15 @@ class Conexion:
             print("Error datos un Cliente", e)
 
     def bajaPropiedad(datos):
+        """
+        :param datos: código de la propiedad
+        :type datos: str
+        :return: True/False
+        :rtype: bool
+
+        Método que da de baja una propiedad en concreto.
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE propiedades SET bajaprop = :bajaprop WHERE codigo = :codigo")
@@ -417,3 +581,154 @@ class Conexion:
 
         except Exception as e:
             print("Error bajaCliente", e)
+
+
+            ########################### VENDEDORES ###########################
+
+    def altaVendedor(nuevoVendedor):
+        """
+        :param nuevoVendedor: datos del nuevo vendedor
+        :type nuevoVendedor: list
+        :return: True/False
+        :rtype: bool
+
+        Método que inserta un nuevo vendedor en la base de datos.
+
+        """
+        try:
+            query = QtSql.QSqlQuery()
+            registro = query.prepare( "INSERT INTO vendedores ( dniVendedor, nombreVendedor, altaVendedor, bajaVendedor, movilVendedor, mailVendedor, delegacionVendedor ) VALUES ( :dniVendedor, :nombreVendedor, :altaVendedor, :bajaVendedor, :movilVendedor, :mailVendedor, :delegacionVendedor ) " )
+
+            query.bindValue(":dniVendedor",  str(nuevoVendedor[0]))
+            query.bindValue(":nombreVendedor",  str(nuevoVendedor[1]))
+            query.bindValue(":altaVendedor",  str(nuevoVendedor[2]))
+            query.bindValue(":bajaVendedor",  str(nuevoVendedor[3]))
+            query.bindValue(":movilVendedor",  str(nuevoVendedor[4]))
+            query.bindValue(":mailVendedor",  str(nuevoVendedor[5]))
+            query.bindValue(":delegacionVendedor",  str(nuevoVendedor[6]))
+
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except sqlite3.IntegrityError:
+                return False
+
+    def listadoVendedores(self):
+        """
+        :param self: None
+        :type self: None
+        :return: listado
+        :rtype: list
+
+        Método que devuelve un listado con los vendedores almacenados en la base de datos.
+        """
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM vendedores ORDER BY idVendedor ASC")
+            query.bindValue(":dato", QtCore.QVariant())
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range (query.record().count())]
+                    listado.append(fila)
+            return listado
+
+        except Exception as e:
+            print("Error Listado en Conexion", e)
+
+    def datosOneVendedor(id):
+        """
+
+        :param id: id del vendedor
+        :type id: str
+        :return: registro
+        :rtype: list
+
+        Método que devuelve los datos de un vendedor en concreto.
+
+        """
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM vendedores WHERE idVendedor = :idVendedor")
+            query.bindValue(":idVendedor", id)
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(query.value(i))
+            return registro
+
+        except Exception as e:
+            print("Error datos un Cliente", e)
+
+    def modifVendedor(registro):
+        """
+        :param registro: datos del vendedor a modificar
+        :type registro: list
+        :return: True/False
+        :rtype: bool
+
+        Método que modifica los datos de un vendedor en concreto.
+
+        """
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("select count(*) from vendedores where idVendedor = :id")
+            query.bindValue(":id", str(registro[0]))
+
+            if query.exec():
+                if query.next() and query.value(0) > 0:
+                    if query.exec():
+                        query = QtSql.QSqlQuery()
+                        query.prepare("UPDATE vendedores set nombreVendedor = :nombreVendedor, "
+                                      " altaVendedor = :altaVendedor, bajaVendedor = :bajaVendedor, movilVendedor = :movilVendedor, mailVendedor = :mailVendedor, "
+                                      "delegacionVendedor  = :delegacionVendedor where idVendedor = :idVendedor")
+                        query.bindValue(":idVendedor", str(registro[0]))
+                        query.bindValue(":dniVendedor", str(registro[1]))
+                        query.bindValue(":nombreVendedor", str(registro[2]))
+                        query.bindValue(":altaVendedor", str(registro[3]))
+                        query.bindValue(":bajaVendedor", str(registro[4]))
+                        query.bindValue(":movilVendedor", str(registro[5]))
+                        query.bindValue(":mailVendedor", str(registro[6]))
+                        query.bindValue(":delegacionVendedor", str(registro[7]))
+
+                        if query.exec():
+                            return True
+                        else:
+                            return False
+                    else:
+                        return False
+                else:
+                    return False
+        except Exception as error:
+            print("error modificar cliente", error)
+
+
+    def bajaVendedor(datos):
+        """
+        :param datos: id del vendedor
+        :type datos: str
+        :return: True/False
+        :rtype: bool
+
+        Método que da de baja a un vendedor en concreto.
+
+        """
+        try:
+
+            print(datos)
+
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE vendedores SET bajaVendedor = :bajaVendedor WHERE idVendedor = :idVendedor")
+            query.bindValue(":bajaVendedor", "hoy")
+            query.bindValue(":idVendedor", int(datos))
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            print("Error bajaVendedor", e)
+

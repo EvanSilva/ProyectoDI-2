@@ -5,7 +5,6 @@ from PyQt6 import QtCore
 
 import conexion
 import eventos
-import propiedades
 import var
 
 
@@ -44,7 +43,6 @@ class Propiedades():
                 mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.exec()
                 var.dlggestion.ui.txtGestipoprop.setText("")  # Limpiar solo si se da de alta
-            print(tipo)
 
         except Exception as e:
             print("Error en altaTipopropiedad:", e)
@@ -67,7 +65,6 @@ class Propiedades():
                 registro = conexion.Conexion.cargarTipoprop(self)
                 var.ui.cmbTipoprop.clear()
                 var.ui.cmbTipoprop.addItems(registro)
-                print(tipo)
             else:
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
@@ -85,7 +82,6 @@ class Propiedades():
             print(e)
 
     def altaPropiedad(self):
-        print("ALTAPROPIEDAD")
         try:
             propiedades = [var.ui.txtAltaprop.text(), var.ui.txtDirprop.text(),
                          var.ui.cmbProvprop.currentText(), var.ui.cmbMuniprop.currentText(), var.ui.cmbTipoprop.currentText(),
@@ -94,7 +90,6 @@ class Propiedades():
                          var.ui.txtObservaprop.toPlainText()
                          ]
 
-            print("PRETIPOOPER")
 
             tipooper = []
             if var.ui.chkAlquiprop.isChecked():
@@ -115,10 +110,8 @@ class Propiedades():
 
             propiedades.append(var.ui.txtNomeprop.text())
             propiedades.append(var.ui.txtMovilprop.text())
-            print("PRECOMPROBACION")
 
             if Propiedades.checkObligatoriosProp(self) and Propiedades.esMovilValido(propiedades[-1]):
-                print("PASO DE CHECKOBLIGATORIOSY ESMOVILVALIDO")
 
                 if conexion.Conexion.altaPropiedad(propiedades):
                     mbox = QtWidgets.QMessageBox()
@@ -155,8 +148,6 @@ class Propiedades():
 
             Propiedades.cargaTablaPropiedades(self)
 
-
-            print(propiedades)
         except Exception as e:
             print("Error en propiedades, altaPropiedad(), " + e)
 
@@ -281,8 +272,6 @@ class Propiedades():
             propiedades.append(var.ui.txtNomeprop.text())
             propiedades.append(var.ui.txtMovilprop.text())
 
-            print("ESTAS SON LAS PROPIEDADES MODIFICAR: \n" )
-            print(propiedades)
 
             if conexion.Conexion.modifPropiedad(propiedades):
                 mbox = QtWidgets.QMessageBox()
@@ -344,9 +333,6 @@ class Propiedades():
                 var.ui.txtNomeprop,
                 var.ui.txtMovilprop
             ]
-
-            print(len(registro))
-            print(len(listado))
 
             for i, casilla in enumerate(listado):
                 if isinstance(casilla, QtWidgets.QLineEdit):
@@ -425,12 +411,9 @@ class Propiedades():
 
     def esMovilValido(movil):
 
-        print("LLEGO AL VALIDADOR DEL MOVIL")
         if len(movil) == 13 and movil.startswith("+") and movil[3] == " " and movil[4:].isdigit():
-            print("- TRUE")
             return True
         return False
-        print("- FALSE")
 
     def filtrar(self):
         checkeado = var.ui.btnBuscaTipoProp.isChecked()

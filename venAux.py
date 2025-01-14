@@ -1,11 +1,15 @@
 from datetime import datetime
 
+import conexion
+import informes
 import propiedades
 from dlgAbout import Ui_dlgAbout
 from dlgCalendar import *
 import var
 import eventos
 from dlgGestionprop import Ui_dlg_tipoprop
+from dlgInformeProp import Ui_dlgInformeProp
+
 
 class Calendar(QtWidgets.QDialog):
     def __init__(self):
@@ -33,7 +37,6 @@ class dlgGestionprop(QtWidgets.QDialog):
         self.ui.btnDeltipoprop.clicked.connect(propiedades.Propiedades.bajaTipopropiedad)
 
 
-
 class dlgAbout(QtWidgets.QDialog):
 
     def __init__(self):
@@ -41,5 +44,27 @@ class dlgAbout(QtWidgets.QDialog):
         self.ui = Ui_dlgAbout()
         self.ui.setupUi(self)
         self.ui.btnAbout.clicked.connect(self.close)
+
+class dlgInformeProp(QtWidgets.QDialog):
+
+
+    def __init__(self):
+        super(dlgInformeProp, self).__init__()
+        self.ui = Ui_dlgInformeProp()
+        self.ui.setupUi(self)
+        dlgInformeProp.cargarMuniPropInforme(self)
+        completer = QtWidgets.QCompleter(conexion.Conexion.listarMunicipios(), self.ui.cmbInformProp)
+        completer.setCaseSensitivity(QtCore.Qt.CaseSensitivity.CaseInsensitive)
+        self.ui.cmbInformProp.setCompleter(completer)
+
+        self.ui.btnInformeProp.clicked.connect(informes.Informes.reportPropiedades)
+
+    def cargarMuniPropInforme(self):
+        self.ui.cmbInformProp.clear()
+        municipios = conexion.Conexion.listarMunicipios()
+        self.ui.cmbInformProp.addItems(municipios)
+
+
+
 
 

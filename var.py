@@ -12,6 +12,8 @@ global dlgAbout
 global btn
 global historico
 global dlggestion
+global dlgPrueba
+global dlgInformeProp
 
 global tablaActualCli
 global tablaActualProp

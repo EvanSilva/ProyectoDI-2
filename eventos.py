@@ -107,6 +107,8 @@ class Eventos():
                 var.ui.txtAltaprop.setText(str(data))
             elif var.panel == 1 and var.btn == 1:
                 var.ui.txtBajaprop.setText(str(data))
+            elif var.panel == 3 and var.btn == 0:
+                var.ui.txtFechaFac.setText(str(data))
 
 
             time.sleep(0.5)

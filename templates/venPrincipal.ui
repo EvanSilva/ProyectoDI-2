@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
+    <width>1311</width>
     <height>846</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1311</width>
+    <height>846</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Inmoteis</string>
@@ -19,7 +25,33 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="2">
+     <spacer name="horizontalSpacer_38">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="0" column="0">
+     <spacer name="horizontalSpacer_37">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
      <widget class="QTabWidget" name="panPrincipal">
       <property name="enabled">
        <bool>true</bool>
@@ -32,12 +64,15 @@
       </property>
       <property name="maximumSize">
        <size>
-        <width>16777215</width>
-        <height>16777215</height>
+        <width>1250</width>
+        <height>753</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(237, 251, 255);</string>
+      </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pesClientes">
        <attribute name="title">
@@ -128,61 +163,21 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QTableWidget" name="tablaClientes">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+        <item row="9" column="0" colspan="2">
+         <widget class="Line" name="line_2">
+          <property name="lineWidth">
+           <number>3</number>
           </property>
-          <property name="autoFillBackground">
-           <bool>true</bool>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::SingleSelection</enum>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectRows</enum>
-          </property>
-          <attribute name="verticalHeaderVisible">
-           <bool>false</bool>
-          </attribute>
-          <column>
-           <property name="text">
-            <string>DNI/NIE</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Apellidos</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Nombre</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Movil</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Provincia</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Municipio</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Fecha de Baja</string>
-           </property>
-          </column>
          </widget>
         </item>
         <item row="0" column="0" colspan="2">
@@ -245,6 +240,9 @@
               <width>160</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
            </widget>
           </item>
@@ -333,6 +331,9 @@
               <height>20</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
            </widget>
           </item>
           <item row="1" column="5" colspan="5">
@@ -348,6 +349,9 @@
               <width>320</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string/>
@@ -469,6 +473,9 @@
               <height>0</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
            </widget>
           </item>
           <item row="0" column="0">
@@ -550,6 +557,9 @@
               <height>0</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
            </widget>
           </item>
           <item row="3" column="7">
@@ -566,6 +576,9 @@
               <height>0</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
            </widget>
           </item>
           <item row="1" column="2">
@@ -581,6 +594,9 @@
               <width>320</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
            </widget>
           </item>
@@ -620,6 +636,9 @@
               <width>80</width>
               <height>20</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
            </widget>
           </item>
@@ -705,6 +724,9 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -723,20 +745,10 @@
           </item>
          </layout>
         </item>
-        <item row="5" column="0">
-         <widget class="Line" name="line_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="0" colspan="2">
-         <widget class="Line" name="line_2">
-          <property name="lineWidth">
-           <number>3</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+        <item row="4" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+         <widget class="QLabel" name="lblNumPaginaCli">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -763,6 +775,11 @@
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
             <property name="text">
              <string>Grabar</string>
             </property>
@@ -776,6 +793,11 @@
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
             <property name="text">
              <string>Modificar</string>
             </property>
@@ -788,6 +810,11 @@
               <width>80</width>
               <height>25</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
             </property>
             <property name="text">
              <string>Baja</string>
@@ -812,11 +839,64 @@
           </item>
          </layout>
         </item>
-        <item row="4" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-         <widget class="QLabel" name="lblNumPaginaCli">
-          <property name="text">
-           <string/>
+        <item row="3" column="0">
+         <widget class="QTableWidget" name="tablaClientes">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>DNI/NIE</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Apellidos</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Nombre</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Movil</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Provincia</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Municipio</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Fecha de Baja</string>
+           </property>
+          </column>
          </widget>
         </item>
        </layout>
@@ -849,6 +929,11 @@
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
             <property name="text">
              <string>Grabar</string>
             </property>
@@ -862,6 +947,11 @@
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
             <property name="text">
              <string>Modificar</string>
             </property>
@@ -874,6 +964,11 @@
               <width>80</width>
               <height>25</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
             </property>
             <property name="text">
              <string>Baja</string>
@@ -993,7 +1088,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                </widget>
               </item>
@@ -1121,6 +1216,9 @@
                   <height>16777215</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                </widget>
               </item>
               <item row="0" column="7" rowspan="2">
@@ -1138,7 +1236,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                </widget>
               </item>
@@ -1182,6 +1280,9 @@
                   <height>16777215</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                </widget>
               </item>
               <item row="2" column="17" rowspan="2">
@@ -1199,7 +1300,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1234,7 +1335,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                </widget>
               </item>
@@ -1294,6 +1395,9 @@
                   <height>0</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
@@ -1312,6 +1416,9 @@
                   <width>60</width>
                   <height>0</height>
                  </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -1340,7 +1447,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                </widget>
               </item>
@@ -1384,6 +1491,9 @@
                   <height>0</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="placeholderText">
                  <string>Precio Alquiler €</string>
                 </property>
@@ -1404,7 +1514,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                 <property name="placeholderText">
                  <string>Precio Venta €</string>
@@ -1599,7 +1709,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                </widget>
               </item>
@@ -1653,7 +1763,7 @@
                  </size>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true"/>
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                 </property>
                </widget>
               </item>
@@ -2073,6 +2183,9 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
            </widget>
           </item>
           <item row="1" column="1" alignment="Qt::AlignRight">
@@ -2103,7 +2216,7 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string/>
@@ -2164,7 +2277,7 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string/>
@@ -2186,7 +2299,7 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string/>
@@ -2208,7 +2321,7 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string/>
@@ -2243,7 +2356,7 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string/>
@@ -2265,7 +2378,7 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string/>
@@ -2408,6 +2521,11 @@
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
             <property name="text">
              <string>Grabar</string>
             </property>
@@ -2427,6 +2545,11 @@
               <height>25</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
             <property name="text">
              <string>Modificar</string>
             </property>
@@ -2445,6 +2568,11 @@
               <width>80</width>
               <height>25</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
             </property>
             <property name="text">
              <string>Dar de Baja</string>
@@ -2489,6 +2617,9 @@
           <property name="autoFillBackground">
            <bool>true</bool>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
@@ -2526,250 +2657,752 @@
        <attribute name="title">
         <string>VENTAS</string>
        </attribute>
-       <widget class="QFrame" name="frame">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>40</y>
-          <width>331</width>
-          <height>211</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::WinPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <widget class="QPushButton" name="btnGrabarVenta">
-         <property name="geometry">
-          <rect>
-           <x>114</x>
-           <y>150</y>
-           <width>81</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Grabar Venta</string>
-         </property>
-        </widget>
-        <widget class="QWidget" name="">
-         <property name="geometry">
-          <rect>
-           <x>18</x>
-           <y>13</y>
-           <width>291</width>
-           <height>101</height>
-          </rect>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_7">
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>Num. Factura:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="txtNumFac">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>200</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>250</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 254, 230);</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_8">
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Fecha Factura:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="txtFechaFac">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>150</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>250</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 254, 230);</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnFechaFac">
-              <property name="maximumSize">
-               <size>
-                <width>32</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="sizeIncrement">
-               <size>
-                <width>32</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="contextMenuPolicy">
-               <enum>Qt::PreventContextMenu</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <widget class="QLabel" name="label_5">
-              <property name="maximumSize">
-               <size>
-                <width>60</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>DNI Cliente:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="txtDniFac">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>120</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string/>
-              </property>
-              <property name="statusTip">
-               <string/>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 254, 230);</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_39">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-       <widget class="QFrame" name="frame_2">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>270</y>
-          <width>341</width>
-          <height>431</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::WinPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
-       <widget class="QFrame" name="frame_3">
+       <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
           <x>410</x>
           <y>40</y>
           <width>811</width>
-          <height>211</height>
+          <height>671</height>
          </rect>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::WinPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QFrame" name="frame_3">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>210</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>170</y>
+              <width>222</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_28">
+             <item>
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>ID Vendedor:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtNumFac_9">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>250</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 254, 230);</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="Line" name="line_6">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>150</y>
+              <width>781</width>
+              <height>16</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+           <widget class="Line" name="line_7">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>791</width>
+              <height>16</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_22">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>90</y>
+              <width>131</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>PROPIEDAD</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_23">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>10</y>
+              <width>91</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>16</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>CLIENTE</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="btnGrabarVenta_2">
+            <property name="geometry">
+             <rect>
+              <x>370</x>
+              <y>170</y>
+              <width>81</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
+            <property name="text">
+             <string>Grabar Venta</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>40</y>
+              <width>781</width>
+              <height>24</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_17">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>Apellidos:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNumFac_2">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>250</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <item>
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>Nombre:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNumFac_3">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>250</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_12">
+               <item>
+                <widget class="QLabel" name="label_8">
+                 <property name="text">
+                  <string>Direccion:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNumFac_4">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>250</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>120</y>
+              <width>781</width>
+              <height>24</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_13">
+               <item>
+                <widget class="QLabel" name="label_9">
+                 <property name="text">
+                  <string>Codigo:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNumFac_5">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>250</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_14">
+               <item>
+                <widget class="QLabel" name="label_10">
+                 <property name="text">
+                  <string>Tipo</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNumFac_6">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>250</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_15">
+               <item>
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Localidad:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNumFac_7">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>250</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_16">
+               <item>
+                <widget class="QLabel" name="label_12">
+                 <property name="text">
+                  <string>Precio:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtNumFac_8">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>250</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_4">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="frame_5">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
-       <widget class="QFrame" name="frame_4">
+       <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
-          <x>410</x>
-          <y>270</y>
-          <width>811</width>
-          <height>351</height>
+          <x>30</x>
+          <y>40</y>
+          <width>371</width>
+          <height>671</height>
          </rect>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::WinPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QFrame" name="frame">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>210</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QPushButton" name="btnGrabarFactura">
+            <property name="geometry">
+             <rect>
+              <x>150</x>
+              <y>150</y>
+              <width>81</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+            </property>
+            <property name="text">
+             <string>Grabar Factura</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="layoutWidget">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>30</y>
+              <width>231</width>
+              <height>101</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="minimumSize">
+                  <size>
+                   <width>72</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>90</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Num. Factura:</string>
+                 </property>
+                </widget>
+               </item>
+               <item alignment="Qt::AlignLeft">
+                <widget class="QLineEdit" name="txtNumFac">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>60</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>60</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_40">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item alignment="Qt::AlignHCenter">
+                <widget class="QLabel" name="label_4">
+                 <property name="minimumSize">
+                  <size>
+                   <width>72</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Fech. Factura:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtFechaFac">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 254, 230);</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnFechaFac">
+                 <property name="maximumSize">
+                  <size>
+                   <width>32</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="sizeIncrement">
+                  <size>
+                   <width>32</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="contextMenuPolicy">
+                  <enum>Qt::PreventContextMenu</enum>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_41">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_9">
+               <item alignment="Qt::AlignHCenter">
+                <widget class="QLabel" name="label_5">
+                 <property name="minimumSize">
+                  <size>
+                   <width>72</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>60</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>DNI Cliente:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="txtDniFac">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="statusTip">
+                  <string/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Seleccione Cliente</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_39">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tableWidget">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>452</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <column>
+            <property name="text">
+             <string>FACTURA</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>FECHA</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>DNI</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>GESTION</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
      </widget>
@@ -2781,7 +3414,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1300</width>
+     <width>1311</width>
      <height>21</height>
     </rect>
    </property>

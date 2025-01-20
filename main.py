@@ -102,7 +102,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBuscaTipoProp.clicked.connect(propiedades.Propiedades.cargaTablaPropiedades)
         var.ui.btnBuscarCli.clicked.connect(clientes.Clientes.buscarOneCliente)
 
-        var.ui.btnGrabarVenta.clicked.connect(facturas.Facturas.altafactura)
+        var.ui.btnGrabarFactura.clicked.connect(facturas.Facturas.altafactura)
 
 
         var.ui.btnTablaAlante.clicked.connect(eventos.Eventos.avanzarTablaCli)

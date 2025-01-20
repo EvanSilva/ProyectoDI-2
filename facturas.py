@@ -22,12 +22,16 @@ class Facturas:
             else:
                 nuevafactura = [var.ui.txtFechaFac.text(), var.ui.txtDniFac.text()]
                 if conexion.Conexion.altafactura(nuevafactura):
-                    var.ui.lblstatus.setText('Factura %s añadida' % nuevafactura[0])
-                    var.ui.txtFechaFac.setText('')
-                    var.ui.txtDniFac.setText('')
-                    var.ui.lblstatus.setStyleSheet('QLabel {color: green;}')
-                    var.ui.lblstatus.show()
-                    conexion.Conexion.mostrarfacturas()
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                    mbox.setWindowTitle('Factura Guardada')
+                    mbox.setText('Se ha guardado la factura correctamente')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
 
         except Exception as error:
             print('Error al insertar factura: %s' % str(error))

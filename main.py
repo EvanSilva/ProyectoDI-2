@@ -35,6 +35,7 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.cargarMuniProp(self)
         propiedades.Propiedades.cargaTablaPropiedades(self)
         vendedores.Vendedores.cargaTablaVendedores(self)
+        facturas.Facturas.cargaTablaFacturas()
 
         var.ui.chkVentaprop.setEnabled(False)
         var.ui.chkAlquiprop.setEnabled(False)
@@ -63,6 +64,7 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.resizeTablaVendedor(self)
 
 
+        var.ui.tablaFactura.clicked.connect(facturas.Facturas.cargaOneFactura)
 
 
         '''

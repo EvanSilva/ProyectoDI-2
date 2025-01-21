@@ -735,14 +735,128 @@ class Conexion:
     def altafactura(nuevafactura):
         try:
             query = QtSql.QSqlQuery()
-            query.prepare('INSERT INTO facturas (fechafac, dnifac) VALUES :fecha, :dni)')
+
+            query.prepare('INSERT INTO facturas (fechafac, dnifac) VALUES (:fecha, :dni)')
+
+
             query.bindValue(':fecha', nuevafactura[0])
             query.bindValue(':dni', nuevafactura[1])
+
+
             if query.exec():
-                return true
+                return True
             else:
-                return false
+                return False
 
         except Exception as error:
-            print('Error al insertar factura: %s' % str(error))
+            print('Error al insertar factura2: %s' % str(error))
+
+    @staticmethod
+    def cargarFacturas():
+        """
+        Método que carga los registros de la tabla facturas desde la base de datos.
+
+        :return: Lista de registros de facturas, cada uno con id, fechafac y dnifac.
+        :rtype: list
+        """
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM facturas")
+
+            if query.exec():
+                while query.next():
+                    # Agrega los valores de todas las columnas en una lista
+                    fila = [str(query.value(0)),  # id
+                            str(query.value(1)),  # fechafac
+                            str(query.value(2))]  # dnifac
+                    registro.append(fila)
+                print(registro)  # Depuración: muestra las filas cargadas
+                return registro
+            else:
+                print("Error al ejecutar la consulta:", query.lastError().text())
+                return []
+
+        except Exception as e:
+            print("Error en cargarFacturas:", e)
+            return []
+
+    def datosOneFactura(id):
+
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM facturas WHERE id = :id")
+            query.bindValue(":id", str(id))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(query.value(i))
+            print(registro)
+            return registro
+
+        except Exception as e:
+            print("Error datos una factura", e)
+
+    def bajaFactura(id):
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("delete from facturas where id = :id")
+            query.bindValue(":id", id)
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            print("Error bajaVendedor", e)
+
+    def altaVenta(nuevaventa):
+        try:
+            query = QtSql.QSqlQuery()
+
+            query.prepare('INSERT INTO ventas (facventa, codprop, agente) VALUES (:facventa, :codprop, :agente)')
+
+
+            query.bindValue(':facventa', nuevaventa[0])
+            query.bindValue(':codprop', nuevaventa[1])
+            query.bindValue(':agente', nuevaventa[2])
+
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as error:
+            print('Error al insertar factura2: %s' % str(error))
+
+    #ARREGLAR
+
+    @staticmethod
+    def cargarVentas():
+
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM ventas")
+
+            if query.exec():
+                while query.next():
+                    # Agrega los valores de todas las columnas en una lista
+                    fila = [str(query.value(0)),  # id
+                            str(query.value(1)),  # facventa
+                            str(query.value(2)), # codprop
+                            str(query.value(3))]  # agente
+                    registro.append(fila)
+                print(registro)  # Depuración: muestra las filas cargadas
+                return registro
+            else:
+                print("Error al ejecutar la consulta:", query.lastError().text())
+                return []
+
+        except Exception as e:
+            print("Error en cargarFacturas:", e)
+            return []
+
 

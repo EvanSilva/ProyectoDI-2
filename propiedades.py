@@ -357,6 +357,13 @@ class Propiedades():
                             else:
                                 subcasilla.setChecked(False)
 
+            var.ui.txtFacCodigo.setText(str(registro[0]))
+            var.ui.txtFacTipo.setText(str(registro[6]))
+            var.ui.txtFacLocalidad.setText(str(registro[5]))
+            var.ui.txtFacPrecio.setText(str(registro[11]))
+
+
+
         except Exception as e:
             print("Error en cargaOnePropiedad", e)
 

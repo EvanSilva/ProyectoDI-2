@@ -72,7 +72,7 @@
        <string notr="true">background-color:rgb(237, 251, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="pesClientes">
        <attribute name="title">
@@ -2657,7 +2657,7 @@ border: 2px solid rgb(170, 229, 255); </string>
        <attribute name="title">
         <string>VENTAS</string>
        </attribute>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>410</x>
@@ -2684,7 +2684,7 @@ border: 2px solid rgb(170, 229, 255); </string>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -2702,7 +2702,7 @@ border: 2px solid rgb(170, 229, 255); </string>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txtNumFac_9">
+              <widget class="QLineEdit" name="txtFacVendedor">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -2807,7 +2807,7 @@ border: 2px solid rgb(170, 229, 255); </string>
              <string>Grabar Venta</string>
             </property>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -2827,7 +2827,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtNumFac_2">
+                <widget class="QLineEdit" name="txtFacApel">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -2860,7 +2860,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtNumFac_3">
+                <widget class="QLineEdit" name="txtFacNombre">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -2893,7 +2893,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtNumFac_4">
+                <widget class="QLineEdit" name="txtFacDir">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -2921,7 +2921,7 @@ border: 2px solid rgb(170, 229, 255); </string>
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>10</x>
@@ -2941,7 +2941,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtNumFac_5">
+                <widget class="QLineEdit" name="txtFacCodigo">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -2974,7 +2974,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtNumFac_6">
+                <widget class="QLineEdit" name="txtFacTipo">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3007,7 +3007,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtNumFac_7">
+                <widget class="QLineEdit" name="txtFacLocalidad">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3040,7 +3040,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtNumFac_8">
+                <widget class="QLineEdit" name="txtFacPrecio">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3078,6 +3078,67 @@ border: 2px solid rgb(170, 229, 255); </string>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
+           <widget class="QTableWidget" name="tablaVenta">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>810</width>
+              <height>341</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>810</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>810</width>
+              <height>452</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>ID-Venta</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>ID-Propiedad</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>New Column</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tipo</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Direccion</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Precio</string>
+             </property>
+            </column>
+           </widget>
           </widget>
          </item>
          <item>
@@ -3101,7 +3162,7 @@ border: 2px solid rgb(170, 229, 255); </string>
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -3131,9 +3192,9 @@ border: 2px solid rgb(170, 229, 255); </string>
            <widget class="QPushButton" name="btnGrabarFactura">
             <property name="geometry">
              <rect>
-              <x>150</x>
+              <x>130</x>
               <y>150</y>
-              <width>81</width>
+              <width>111</width>
               <height>31</height>
              </rect>
             </property>
@@ -3370,16 +3431,22 @@ border: 2px solid rgb(170, 229, 255); </string>
           </widget>
          </item>
          <item>
-          <widget class="QTableWidget" name="tableWidget">
+          <widget class="QTableWidget" name="tablaFactura">
            <property name="maximumSize">
             <size>
-             <width>16777215</width>
+             <width>369</width>
              <height>452</height>
             </size>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectRows</enum>
+           </property>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
            <column>
             <property name="text">
              <string>FACTURA</string>

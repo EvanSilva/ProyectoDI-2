@@ -140,6 +140,17 @@ class Eventos():
         except Exception as error:
             print("error en resize tabla clientes ", error)
 
+    def resizeTablaVentas(self):
+        try:
+            header = var.ui.tablaVenta.horizontalHeader()
+            for i in range(header.count()):
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+
+        except Exception as error:
+            print("error en resize tabla clientes ", error)
+
+
+
     def resizeTablaVendedor(self):
         try:
             header = var.ui.tablaVendedor.horizontalHeader()
@@ -154,6 +165,7 @@ class Eventos():
                     header_items.setFont(font)
         except Exception as error:
             print("error en resize tabla clientes ", error)
+
 
     def resizeTablaPropiedades(self):
         try:

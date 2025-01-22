@@ -834,29 +834,46 @@ class Conexion:
     #ARREGLAR
 
     @staticmethod
-    def cargarVentas():
-
+    def cargarVentas(facventa):
         try:
             registro = []
             query = QtSql.QSqlQuery()
-            query.prepare("SELECT * FROM ventas")
+
+            query.prepare("""
+                SELECT    v.idventa AS "ID Venta",
+                          v.facventa AS "ID Factura",
+                          p.muniprop AS "Localidad",
+                          p.tipoprop AS "Tipo propiedad",
+                          p.dirprop AS "Dirección de la propiedad",
+                          p.prevenprop AS "Precio de venta"
+                FROM ventas AS v
+                INNER JOIN propiedades AS p
+                ON v.codprop = p.codigo
+                WHERE v.facventa = :facventa;
+            """)
+
+            query.bindValue(":facventa", facventa)
 
             if query.exec():
                 while query.next():
-                    # Agrega los valores de todas las columnas en una lista
-                    fila = [str(query.value(0)),  # id
-                            str(query.value(1)),  # facventa
-                            str(query.value(2)), # codprop
-                            str(query.value(3))]  # agente
-                    registro.append(fila)
-                print(registro)  # Depuración: muestra las filas cargadas
+                    # Usar una lista para cada fila
+                    fila = [
+                        str(query.value(0)),  # ID Venta
+                        str(query.value(1)),  # ID Factura
+                        str(query.value(2)),  # Localidad
+                        str(query.value(3)),  # Tipo propiedad
+                        str(query.value(4)),  # Dirección de la propiedad
+                        str(query.value(5)),  # Precio de venta
+                    ]
+                    registro.append(fila)  # Agregar la lista de valores a la lista principal
+
+                print(registro)
                 return registro
+
             else:
-                print("Error al ejecutar la consulta:", query.lastError().text())
+                print(f"Error en la consulta SQL: {query.lastError().text()}")
                 return []
 
         except Exception as e:
-            print("Error en cargarFacturas:", e)
+            print("Error en cargarVentas:", str(e))
             return []
-
-

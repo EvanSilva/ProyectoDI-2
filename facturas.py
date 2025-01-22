@@ -124,6 +124,8 @@ class Facturas:
             var.ui.txtFechaFac.setText(str(registro[1]))
             var.ui.txtDniFac.setText(str(registro[2]))
 
+            Facturas.cargaTablaVentas(registro[0])
+
         except Exception as error:
             print(f"Error en cargaOneFactura: {error}")
 
@@ -183,52 +185,92 @@ class Facturas:
         except Exception as error:
             print('Error al insertar venta: %s' % str(error))
 
-    # ARREGLAR
-    def cargaTablaVentas():
+    @staticmethod
+    def cargaTablaVentas(facventa):
 
-        """
-        Método que carga los datos de facturas en la tabla de la interfaz.
-        """
 
         try:
-            listado = conexion.Conexion.cargarVentas()
-            var.ui.tablaFactura.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
+
+            listado = conexion.Conexion.cargarVentas(facventa)
+
+            var.ui.tablaVenta.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
+
             for index, registro in enumerate(listado):
+
                 var.ui.tablaVenta.setRowCount(index + 1)
-                var.ui.tablaVenta.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))  # id
-                var.ui.tablaVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))  # facventa
-                var.ui.tablaVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[2]))  # codprop
-                var.ui.tablaVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[3]))  # vendedor
+                var.ui.tablaVenta.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))
+                var.ui.tablaVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))
+                var.ui.tablaVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[2]))
+                var.ui.tablaVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[3]))
+                var.ui.tablaVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[4]))
+                var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem( str(registro[5]) + " €" ))
 
-
-                var.ui.tablaVenta.setColumnWidth(0, 80)
-                var.ui.tablaVenta.setColumnWidth(1, 80)
-                var.ui.tablaVenta.setColumnWidth(2, 106)
-
-                var.ui.tablaFactura.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
-
-                botondelfac = QtWidgets.QPushButton()
-                botondelfac.setFixedSize(25,25)
-                botondelfac.setIconSize(QtCore.QSize(25,25))
-                botondelfac.setIcon(QtGui.QIcon("./img/borrar.ico"))
-
-
-                contenedor = QtWidgets.QWidget()
-                layout = QHBoxLayout()
-                layout.addWidget(botondelfac)
-                layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                layout.setContentsMargins(0, 0, 0, 0)
-                contenedor.setLayout(layout)
-
-                container = QWidget()
-                container.setLayout(layout)
-                var.ui.tablaFactura.setCellWidget(index, 3, container)
-                botondelfac.clicked.connect(lambda checked, id=registro[0]: Facturas.bajaFactura(id))
-
-
+                var.ui.tablaVenta.item(index, 0).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 1).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 2).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 3).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 4).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 5).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
         except Exception as e:
-            print("Error en cargaTablaFacturas:", e)
+                print("Error en cargaTablaVentas:", e)
 
+    def guardarVenta(self):
+        try:
+            if var.ui.txtNumFac.text() == '':
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('No hay cliente seleccionado')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+            elif var.ui.txtFacCodigo.text() == '':
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('No hay factura seleccionada')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+            elif var.ui.txtFacVendedor.text() == '':
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('No hay vendedor seleccionado')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+            else:
+                nuevaventa = [var.ui.txtNumFac.text(), var.ui.txtFacCodigo.text(), var.ui.txtFacVendedor.text()]
+                if conexion.Conexion.altaVenta(nuevaventa):
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                    mbox.setWindowTitle('Factura Guardada')
+                    mbox.setText('Se ha guardado la factura correctamente')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
 
+                    Facturas.cargaTablaFacturas()
 
+        except Exception as error:
+            print('Error al insertar venta: %s' % str(error))

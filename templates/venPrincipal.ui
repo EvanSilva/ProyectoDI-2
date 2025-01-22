@@ -2789,7 +2789,7 @@ border: 2px solid rgb(170, 229, 255); </string>
              <string>CLIENTE</string>
             </property>
            </widget>
-           <widget class="QPushButton" name="btnGrabarVenta_2">
+           <widget class="QPushButton" name="btnGrabarVenta">
             <property name="geometry">
              <rect>
               <x>370</x>
@@ -3120,7 +3120,7 @@ border: 2px solid rgb(170, 229, 255); </string>
             </column>
             <column>
              <property name="text">
-              <string>New Column</string>
+              <string>Localidad</string>
              </property>
             </column>
             <column>

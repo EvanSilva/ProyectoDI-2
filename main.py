@@ -63,8 +63,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tablaVendedor.clicked.connect(vendedores.Vendedores.cargaOneVendedor)
         eventos.Eventos.resizeTablaVendedor(self)
 
-
         var.ui.tablaFactura.clicked.connect(facturas.Facturas.cargaOneFactura)
+        eventos.Eventos.resizeTablaVentas(self)
 
 
         '''
@@ -105,13 +105,16 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBuscarCli.clicked.connect(clientes.Clientes.buscarOneCliente)
 
         var.ui.btnGrabarFactura.clicked.connect(facturas.Facturas.altafactura)
-
+        var.ui.btnGrabarVenta.clicked.connect(facturas.Facturas.altaVenta)
 
         var.ui.btnTablaAlante.clicked.connect(eventos.Eventos.avanzarTablaCli)
         var.ui.btnTablaAtras.clicked.connect(eventos.Eventos.retrocederTablaCli)
 
         var.ui.btnAtrasProp.clicked.connect(eventos.Eventos.retrocederTablaProp)
         var.ui.btnAlanteProp.clicked.connect(eventos.Eventos.avanzarTablaProp)
+
+
+
 
                                  ####### VENDEDORES #######
 

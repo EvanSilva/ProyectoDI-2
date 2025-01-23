@@ -733,6 +733,16 @@ class Conexion:
             print("Error bajaVendedor", e)
 
     def altafactura(nuevafactura):
+        """
+
+        Método que inserta una nueva factura en la base de datos.
+
+        :param nuevafactura: datos de la nueva factura
+        :return: True/False
+        :rtype: bool
+
+
+        """
         try:
             query = QtSql.QSqlQuery()
 
@@ -782,8 +792,18 @@ class Conexion:
             return []
 
     def datosOneFactura(id):
+        """
+
+        Método que devuelve los datos de una factura en concreto.
+
+        :return: registro
+        :param id: id de la factura
+        :type id: str
+        :rtype: list
+        """
 
         try:
+
             registro = []
             query = QtSql.QSqlQuery()
             query.prepare("SELECT * FROM facturas WHERE id = :id")
@@ -799,6 +819,16 @@ class Conexion:
             print("Error datos una factura", e)
 
     def bajaFactura(id):
+
+        """
+
+        Método que da de baja una factura en concreto.
+
+        :return: True/False
+        :param id: id de la factura
+        :type id: str
+        :rtype: bool
+        """
 
         try:
             query = QtSql.QSqlQuery()
@@ -835,6 +865,16 @@ class Conexion:
 
     @staticmethod
     def cargarVentas(facventa):
+        """
+
+        Método que carga los registros de la tabla ventas desde la base de datos.
+
+        :param facventa: ID de la factura
+        :return: Lista de registros de ventas, cada uno con idventa, facventa, muniprop, tipoprop, dirprop y prevenprop.
+        :rtype: list
+
+
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()

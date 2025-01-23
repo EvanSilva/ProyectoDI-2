@@ -11,6 +11,15 @@ import var
 class Propiedades():
 
     def altaTipopropiedad(self):
+        """
+
+        Método para dar de alta un tipo de propiedad
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             tipo = var.dlggestion.ui.txtGestipoprop.text().strip()  # Eliminar espacios
             if not tipo:  # Verificar que el tipo no esté vacío
@@ -48,6 +57,15 @@ class Propiedades():
             print("Error en altaTipopropiedad:", e)
 
     def bajaTipopropiedad(self):
+        """
+
+        Método para dar de baja un tipo de propiedad
+
+        :param: self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             tipo = var.dlggestion.ui.txtGestipoprop.text().title()
             if (tipo):
@@ -82,6 +100,15 @@ class Propiedades():
             print(e)
 
     def altaPropiedad(self):
+        """
+
+        Método para dar de alta una propiedad
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             propiedades = [var.ui.txtAltaprop.text(), var.ui.txtDirprop.text(),
                          var.ui.cmbProvprop.currentText(), var.ui.cmbMuniprop.currentText(), var.ui.cmbTipoprop.currentText(),
@@ -152,6 +179,15 @@ class Propiedades():
             print("Error en propiedades, altaPropiedad(), " + e)
 
     def cargaTablaPropiedades(self):
+        """
+
+        Método para cargar la tabla de propiedades
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             listado = conexion.Conexion.listadoPropiedades()
             index = 0
@@ -194,6 +230,16 @@ class Propiedades():
             print(traceback.format_exc())
 
     def cargaDosPropiedades(self, listado):
+        """
+
+        Método para cargar la tabla de propiedades
+
+        :param listado: list
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             index = 0
             var.ui.tablaProp.setRowCount(len(listado))
@@ -235,6 +281,15 @@ class Propiedades():
             print(traceback.format_exc())
 
     def modifPropiedad(self):
+        """
+
+        Método para modificar una propiedad
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             propiedades = [ var.ui.txtProp.text(),
                             var.ui.txtAltaprop.text(),
@@ -301,6 +356,15 @@ class Propiedades():
             print("Error en Modifpropiedad", e)
 
     def cargaOnePropiedad(self):
+        """
+
+        Método para cargar una propiedad
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             fila = var.ui.tablaProp.selectedItems()
             datos = [dato.text() for dato in fila]
@@ -368,6 +432,16 @@ class Propiedades():
             print("Error en cargaOnePropiedad", e)
 
     def bajaPropiedad(self):
+        """
+
+        Método para dar de baja una propiedad
+
+        :param self:
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             datos = [var.ui.txtBajaprop.text(), var.ui.txtProp.text()]
             if conexion.Conexion.bajaPropiedad(datos):
@@ -399,6 +473,15 @@ class Propiedades():
 
 
     def checkObligatoriosProp(self):
+        """
+
+        Método para verificar que los campos obligatorios estén completos
+
+        :param self:
+        :return: bool
+        :rtype: bool
+
+        """
         try:
             textos = [var.ui.txtAltaprop.text(),
                       var.ui.txtDirprop.text(),
@@ -417,18 +500,43 @@ class Propiedades():
             print("error check obligatorios", e)
 
     def esMovilValido(movil):
+        """
 
+        Método para verificar si un número de móvil es válido
+
+
+        :param movil: str
+        :return: bool
+
+
+        """
         if len(movil) == 13 and movil.startswith("+") and movil[3] == " " and movil[4:].isdigit():
             return True
         return False
 
     def filtrar(self):
+        """
+
+        Método para filtrar propiedades
+
+        :param self:
+        :return: None
+
+        """
         checkeado = var.ui.btnBuscaTipoProp.isChecked()
         var.ui.btnBuscaTipoProp.setChecked(not checkeado)
         Propiedades.cargaTablaPropiedades(self)
 
 
     def historicoProp(Self):
+        """
+
+        Método para filtrar propiedades
+
+        :param self:
+        :return: None
+
+        """
         try:
             if var.ui.chkHistoricoprop.isChecked():
                 var.historico = 0
@@ -441,7 +549,14 @@ class Propiedades():
             print("Checkbox Historico", Error)
 
     def habilitarCompraVenta(self):
+        """
 
+        Método para habilitar los checkbox de compra y venta
+
+        :param self:
+        :return: None
+
+        """
         txtCompraVenta = [var.ui.txtPrecioventaprop, var.ui.txtPrecioalquilerprop]
 
         lblCompraVenta = [var.ui.chkVentaprop, var.ui.chkAlquiprop]

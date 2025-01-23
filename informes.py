@@ -14,6 +14,15 @@ class Informes:
     ################################################### CLIENTES #########################################################
 
     def reportClientes(self):
+        """
+
+        Método para generar un informe de clientes
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             rootPath = '.\\informes'
             if not os.path.exists(rootPath):
@@ -88,6 +97,17 @@ class Informes:
             print(e)
 
     def topInforme(titulo):
+        """
+
+        Método para generar la cabecera de un informe
+
+        :param titulo: Título del informe
+        :type titulo: str
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             ruta_logo = '.\\img\\inmoteis.ico'
             logo = Image.open(ruta_logo)
@@ -113,7 +133,18 @@ class Informes:
             print('Error en cabecera informe:', error)
 
     def footInforme(titulo, paginas):
+        """
 
+        Método para generar el pie de un informe
+
+        :param titulo: Título del informe
+        :type titulo: str
+        :param paginas: Número de páginas del informe
+        :type paginas: int
+        :return: None
+        :rtype: None
+
+        """
         try:
             total_pages = 0
             var.report.line(50, 50, 525, 50)
@@ -129,6 +160,15 @@ class Informes:
     ################################################### PROPIEDADES #########################################################
 
     def reportPropiedades(self):
+        """
+
+        Método para generar un informe de propiedades
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             rootPath = '.\\informes'
             if not os.path.exists(rootPath):
@@ -226,6 +266,17 @@ class Informes:
             print(e)
 
     def topInformePropiedades(titulo):
+        """
+
+        Método para generar la cabecera de un informe de propiedades
+
+        :param titulo: Título del informe
+        :type titulo: str
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             ruta_logo = '.\\img\\inmoteis.ico'
             logo = Image.open(ruta_logo)
@@ -251,7 +302,18 @@ class Informes:
             print('Error en cabecera informe:', error)
 
     def footInformePropiedades(titulo, paginas):
+        """
 
+        Método para generar el pie de un informe de propiedades
+
+        :param titulo: Título del informe
+        :type titulo: str
+        :param paginas: Número de páginas del informe
+        :type paginas: int
+        :return: None
+        :rtype: None
+
+        """
         try:
             total_pages = 0
             var.report.line(50, 50, 525, 50)

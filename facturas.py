@@ -8,6 +8,15 @@ import var
 class Facturas:
 
     def altafactura(self):
+        """
+
+        Método para dar de alta una factura en la base de datos.
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             if var.ui.txtDniFac.text() == '':
                 mbox = QtWidgets.QMessageBox()
@@ -40,6 +49,16 @@ class Facturas:
             print('Error al insertar factura: %s' % str(error))
 
     def bajaFactura(id):
+        """
+
+        Método para dar de baja una factura en la base de datos.
+
+        :param id: id de la factura a eliminar
+        :type id: int
+        :return: None
+        :rtype: None
+
+        """
         try:
 
             if conexion.Conexion.bajaFactura(id):
@@ -65,6 +84,10 @@ class Facturas:
 
         """
         Método que carga los datos de facturas en la tabla de la interfaz.
+
+        :return: None
+        :rtype: None
+
         """
 
         try:
@@ -106,6 +129,15 @@ class Facturas:
             print("Error en cargaTablaFacturas:", e)
 
     def cargaOneFactura(self):
+        """
+
+        Método para cargar los datos de una factura en los campos de la interfaz.
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             fila = var.ui.tablaFactura.selectedItems()
             if not fila:
@@ -132,6 +164,15 @@ class Facturas:
 
 
     def altaVenta(self):
+        """
+
+        Método para dar de alta una venta en la base de datos.
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             if var.ui.txtFacApel.text() == '':
                 mbox = QtWidgets.QMessageBox()
@@ -187,8 +228,17 @@ class Facturas:
 
     @staticmethod
     def cargaTablaVentas(facventa):
+        """
+
+        Método que carga los datos de ventas en la tabla de la interfaz.
 
 
+        :param facventa: id de la factura de la que se quieren cargar las ventas
+        :type facventa: int
+        :return: None
+
+
+        """
         try:
 
             listado = conexion.Conexion.cargarVentas(facventa)
@@ -221,7 +271,59 @@ class Facturas:
         except Exception as e:
                 print("Error en cargaTablaVentas:", e)
 
+    def cargaTablaVentas(facventa):
+        """
+
+        Método que carga los datos de ventas en la tabla de la interfaz.
+
+
+        :param facventa: id de la factura de la que se quieren cargar las ventas
+        :type facventa: int
+        :return: None
+
+
+        """
+        try:
+
+            listado = conexion.Conexion.cargarVentas(facventa)
+
+            var.ui.tablaVenta.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
+
+            for index, registro in enumerate(listado):
+                var.ui.tablaVenta.setRowCount(index + 1)
+                var.ui.tablaVenta.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))
+                var.ui.tablaVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))
+                var.ui.tablaVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[2]))
+                var.ui.tablaVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[3]))
+                var.ui.tablaVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[4]))
+                var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5]) + " €"))
+
+                var.ui.tablaVenta.item(index, 0).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 1).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 2).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 3).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 4).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                var.ui.tablaVenta.item(index, 5).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+
+        except Exception as e:
+            print("Error en cargaTablaVentas:", e)
+
     def guardarVenta(self):
+        """
+
+        Método para guardar una venta en la base de datos.
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             if var.ui.txtNumFac.text() == '':
                 mbox = QtWidgets.QMessageBox()

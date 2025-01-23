@@ -23,6 +23,15 @@ locale.setlocale(locale.LC_MONETARY, 'es_ES.UTF-8')
 
 class Eventos():
     def mensajeSalir(self=None):
+        """
+
+        Método para mostrar un mensaje de confirmación al salir de la aplicación.
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
         mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
@@ -39,11 +48,30 @@ class Eventos():
             mbox.hide()
 
     def cargarProv(self):
+        """
+
+        Método para cargar las provincias en los ComboBox
+
+        :param self:
+        :return: None
+        :rtype: None
+
+
+        """
         var.ui.cmbProvcli.clear()
         listado = conexion.Conexion.listarProv(self)
         var.ui.cmbProvcli.addItems(listado)
 
     def cargarMuni(self):
+        """
+
+        Método para cargar los municipios en los ComboBox
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         var.ui.cmbMunicli.clear()
         municipios = conexion.Conexion.listarMunicipios()
         var.ui.cmbMunicli.addItems(municipios)
@@ -51,16 +79,45 @@ class Eventos():
     # ARREGLAR ESTO
 
     def cargarProvProp(self):
+        """
+
+        Método para cargar las provincias en los ComboBox de propiedades
+
+        :param self:
+        :return: None
+        :rtype: None
+
+
+        """
         var.ui.cmbProvprop.clear()
         listado = conexion.Conexion.listarProv(self)
         var.ui.cmbProvprop.addItems(listado)
 
     def cargarMuniProp(self):
+        """
+
+        Método para cargar los municipios en los ComboBox de propiedades
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         var.ui.cmbMuniprop.clear()
         municipios = conexion.Conexion.listarMunicli(var.ui.cmbProvprop.currentText())
         var.ui.cmbMuniprop.addItems(municipios)
 
     def cargarProvVendedores(self):
+        """
+
+        Método para cargar las provincias en los ComboBox de vendedores
+
+        :param self:
+        :return: None
+        :rtype: None
+
+
+        """
         var.ui.cmbProvprop.clear()
         listado = conexion.Conexion.listarProv(self)
         var.ui.cmbProvVendedor.addItems(listado)
@@ -68,6 +125,15 @@ class Eventos():
 
 
     def validarDNI(dni):
+        """
+
+        Método para validar un DNI
+
+        :param dni:
+        :return: bool
+        :rtype: true si el DNI es válido, false en caso contrario
+
+        """
         try:
             tabla = "TRWAGMYFPDXBNJZSQVHLCKE"
             dig_ext = "XYZ"
@@ -89,6 +155,14 @@ class Eventos():
             print("error en validar dni ", error)
 
     def abrirCalendar(pan, btn):
+        """
+
+        Método para abrir el calendario
+
+        :param btn:
+
+
+                """
         try:
             var.panel = pan
             var.btn = btn
@@ -97,6 +171,16 @@ class Eventos():
             print("error en abrir calendar ", error)
 
     def cargaFecha(qDate):
+        """
+
+        Método para cargar la fecha en el campo correspondiente
+
+        :param qDate:
+        :return: date
+        :rtype: objeto tipo date
+        :return: data
+
+        """
         try:
             data = ('{:02d}/{:02d}/{:4d}'.format(qDate.day(), qDate.month(), qDate.year()))
             if var.panel == 0 and var.btn == 0:
@@ -118,6 +202,14 @@ class Eventos():
             print("error en cargar fecha: ", error)
 
     def validarMail(mail):
+        """
+
+        Método para validar un correo electrónico
+
+        :return: bool
+        :rtype: True si el correo es válido, False en caso contrario
+
+        """
         mail = mail.lower()
         regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
         if re.match(regex, mail):
@@ -126,6 +218,14 @@ class Eventos():
             return False
 
     def resizeTablaClientes(self):
+        """
+
+        Método para redimensionar la tabla de clientes
+
+        :param self:
+        :return: None
+
+        """
         try:
             header = var.ui.tablaClientes.horizontalHeader()
             for i in range(header.count()):
@@ -141,6 +241,14 @@ class Eventos():
             print("error en resize tabla clientes ", error)
 
     def resizeTablaVentas(self):
+        """
+
+        Método para redimensionar la tabla de ventas
+
+        :param self:
+        :return: None
+
+        """
         try:
             header = var.ui.tablaVenta.horizontalHeader()
             for i in range(header.count()):
@@ -152,6 +260,14 @@ class Eventos():
 
 
     def resizeTablaVendedor(self):
+        """
+
+        Método para redimensionar la tabla de vendedores
+
+        :param self:
+        :return: None
+
+        """
         try:
             header = var.ui.tablaVendedor.horizontalHeader()
             for i in range(header.count()):
@@ -168,6 +284,15 @@ class Eventos():
 
 
     def resizeTablaPropiedades(self):
+        """
+
+        Método para redimensionar la tabla de propiedades
+
+        :param self:
+        :return: None
+
+
+        """
         try:
             header = var.ui.tablaProp.horizontalHeader()
             for i in range(header.count()):
@@ -187,6 +312,14 @@ class Eventos():
             print("error en resize tabla clientes ", error)
 
     def crearBackup(self):
+        """
+
+        Método para crear una copia de seguridad de la base de datos
+
+        :param self:
+        :return: None
+
+        """
         try:
             fecha = datetime.now()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
@@ -213,6 +346,14 @@ class Eventos():
             print("error en crear backup: ", error)
 
     def restaurarBackup(self):
+        """
+
+        Método para restaurar una copia de seguridad de la base de datos
+
+        :param self:
+        :return: None
+
+        """
         try:
             filename = var.dlgAbrir.getOpenFileName(None, "Restaurar Copia Seguridad", '',
                                                     '*.zip;;All Files(*)')
@@ -236,6 +377,14 @@ class Eventos():
             print("error en crear backup: ", error)
 
     def limpiarPanel(self):
+        """
+
+        Método para limpiar los campos del panel
+
+        :param self:
+        :return: None
+
+        """
         if var.ui.panPrincipal.currentIndex() == 0:
             objetosPanel = [
                 var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
@@ -280,6 +429,15 @@ class Eventos():
                     casilla.setText("")  # Limpia los QLineEdit
 
     def validarMovil(telefono):
+        """
+
+        Método para validar un número de teléfono
+
+        :param telefono:
+        :return: bool
+        :rtype: True si el número es válido, False en caso contrario
+
+        """
         regex = r"^[67]\d{8}$"
         if re.match(regex, telefono):
             return True
@@ -287,23 +445,56 @@ class Eventos():
             return False
 
     def checkTxtVacio(string):
+        """
+
+        Método para comprobar si un campo de texto está vacío
+
+        :param string:
+        :return: bool
+        :rtype: True si el campo está vacío, False en caso contrario
+
+        """
         if string == "":
             return True
         else:
             return False
 
     def abrirTipoprop(self):
+        """
+
+        Método para abrir el diálogo de tipos de propiedades
+
+        :param self:
+        :return: None
+
+        """
         try:
             var.dlggestion.show()
         except Exception as error:
             print("Error en abrir tipo tipo: ", error)
 
     def cargarTipoprop(self):
+        """
+
+        Método para cargar los tipos de propiedades en el ComboBox
+
+        :param self:
+        :return: None
+
+        """
         registro = conexion.Conexion.cargarTipoprop(self)
         var.ui.cmbTipoprop.clear()
         var.ui.cmbTipoprop.addItems(registro)
 
     def exportCSVProp(self):
+        """
+
+        Método para exportar los datos de las propiedades a un archivo CSV
+
+        :param self:
+        :return: None
+
+        """
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
@@ -335,6 +526,14 @@ class Eventos():
             print("Error al intentar exportar a CSV en Eventos exportCSVProp ", e)
 
     def exportJSONProp(self):
+        """
+
+        Método para exportar los datos de las propiedades a un archivo JSON
+
+        :param self:
+        :return: None
+
+        """
         try:
             var.historico = 0
             fecha = datetime.today()
@@ -365,6 +564,14 @@ class Eventos():
             print("Error al intentar exportar a CSV en Eventos exportCSVProp ", e)
 
     def abrirAbout(self):
+        """
+
+        Método para abrir el diálogo de Acerca de
+
+        :param self:
+        :return: None
+
+        """
         try:
             var.dlgAbout.show()
         except Exception as error:
@@ -373,6 +580,15 @@ class Eventos():
 
 
     def creditsToBua(self):
+        """
+
+        Método para mostrar un mensaje de créditos a David Bua
+
+        :param self:
+        :return: None
+
+
+        """
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
         mbox.setWindowTitle("BUA TEIJEIRO")
@@ -388,6 +604,14 @@ class Eventos():
     #############################################  CLIENTES   #############################################
 
     def retrocederTablaCli(self):
+        """
+
+        Método para retroceder la tabla de clientes
+
+        :param self:
+        :return: None
+
+        """
         try:
             if var.tablaActualCli <= 1:
                 var.tablaActualCli = 1
@@ -401,6 +625,16 @@ class Eventos():
             print("error en avanzar tabla ", error)
 
     def avanzarTablaCli(self):
+        """
+
+        Método para avanzar la tabla de clientes
+
+        :param self:
+        :return: None
+
+
+
+        """
         try:
 
             tablamaxima = eventos.Eventos.calcularTablaMaximaCli(self)
@@ -415,6 +649,14 @@ class Eventos():
             print("error en avanzar tabla ", error)
 
     def calcularTablaMaximaCli(self):
+        """
+
+        Método para calcular la tabla máxima de clientes
+
+        :param self:
+        :return: list[objetos.Cliente]
+
+        """
         try:
             listado = conexion.Conexion.listadoClientes(self)
             total = len(listado)
@@ -430,6 +672,13 @@ class Eventos():
             print("error en calcular tabla maxima ", error)
 
     def cortaClientes(self):
+        """
+
+        Método para cortar la lista de clientes
+
+        :return: list[objetos.Cliente]
+        :rtype: list[objetos.Cliente]
+        """
         listado = conexion.Conexion.listadoClientes(self)
 
         x = (var.tablaActualCli * 5)
@@ -439,6 +688,14 @@ class Eventos():
 
 
     def aplicarTablaCli(self):
+        """
+
+        Método para aplicar la tabla de clientes
+
+        :param self:
+        :return: None
+
+        """
         try:
             print("tabla actual: ", var.tablaActualCli)
 
@@ -464,6 +721,15 @@ class Eventos():
     #############################################  PROPIEDADES  #############################################
 
     def retrocederTablaProp(self):
+        """
+
+        Método para retroceder la tabla de propiedades
+
+        :param self:
+        :return: None
+
+
+        """
         try:
             if var.tablaActualProp <= 1:
                 var.tablaActualProp = 1
@@ -477,6 +743,15 @@ class Eventos():
             print("error en avanzar tabla ", error)
 
     def avanzarTablaProp(self):
+        """
+
+        Método para avanzar la tabla de propiedades
+
+        :param self:
+        :return: None
+
+
+        """
         try:
 
             tablaMaximaProp = eventos.Eventos.calcularTablaMaximaProp(self)
@@ -491,6 +766,16 @@ class Eventos():
             print("error en avanzar tabla ", error)
 
     def calcularTablaMaximaProp(self):
+        """
+
+        Método para calcular la tabla máxima de propiedades
+
+        :param self:
+        :return: int
+        :rtype: int
+
+
+        """
         try:
             listadoProp = conexion.Conexion.listadoPropiedades()
             total = len(listadoProp)
@@ -505,6 +790,15 @@ class Eventos():
             print("error en calcular tabla maxima ", error)
 
     def cortaPropiedades(self):
+        """
+
+        Método para cortar la lista de propiedades
+
+        :return: list[objetos.Propiedad]
+        :rtype: list[objetos.Propiedad]
+
+
+        """
         listadoProp = conexion.Conexion.listadoPropiedades()
 
         x = (var.tablaActualProp * 2)
@@ -513,6 +807,15 @@ class Eventos():
         return listadoCortadoProp
 
     def aplicarTablaProp(self):
+        """
+
+        Método para aplicar la tabla de propiedades
+
+        :param self:
+        :return: None
+
+
+        """
         try:
             propiedades.Propiedades.cargaDosPropiedades(self, eventos.Eventos.cortaPropiedades(self))
 
@@ -534,6 +837,15 @@ class Eventos():
             print("error en aplicar tabla ", error)
 
     def comprobarFechaBaja(self):
+        """
+
+        Método para comprobar si la fecha de baja es anterior a la fecha actual
+
+        :return: bool
+        :rtype: True si la fecha de baja es anterior a la fecha actual, False en caso contrario
+
+
+        """
 
         try:
 
@@ -552,12 +864,30 @@ class Eventos():
     #############################################  PRUEBAS  #############################################
 
     def abrirPrueba(self):
+        """
+
+        Método para abrir el diálogo de Prueba
+
+        :param self:
+        :return: None
+
+
+        """
         try:
             var.dlgPrueba.show()
         except Exception as error:
             print("error en al abrir Prueba ", error)
 
     def exportJSONVendedor(self):
+        """
+
+        Método para exportar los datos de los vendedores a un archivo JSON
+
+        :param self:
+        :return: None
+
+
+        """
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
@@ -596,6 +926,14 @@ class Eventos():
     #############################################  INFORMES  #############################################
 
     def abrirInformeProp(self):
+        """
+
+        Método para abrir el diálogo de Informe de Propiedades
+
+        :param self:
+        :return: None
+
+        """
         try:
             var.dlgInformeProp.show()
         except Exception as error:

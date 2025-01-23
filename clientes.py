@@ -9,6 +9,16 @@ import var
 class Clientes:
 
     def checkDNI(dni):
+        """
+
+        Método para validar un DNI
+
+        :param dni: DNI a validar
+        :type dni: str
+        :return: None
+        :rtype: None
+
+        """
         try:
             dni = str(dni).upper()
             var.ui.txtDnicli.setText(str(dni))
@@ -23,6 +33,17 @@ class Clientes:
             print("error check cliente", e)
 
     def checkEmail(mail):
+        """
+
+        Método para validar un correo electrónico
+
+        :param mail: correo electrónico a validar
+        :type mail: str
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             mail = str(var.ui.txtEmailcli.text())
             if eventos.Eventos.validarMail(mail):
@@ -40,6 +61,16 @@ class Clientes:
 
 
     def checkNumero(numero):
+        """
+
+        Método para validar un número de teléfono
+
+        :param numero: número de teléfono a validar
+        :type numero: str
+        :return: None
+        :rtype: None
+
+        """
         try:
 
             var.ui.txtMovilcli.setText(str(numero))
@@ -55,6 +86,16 @@ class Clientes:
             print("error check cliente", e)
 
     def checkObligatorios(self):
+        """
+
+        Método para validar los campos obligatorios
+
+        :param self:
+        :type self: object
+        :return: True si los campos obligatorios están completos, False si no
+        :rtype: bool
+
+        """
         try:
             textos = [var.ui.txtDnicli.text(),
                       var.ui.txtAltacli.text(),
@@ -74,7 +115,17 @@ class Clientes:
 
 
     def altaCliente(self):
+        """
 
+        Método para dar de alta un cliente en la base de datos
+
+        :param self:
+        :type self: object
+        :return: True si el cliente se ha dado de alta correctamente, False si no
+        :rtype: bool
+
+
+        """
         try:
             nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomecli.text(), var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(), var.ui.cmbMunicli.currentText()]
 
@@ -118,6 +169,18 @@ class Clientes:
 
     @staticmethod
     def cargaTablaClientes(self):
+        """
+
+        Método para cargar la tabla de clientes
+
+
+        :param self: objeto de la clase
+        :type self: object
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             listado = conexion.Conexion.listadoClientes(self)
             index = 0
@@ -145,6 +208,17 @@ class Clientes:
             print(traceback.format_exc())
 
     def cargaTablaCincoClientes(self, listado):
+        """
+
+        Método para cargar la tabla de clientes con los cinco primeros registros
+
+        :param listado: lista de clientes
+        :type listado: list
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             index = 0
             for registro in listado:
@@ -171,6 +245,15 @@ class Clientes:
             print(traceback.format_exc())
 
     def cargaOneCliente(self):
+        """
+
+        Método para cargar los datos de un cliente en los campos de texto
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             fila = var.ui.tablaClientes.selectedItems()
             datos = [dato.text() for dato in fila]
@@ -193,6 +276,14 @@ class Clientes:
             print("Error en cargaOneCliente", e)
 
     def modifCliente(self):
+        """
+
+        Método para modificar los datos de un cliente
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             modifcli = [var.ui.txtDnicli.text(),
                         var.ui.txtAltacli.text(),
@@ -234,6 +325,15 @@ class Clientes:
 
 
     def bajaCliente(self):
+        """
+
+        Método para dar de baja a un cliente
+
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             datos = [var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]
             if conexion.Conexion.bajaCliente(datos):
@@ -265,6 +365,14 @@ class Clientes:
             print("Error en bajaCliente", e)
 
     def historicoCli(Self):
+        """
+
+        Método para activar o desactivar el histórico de clientes
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             if var.ui.chkHistoriacli.isChecked():
                 var.historico = 0
@@ -277,7 +385,14 @@ class Clientes:
             print("Checkbox Historico", Error)
 
     def buscarOneCliente(self):
+        """
 
+        Método para buscar un cliente por DNI
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             dni = var.ui.txtDnicli.text()
             registro = conexion.Conexion.datosOneCliente(dni)

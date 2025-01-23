@@ -5,7 +5,15 @@ from PyQt6 import QtSql, QtWidgets
 
 class ConexionServer():
     def crear_conexion(self):
+        """
 
+        Método para crear una conexión a la base de datos
+
+        :return: objeto de conexión
+        :rtype: mysql.connector.connection.MySQLConnection
+
+
+        """
         try:
             conexion = mysql.connector.connect(
             host='192.168.10.66', # Cambia esto a la IP de tu servidor user='dam', # Usuario creado
@@ -25,6 +33,14 @@ class ConexionServer():
 
     @staticmethod
     def listaProv(self=None):
+        """
+
+        Método para obtener una lista de provincias
+        :param self:
+        :return: lista de provincias
+        :rtype: list[str]
+
+        """
         listaprov = []
         conexion = ConexionServer().crear_conexion()
 
@@ -43,6 +59,15 @@ class ConexionServer():
 
     @staticmethod
     def listaMuniProv(provincia):
+        """
+
+        Método para obtener una lista de municipios de una provincia
+
+        :param provincia:
+        :return: lista de municipios
+        :rtype: list[str]
+
+        """
         try:
             conexion = ConexionServer().crear_conexion()
             listamunicipios = []

@@ -8,7 +8,15 @@ from PyQt6 import QtWidgets, QtGui, QtCore
 class Vendedores:
 
     def altaVendedor(self):
+        """
 
+        Metodo para dar de alta un vendedor en la base de datos
+
+        :param self:
+        :return: True si se ha dado de alta correctamente, False si ha habido algun error
+        :rtype: bool
+
+        """
         try:
             nuevoVendedor = [var.ui.txtDniVendedor.text(), var.ui.txtNombreVendedor.text(),
                         var.ui.txtAltaVendedor.text(), var.ui.txtBajaVendedor.text(), var.ui.txtMovilVendedor.text(),
@@ -43,6 +51,15 @@ class Vendedores:
 
 
     def historicoVendedor(Self):
+        """
+
+        Metodo para mostrar el historico de los vendedores
+
+        :param Self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             if var.ui.chkHistoricoVendedores.isChecked():
                 var.historico = 0
@@ -56,6 +73,15 @@ class Vendedores:
 
 
     def cargaTablaVendedores(self):
+        """
+
+        Metodo para cargar la tabla de vendedores
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             listado = conexion.Conexion.listadoVendedores(self)
             index = 0
@@ -83,6 +109,16 @@ class Vendedores:
             print(traceback.format_exc())
 
     def cargaOneVendedor(self):
+        """
+
+        Metodo para cargar los datos de un vendedor en los campos de texto
+
+        :param self:
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             fila = var.ui.tablaVendedor.selectedItems()
             datos = [dato.text() for dato in fila]
@@ -104,6 +140,15 @@ class Vendedores:
 
 
     def modifVendedor(self):
+        """
+
+        Metodo para modificar los datos de un vendedor
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             modificarVendedor = [var.ui.txtIdVendedor.text(), var.ui.txtDniVendedor.text(), var.ui.txtNombreVendedor.text(),
                              var.ui.txtAltaVendedor.text(), var.ui.txtBajaVendedor.text(),
@@ -139,6 +184,15 @@ class Vendedores:
 
 
     def bajaVendedor(self):
+        """
+
+        Metodo para dar de baja a un vendedor
+
+        :param self:
+        :return: None
+        :rtype: None
+
+        """
         try:
             datos = var.ui.txtIdVendedor.text()
             print(datos)
@@ -171,6 +225,16 @@ class Vendedores:
             print("Error en bajaCliente", e)
 
     def checkObligatorios(self):
+        """
+
+        Metodo para comprobar que los campos obligatorios estan rellenos
+
+        :param self:
+        :return: True si los campos obligatorios estan rellenos, False si no lo estan
+        :rtype: bool
+
+
+        """
         try:
             textos = [var.ui.txtDniVendedor.text(),
                       var.ui.txtNombreVendedor.text(),
@@ -186,6 +250,16 @@ class Vendedores:
             print("error check vendedores", e)
 
     def checkDNI(dni):
+        """
+
+        Metodo para comprobar que el DNI es correcto
+
+        :param dni: DNI del vendedor
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             dni = str(dni).upper()
             var.ui.txtDniVendedor.setText(str(dni))
@@ -201,6 +275,16 @@ class Vendedores:
             print("error check cliente", e)
 
     def checkEmail(mail):
+        """
+
+        Metodo para comprobar que el email es correcto
+
+        :param mail: email del vendedor
+        :return: None
+        :rtype: None
+
+
+        """
         try:
             mail = str(var.ui.txtMailVendedor.text())
             if eventos.Eventos.validarMail(mail):
@@ -217,6 +301,15 @@ class Vendedores:
             print("error check cliente", error)
 
     def checkNumero(numero):
+        """
+
+        Metodo para comprobar que el numero de telefono es correcto
+
+        :param numero: numero de telefono del vendedor
+        :return: None
+        :rtype: None
+
+        """
         try:
 
             var.ui.txtMovilVendedor.setText(str(numero))

@@ -221,7 +221,7 @@ class Facturas:
                     mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                     mbox.exec()
 
-                    Facturas.cargaTablaFacturas()
+                    Facturas.cargaTablaVentas(var.ui.txtNumFac.text())
 
         except Exception as error:
             print('Error al insertar venta: %s' % str(error))
@@ -245,6 +245,8 @@ class Facturas:
 
             var.ui.tablaVenta.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
 
+            total = 0
+
             for index, registro in enumerate(listado):
 
                 var.ui.tablaVenta.setRowCount(index + 1)
@@ -254,6 +256,10 @@ class Facturas:
                 var.ui.tablaVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[3]))
                 var.ui.tablaVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[4]))
                 var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem( str(registro[5]) + " €" ))
+
+                total =+ registro[5]
+
+                print(total)
 
                 var.ui.tablaVenta.item(index, 0).setTextAlignment(
                     QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
@@ -267,6 +273,7 @@ class Facturas:
                     QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
                 var.ui.tablaVenta.item(index, 5).setTextAlignment(
                     QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+
 
         except Exception as e:
                 print("Error en cargaTablaVentas:", e)
@@ -289,6 +296,8 @@ class Facturas:
 
             var.ui.tablaVenta.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
 
+            total = 0
+
             for index, registro in enumerate(listado):
                 var.ui.tablaVenta.setRowCount(index + 1)
                 var.ui.tablaVenta.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))
@@ -297,6 +306,8 @@ class Facturas:
                 var.ui.tablaVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[3]))
                 var.ui.tablaVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[4]))
                 var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5]) + " €"))
+
+                total += float(registro[5])
 
                 var.ui.tablaVenta.item(index, 0).setTextAlignment(
                     QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
@@ -311,68 +322,18 @@ class Facturas:
                 var.ui.tablaVenta.item(index, 5).setTextAlignment(
                     QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
+            var.ui.txtFacSubtotal.setText(str(total) + " €")
+            print(var.ui.txtFacSubtotal.setText(str(total) + " €"))
+
+            var.ui.txtFacIVA.setText(str(total * 0.21) + " €")
+            var.ui.txtFacTotal.setText(str(total * 1.21) + " €")
+
         except Exception as e:
             print("Error en cargaTablaVentas:", e)
 
-    def guardarVenta(self):
-        """
-
-        Método para guardar una venta en la base de datos.
-
-        :return: None
-        :rtype: None
 
 
-        """
-        try:
-            if var.ui.txtNumFac.text() == '':
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
-                mbox.setWindowTitle('Aviso')
-                mbox.setText('No hay cliente seleccionado')
-                mbox.setStandardButtons(
-                    QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
-                mbox.exec()
-            elif var.ui.txtFacCodigo.text() == '':
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
-                mbox.setWindowTitle('Aviso')
-                mbox.setText('No hay factura seleccionada')
-                mbox.setStandardButtons(
-                    QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
-                mbox.exec()
-            elif var.ui.txtFacVendedor.text() == '':
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
-                mbox.setWindowTitle('Aviso')
-                mbox.setText('No hay vendedor seleccionado')
-                mbox.setStandardButtons(
-                    QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
-                mbox.exec()
-            else:
-                nuevaventa = [var.ui.txtNumFac.text(), var.ui.txtFacCodigo.text(), var.ui.txtFacVendedor.text()]
-                if conexion.Conexion.altaVenta(nuevaventa):
-                    mbox = QtWidgets.QMessageBox()
-                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                    mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
-                    mbox.setWindowTitle('Factura Guardada')
-                    mbox.setText('Se ha guardado la factura correctamente')
-                    mbox.setStandardButtons(
-                        QtWidgets.QMessageBox.StandardButton.Ok)
-                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
-                    mbox.exec()
 
-                    Facturas.cargaTablaFacturas()
 
-        except Exception as error:
-            print('Error al insertar venta: %s' % str(error))
+
+

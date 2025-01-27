@@ -325,8 +325,8 @@ class Facturas:
             var.ui.txtFacSubtotal.setText(str(total) + " €")
             print(var.ui.txtFacSubtotal.setText(str(total) + " €"))
 
-            var.ui.txtFacIVA.setText(str(total * 0.21) + " €")
-            var.ui.txtFacTotal.setText(str(total * 1.21) + " €")
+            var.ui.txtFacIVA.setText(str(total * 0.10) + " €")
+            var.ui.txtFacTotal.setText(str(total * 1.10) + " €")
 
         except Exception as e:
             print("Error en cargaTablaVentas:", e)

@@ -265,8 +265,6 @@ class Clientes:
             var.ui.txtFacNombre.setText(registro[3])
             var.ui.txtFacDir.setText(registro[6])
 
-            var.ui.txtNumFac.setText("")
-
             for i in range(len(listado)):
                 if i == 7 or i == 8:
                     listado[i].setCurrentText(registro[i])

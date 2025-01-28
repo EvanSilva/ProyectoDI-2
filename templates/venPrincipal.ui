@@ -3115,7 +3115,7 @@ border: 2px solid rgb(170, 229, 255); </string>
             </column>
             <column>
              <property name="text">
-              <string>ID-Propiedad</string>
+              <string>Gestion</string>
              </property>
             </column>
             <column>
@@ -3136,6 +3136,11 @@ border: 2px solid rgb(170, 229, 255); </string>
             <column>
              <property name="text">
               <string>Precio</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Gestion</string>
              </property>
             </column>
            </widget>
@@ -3201,7 +3206,7 @@ border: 2px solid rgb(170, 229, 255); </string>
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>549</x>
@@ -3643,6 +3648,11 @@ border: 2px solid rgb(170, 229, 255); </string>
          </item>
         </layout>
        </widget>
+      </widget>
+      <widget class="QWidget" name="alquileres">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
       </widget>
      </widget>
     </item>

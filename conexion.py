@@ -831,6 +831,9 @@ class Conexion:
         """
 
         try:
+
+
+
             query = QtSql.QSqlQuery()
             query.prepare("delete from facturas where id = :id")
             query.bindValue(":id", id)
@@ -847,7 +850,6 @@ class Conexion:
             query = QtSql.QSqlQuery()
 
             query.prepare('INSERT INTO ventas (facventa, codprop, agente) VALUES (:facventa, :codprop, :agente)')
-
 
             query.bindValue(':facventa', nuevaventa[0])
             query.bindValue(':codprop', nuevaventa[1])
@@ -876,6 +878,7 @@ class Conexion:
 
         """
         try:
+
             registro = []
             query = QtSql.QSqlQuery()
 
@@ -917,3 +920,30 @@ class Conexion:
         except Exception as e:
             print("Error en cargarVentas:", str(e))
             return []
+
+    def bajaVenta(id):
+
+        """
+
+        Método que da de baja una factura en concreto.
+
+        :return: True/False
+        :param id: id de la factura
+        :type id: str
+        :rtype: bool
+        """
+
+        try:
+
+
+
+            query = QtSql.QSqlQuery()
+            query.prepare("delete from ventas where idventa = :id")
+            query.bindValue(":id", id)
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            print("Error bajaVendedor", e)

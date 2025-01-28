@@ -74,10 +74,43 @@ class Facturas:
                 mbox.exec()
 
                 Facturas.cargaTablaFacturas()
+                Facturas.cargaTablaVentas(id)
 
 
         except Exception as error:
             print('Error al bajar factura: %s' % str(error))
+
+    def bajaVenta(id):
+        """
+
+        Método para dar de baja una factura en la base de datos.
+
+        :param id: id de la factura a eliminar
+        :type id: int
+        :return: None
+        :rtype: None
+
+        """
+        try:
+
+            if conexion.Conexion.bajaVenta(id):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                mbox.setWindowTitle('Venta eliminada')
+                mbox.setText('Se ha eliminado la venta correctamente')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+
+                Facturas.cargaTablaVentas(id)
+
+
+        except Exception as error:
+            print('Error al bajar factura: %s' % str(error))
+
 
     @staticmethod
     def cargaTablaFacturas():
@@ -229,74 +262,19 @@ class Facturas:
     @staticmethod
     def cargaTablaVentas(facventa):
         """
-
         Método que carga los datos de ventas en la tabla de la interfaz.
-
 
         :param facventa: id de la factura de la que se quieren cargar las ventas
         :type facventa: int
         :return: None
-
-
         """
         try:
-
             listado = conexion.Conexion.cargarVentas(facventa)
-
             var.ui.tablaVenta.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
 
-            total = 0
-
-            for index, registro in enumerate(listado):
-
-                var.ui.tablaVenta.setRowCount(index + 1)
-                var.ui.tablaVenta.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))
-                var.ui.tablaVenta.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))
-                var.ui.tablaVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[2]))
-                var.ui.tablaVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[3]))
-                var.ui.tablaVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[4]))
-                var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem( str(registro[5]) + " €" ))
-
-                total =+ registro[5]
-
-                print(total)
-
-                var.ui.tablaVenta.item(index, 0).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 1).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 2).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 3).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 4).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 5).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-
-
-        except Exception as e:
-                print("Error en cargaTablaVentas:", e)
-
-    def cargaTablaVentas(facventa):
-        """
-
-        Método que carga los datos de ventas en la tabla de la interfaz.
-
-
-        :param facventa: id de la factura de la que se quieren cargar las ventas
-        :type facventa: int
-        :return: None
-
-
-        """
-        try:
-
-            listado = conexion.Conexion.cargarVentas(facventa)
-
-            var.ui.tablaVenta.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
 
             total = 0
+            ventaValida = True
 
             for index, registro in enumerate(listado):
                 var.ui.tablaVenta.setRowCount(index + 1)
@@ -305,34 +283,89 @@ class Facturas:
                 var.ui.tablaVenta.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[2]))
                 var.ui.tablaVenta.setItem(index, 3, QtWidgets.QTableWidgetItem(registro[3]))
                 var.ui.tablaVenta.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[4]))
-                var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5]) + " €"))
 
-                total += float(registro[5])
+                try:
+                    valor = float(registro[5])
+                    var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem(f"{valor:.2f} €"))
+                    total += valor
+                except (ValueError, TypeError):
+                    var.ui.tablaVenta.setItem(index, 5, QtWidgets.QTableWidgetItem("No Disponible"))
 
-                var.ui.tablaVenta.item(index, 0).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 1).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 2).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 3).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 4).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
-                var.ui.tablaVenta.item(index, 5).setTextAlignment(
-                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+                    for col in range(var.ui.tablaVenta.columnCount()):
+                        item = var.ui.tablaVenta.item(index, col)
+                        if not item:
+                            item = QtWidgets.QTableWidgetItem("")
+                            var.ui.tablaVenta.setItem(index, col, item)
 
-            var.ui.txtFacSubtotal.setText(str(total) + " €")
-            print(var.ui.txtFacSubtotal.setText(str(total) + " €"))
+                        font = QtGui.QFont()
+                        font.setBold(True)
+                        item.setFont(font)
 
-            var.ui.txtFacIVA.setText(str(total * 0.10) + " €")
-            var.ui.txtFacTotal.setText(str(total * 1.10) + " €")
+                    ventaValida = False
+
+                for col in range(6):
+                    var.ui.tablaVenta.item(index, col).setTextAlignment(
+                        QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter
+                    )
+
+                botondelfac = QtWidgets.QPushButton()
+                botondelfac.setFixedSize(25, 25)
+                botondelfac.setIconSize(QtCore.QSize(25, 25))
+                botondelfac.setIcon(QtGui.QIcon("./img/borrar.ico"))
+
+                contenedor = QtWidgets.QWidget()
+                layout = QHBoxLayout()
+                layout.addWidget(botondelfac)
+                layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                layout.setContentsMargins(0, 0, 0, 0)
+                contenedor.setLayout(layout)
+
+                container = QWidget()
+                container.setLayout(layout)
+                var.ui.tablaVenta.setCellWidget(index, 6, container)
+                botondelfac.clicked.connect(lambda checked, id=registro[0]: Facturas.bajaVenta(id))
+
+                var.ui.txtFacSubtotal.setText(str(total) + " €")
+                var.ui.txtFacIVA.setText(str(total * 0.1) + " €")
+                var.ui.txtFacTotal.setText(str(total * 1.1) + " €")
+
+            if ventaValida == False:
+                var.ui.txtFacSubtotal.setText("FACTURA NO TRAMITABLE")
+                var.ui.txtFacIVA.setText("FACTURA NO TRAMITABLE")
+                var.ui.txtFacTotal.setText("FACTURA NO TRAMITABLE")
+
+            print(f"Total de las ventas: {total:.2f} €")
 
         except Exception as e:
             print("Error en cargaTablaVentas:", e)
 
 
+        except Exception as e:
+            print("Error en cargaTablaVentas:", e)
 
+
+    @staticmethod
+    def setBoldTitulosVenta():
+
+        header = var.ui.tablaVenta.horizontalHeader()
+
+        for col in range(var.ui.tablaVenta.columnCount()):
+            item = var.ui.tablaVenta.horizontalHeaderItem(col)
+            if item:
+                font = QtGui.QFont()
+                font.setBold(True)
+                item.setFont(font)
+
+    @staticmethod
+    def setBoldTitulosFactura():
+
+        header = var.ui.tablaFactura.horizontalHeader()
+        for col in range(var.ui.tablaVenta.columnCount()):
+            item = var.ui.tablaFactura.horizontalHeaderItem(col)
+            if item:
+                font = QtGui.QFont()
+                font.setBold(True)
+                item.setFont(font)
 
 
 

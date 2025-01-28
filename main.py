@@ -36,6 +36,8 @@ class Main(QtWidgets.QMainWindow):
         propiedades.Propiedades.cargaTablaPropiedades(self)
         vendedores.Vendedores.cargaTablaVendedores(self)
         facturas.Facturas.cargaTablaFacturas()
+        facturas.Facturas.setBoldTitulosVenta()
+        facturas.Facturas.setBoldTitulosFactura()
 
         var.ui.chkVentaprop.setEnabled(False)
         var.ui.chkAlquiprop.setEnabled(False)
@@ -112,7 +114,6 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnAtrasProp.clicked.connect(eventos.Eventos.retrocederTablaProp)
         var.ui.btnAlanteProp.clicked.connect(eventos.Eventos.avanzarTablaProp)
-
 
 
 

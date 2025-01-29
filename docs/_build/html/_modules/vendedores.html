@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vendedores &#8212; a20evansg 0.9.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=9dc39874"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for vendedores</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">conexion</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">eventos</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">var</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">PyQt6</span><span class="w"> </span><span class="kn">import</span> <span class="n">QtWidgets</span><span class="p">,</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtCore</span>
+
+
+<div class="viewcode-block" id="Vendedores">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Vendedores</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Vendedores.altaVendedor">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.altaVendedor">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">altaVendedor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para dar de alta un vendedor en la base de datos</span>
+
+<span class="sd">        :param self:</span>
+<span class="sd">        :return: True si se ha dado de alta correctamente, False si ha habido algun error</span>
+<span class="sd">        :rtype: bool</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nuevoVendedor</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtAltaVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                        <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvVendedor</span><span class="o">.</span><span class="n">currentText</span><span class="p">()]</span>
+
+            <span class="k">if</span> <span class="n">Vendedores</span><span class="o">.</span><span class="n">checkObligatorios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">altaVendedor</span><span class="p">(</span><span class="n">nuevoVendedor</span><span class="p">)</span> <span class="p">:</span>
+                    <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;./img/inmoteis.ico&#39;</span><span class="p">))</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Aviso&#39;</span><span class="p">)</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Vendedor dado de Alta en Base de Datos&#39;</span><span class="p">)</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
+                        <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Aceptar&#39;</span><span class="p">)</span>
+                    <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                    <span class="n">Vendedores</span><span class="o">.</span><span class="n">cargaTablaVendedores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;Aviso&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;./img/inmoteis.ico&#39;</span><span class="p">))</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Error al dar de alta el vendedor, faltan datos obligatorios&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Cancel</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error altavendedor&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Vendedores.historicoVendedor">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.historicoVendedor">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">historicoVendedor</span><span class="p">(</span><span class="n">Self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para mostrar el historico de los vendedores</span>
+
+<span class="sd">        :param Self:</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">chkHistoricoVendedores</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">historico</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">historico</span> <span class="o">=</span> <span class="mi">1</span>
+
+            <span class="n">Vendedores</span><span class="o">.</span><span class="n">cargaTablaVendedores</span><span class="p">(</span><span class="n">Self</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">Error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checkbox Historico&quot;</span><span class="p">,</span> <span class="n">Error</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Vendedores.cargaTablaVendedores">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.cargaTablaVendedores">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cargaTablaVendedores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para cargar la tabla de vendedores</span>
+
+<span class="sd">        :param self:</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">listadoVendedores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">registro</span> <span class="ow">in</span> <span class="n">listado</span><span class="p">:</span>
+
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">registro</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="n">registro</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="n">registro</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QTableWidgetItem</span><span class="p">(</span><span class="n">registro</span><span class="p">[</span><span class="mi">7</span><span class="p">]))</span>
+
+
+
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignCenter</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignLeft</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignLeft</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">setTextAlignment</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">AlignmentFlag</span><span class="o">.</span><span class="n">AlignCenter</span><span class="o">.</span><span class="n">AlignVCenter</span><span class="p">)</span>
+
+                <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error cargaTablaCientes&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="Vendedores.cargaOneVendedor">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.cargaOneVendedor">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cargaOneVendedor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para cargar los datos de un vendedor en los campos de texto</span>
+
+<span class="sd">        :param self:</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedor</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
+            <span class="n">datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">dato</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="k">for</span> <span class="n">dato</span> <span class="ow">in</span> <span class="n">fila</span><span class="p">]</span>
+            <span class="n">registro</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">datosOneVendedor</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+            <span class="n">listado</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtIdVendedor</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreVendedor</span><span class="p">,</span>
+                             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtAltaVendedor</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaVendedor</span><span class="p">,</span>
+                             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="p">,</span>
+                             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listado</span><span class="p">)):</span>
+                    <span class="n">listado</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">registro</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">registro</span><span class="p">)</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtFacVendedor</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">registro</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error en cargaOneVendedor&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Vendedores.modifVendedor">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.modifVendedor">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">modifVendedor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para modificar los datos de un vendedor</span>
+
+<span class="sd">        :param self:</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">modificarVendedor</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtIdVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtAltaVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvVendedor</span><span class="o">.</span><span class="n">currentText</span><span class="p">()]</span>
+
+            <span class="k">if</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">modifVendedor</span><span class="p">(</span><span class="n">modificarVendedor</span><span class="p">):</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;./img/inmoteis.ico&#39;</span><span class="p">))</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Aviso&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Datos Vendedor Modificados (El DNI y el ID nunca se modifican)&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
+                    <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Aceptar&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                <span class="n">Vendedores</span><span class="o">.</span><span class="n">cargaTablaVendedores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;./img/inmoteis.ico&#39;</span><span class="p">))</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Aviso&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;ERROR AL MODIFICAR VENDEDOR&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
+                    <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Aceptar&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error en modifCliente&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="Vendedores.bajaVendedor">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.bajaVendedor">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">bajaVendedor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para dar de baja a un vendedor</span>
+
+<span class="sd">        :param self:</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">datos</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtIdVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">bajaVendedor</span><span class="p">(</span><span class="n">datos</span><span class="p">):</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;./img/inmoteis.ico&#39;</span><span class="p">))</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Aviso&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Vendedor Dado de Baja&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
+                    <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Aceptar&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                <span class="n">Vendedores</span><span class="o">.</span><span class="n">cargaTablaVendedores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;./img/inmoteis.ico&#39;</span><span class="p">))</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Aviso&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;ERROR AL DAR DE BAJA AL VENDEDOR&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span>
+                    <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">setDefaultButton</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Ok</span><span class="p">)</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s1">&#39;Aceptar&#39;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
+                <span class="n">Vendedores</span><span class="o">.</span><span class="n">cargaTablaVendedores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error en bajaCliente&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Vendedores.checkObligatorios">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.checkObligatorios">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkObligatorios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para comprobar que los campos obligatorios estan rellenos</span>
+
+<span class="sd">        :param self:</span>
+<span class="sd">        :return: True si los campos obligatorios estan rellenos, False si no lo estan</span>
+<span class="sd">        :rtype: bool</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">textos</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                      <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNombreVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                      <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span>
+                      <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvVendedor</span><span class="o">.</span><span class="n">currentText</span><span class="p">()]</span>
+
+            <span class="k">for</span> <span class="n">texto</span> <span class="ow">in</span> <span class="n">textos</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">checkTxtVacio</span><span class="p">(</span><span class="n">texto</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error check vendedores&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Vendedores.checkDNI">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.checkDNI">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkDNI</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para comprobar que el DNI es correcto</span>
+
+<span class="sd">        :param dni: DNI del vendedor</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dni</span><span class="p">))</span>
+            <span class="n">check</span> <span class="o">=</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">validarDNI</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: #BEEEBA;&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s1">&#39;background-color:#FFC0CB;&#39;</span><span class="p">)</span>  <span class="c1"># y si no un aspa en color rojo</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Dni no válido&quot;</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDniVendedor</span><span class="o">.</span><span class="n">setFocus</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error check cliente&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Vendedores.checkEmail">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.checkEmail">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkEmail</span><span class="p">(</span><span class="n">mail</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para comprobar que el email es correcto</span>
+
+<span class="sd">        :param mail: email del vendedor</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mail</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">validarMail</span><span class="p">(</span><span class="n">mail</span><span class="p">):</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s1">&#39;background-color: rgb(255, 255, 255);&#39;</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s1">&#39;background-color:#FFC0CB; font-style: italic;&#39;</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;correo no válido&quot;</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setFocus</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error check cliente&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Vendedores.checkNumero">
+<a class="viewcode-back" href="../src/vendedores.html#vendedores.Vendedores.checkNumero">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">checkNumero</span><span class="p">(</span><span class="n">numero</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Metodo para comprobar que el numero de telefono es correcto</span>
+
+<span class="sd">        :param numero: numero de telefono del vendedor</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">numero</span><span class="p">))</span>
+            <span class="n">check</span> <span class="o">=</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">validarMovil</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;background-color: #BEEEBA;&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s1">&#39;background-color:#FFC0CB;&#39;</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMailVendedor</span><span class="o">.</span><span class="n">setPlaceholderText</span><span class="p">(</span><span class="s2">&quot;Numero no válido&quot;</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilVendedor</span><span class="o">.</span><span class="n">setFocus</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error check cliente&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">a20evansg</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, evan.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>clientes module &#8212; a20evansg 0.9.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=6625fa76" />
+    <link rel="stylesheet" type="text/css" href="../_static/groundwork.css?v=594d7a89" />
+    <script src="../_static/documentation_options.js?v=9dc39874"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">a20evansg 0.9.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">clientes module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-clientes">
+<span id="clientes-module"></span><h1>clientes module<a class="headerlink" href="#module-clientes" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="clientes.Clientes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">clientes.</span></span><span class="sig-name descname"><span class="pre">Clientes</span></span><a class="reference internal" href="../_modules/clientes.html#Clientes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.altaCliente">
+<span class="sig-name descname"><span class="pre">altaCliente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.altaCliente"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.altaCliente" title="Link to this definition">¶</a></dt>
+<dd><p>Método para dar de alta un cliente en la base de datos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> (<em>object</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si el cliente se ha dado de alta correctamente, False si no</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.bajaCliente">
+<span class="sig-name descname"><span class="pre">bajaCliente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.bajaCliente"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.bajaCliente" title="Link to this definition">¶</a></dt>
+<dd><p>Método para dar de baja a un cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.buscarOneCliente">
+<span class="sig-name descname"><span class="pre">buscarOneCliente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.buscarOneCliente"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.buscarOneCliente" title="Link to this definition">¶</a></dt>
+<dd><p>Método para buscar un cliente por DNI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.cargaOneCliente">
+<span class="sig-name descname"><span class="pre">cargaOneCliente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.cargaOneCliente"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.cargaOneCliente" title="Link to this definition">¶</a></dt>
+<dd><p>Método para cargar los datos de un cliente en los campos de texto</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.cargaTablaCincoClientes">
+<span class="sig-name descname"><span class="pre">cargaTablaCincoClientes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listado</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.cargaTablaCincoClientes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.cargaTablaCincoClientes" title="Link to this definition">¶</a></dt>
+<dd><p>Método para cargar la tabla de clientes con los cinco primeros registros</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>listado</strong> (<em>list</em>) – lista de clientes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.cargaTablaClientes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cargaTablaClientes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.cargaTablaClientes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.cargaTablaClientes" title="Link to this definition">¶</a></dt>
+<dd><p>Método para cargar la tabla de clientes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> (<em>object</em>) – objeto de la clase</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.checkDNI">
+<span class="sig-name descname"><span class="pre">checkDNI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.checkDNI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.checkDNI" title="Link to this definition">¶</a></dt>
+<dd><p>Método para validar un DNI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dni</strong> (<em>str</em>) – DNI a validar</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.checkEmail">
+<span class="sig-name descname"><span class="pre">checkEmail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.checkEmail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.checkEmail" title="Link to this definition">¶</a></dt>
+<dd><p>Método para validar un correo electrónico</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mail</strong> (<em>str</em>) – correo electrónico a validar</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.checkNumero">
+<span class="sig-name descname"><span class="pre">checkNumero</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.checkNumero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.checkNumero" title="Link to this definition">¶</a></dt>
+<dd><p>Método para validar un número de teléfono</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>numero</strong> (<em>str</em>) – número de teléfono a validar</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.checkObligatorios">
+<span class="sig-name descname"><span class="pre">checkObligatorios</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.checkObligatorios"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.checkObligatorios" title="Link to this definition">¶</a></dt>
+<dd><p>Método para validar los campos obligatorios</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> (<em>object</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si los campos obligatorios están completos, False si no</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.historicoCli">
+<span class="sig-name descname"><span class="pre">historicoCli</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.historicoCli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.historicoCli" title="Link to this definition">¶</a></dt>
+<dd><p>Método para activar o desactivar el histórico de clientes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="clientes.Clientes.modifCliente">
+<span class="sig-name descname"><span class="pre">modifCliente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/clientes.html#Clientes.modifCliente"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#clientes.Clientes.modifCliente" title="Link to this definition">¶</a></dt>
+<dd><p>Método para modificar los datos de un cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">clientes module</a><ul>
+<li><a class="reference internal" href="#clientes.Clientes"><code class="docutils literal notranslate"><span class="pre">Clientes</span></code></a><ul>
+<li><a class="reference internal" href="#clientes.Clientes.altaCliente"><code class="docutils literal notranslate"><span class="pre">Clientes.altaCliente()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.bajaCliente"><code class="docutils literal notranslate"><span class="pre">Clientes.bajaCliente()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.buscarOneCliente"><code class="docutils literal notranslate"><span class="pre">Clientes.buscarOneCliente()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.cargaOneCliente"><code class="docutils literal notranslate"><span class="pre">Clientes.cargaOneCliente()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.cargaTablaCincoClientes"><code class="docutils literal notranslate"><span class="pre">Clientes.cargaTablaCincoClientes()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.cargaTablaClientes"><code class="docutils literal notranslate"><span class="pre">Clientes.cargaTablaClientes()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.checkDNI"><code class="docutils literal notranslate"><span class="pre">Clientes.checkDNI()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.checkEmail"><code class="docutils literal notranslate"><span class="pre">Clientes.checkEmail()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.checkNumero"><code class="docutils literal notranslate"><span class="pre">Clientes.checkNumero()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.checkObligatorios"><code class="docutils literal notranslate"><span class="pre">Clientes.checkObligatorios()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.historicoCli"><code class="docutils literal notranslate"><span class="pre">Clientes.historicoCli()</span></code></a></li>
+<li><a class="reference internal" href="#clientes.Clientes.modifCliente"><code class="docutils literal notranslate"><span class="pre">Clientes.modifCliente()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/src/clientes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">a20evansg 0.9.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">clientes module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, evan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    </div>
+  </body>
+</html>

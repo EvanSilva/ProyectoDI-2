@@ -3366,24 +3366,6 @@ border: 2px solid rgb(170, 229, 255); </string>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="QPushButton" name="btnGrabarFactura">
-            <property name="geometry">
-             <rect>
-              <x>130</x>
-              <y>150</y>
-              <width>111</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(222, 245, 255);
-color: rgb(59, 59, 59);
-border: 2px solid rgb(170, 229, 255); </string>
-            </property>
-            <property name="text">
-             <string>Grabar Factura</string>
-            </property>
-           </widget>
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
@@ -3602,6 +3584,73 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </spacer>
                </item>
               </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>130</y>
+              <width>281</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_22">
+             <item>
+              <widget class="QPushButton" name="btnGrabarFactura">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+               </property>
+               <property name="text">
+                <string>Grabar Factura</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnGenFac">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>40</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../img/informe.ico</normaloff>../img/informe.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>

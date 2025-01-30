@@ -116,6 +116,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAlanteProp.clicked.connect(eventos.Eventos.avanzarTablaProp)
 
 
+        var.ui.btnGenFac.clicked.connect(lambda: informes.Informes.reportFacturaActual(var.ui.txtNumFac.text(), var.ui.txtFacSubtotal.text(), var.ui.txtFacIVA.text(), var.ui.txtFacTotal.text()))
+
+
+
 
                                  ####### VENDEDORES #######
 

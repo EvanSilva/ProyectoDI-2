@@ -4,7 +4,7 @@ from datetime import datetime
 from PyQt6 import QtSql
 from reportlab.pdfgen import canvas
 from PIL import Image
-import os,shutil
+import os, shutil
 
 import var
 
@@ -59,7 +59,7 @@ class Informes:
                 while query.next():
                     if y <= 90:
                         var.report.setFont('Helvetica-Oblique', size=9)
-                        var.report.drawString(450,70, "Pagina siguiente")
+                        var.report.drawString(450, 70, "Pagina siguiente")
                         var.report.showPage()
                         Informes.footInforme(titulo, paginas)
                         Informes.topInforme(titulo)
@@ -199,7 +199,8 @@ class Informes:
             var.report.line(50, 645, 525, 645)
 
             query = QtSql.QSqlQuery()
-            query.prepare('select codigo, dirprop, tipoprop, tipooper, prealquiprop, prevenprop from propiedades where muniprop = :muniprop order by codigo')
+            query.prepare(
+                'select codigo, dirprop, tipoprop, tipooper, prealquiprop, prevenprop from propiedades where muniprop = :muniprop order by codigo')
             municipio = var.dlgInformeProp.ui.cmbInformProp.currentText()
             query.bindValue(":muniprop", municipio)
 
@@ -209,7 +210,7 @@ class Informes:
                 while query.next():
                     if y <= 90:
                         var.report.setFont('Helvetica-Oblique', size=9)
-                        var.report.drawString(450,70, "Pagina siguiente")
+                        var.report.drawString(450, 70, "Pagina siguiente")
                         var.report.showPage()
                         Informes.footInformePropiedades(titulo, paginas)
                         Informes.topInformePropiedades(titulo)
@@ -233,7 +234,7 @@ class Informes:
                     operacion = query.value(3)
                     operacion = operacion.replace("[", "").replace("]", "").replace("'", "").replace('"', "")
 
-                    var.report.drawCentredString(x + 215, y, str (operacion))
+                    var.report.drawCentredString(x + 215, y, str(operacion))
 
                     alquiler = str(query.value(4))
 
@@ -326,3 +327,150 @@ class Informes:
         except Exception as error:
             print('Error en pie informe de cualquier tipo: ', error)
 
+    ################################################### FACTURAS #########################################################
+
+    @staticmethod
+    def reportFacturaActual(facventa, subtotal, iva, total):
+        """
+
+        """
+        try:
+            rootPath = '.\\informes'
+            if not os.path.exists(rootPath):
+                os.mkdirs(rootPath)
+            numFactura = var.ui.txtNumFac.text()
+            print(numFactura)
+            titulo = "Listado Propiedades de la factura: " + numFactura
+            fecha = datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
+            nomepdfcli = fecha + "_listadopropiedades.pdf"
+            query0 = QtSql.QSqlQuery()
+            query0.exec('select count(*) from propiedades')
+            if query0.next():
+                print(query0.value(0))
+                registros = int(query0.value(0))
+                paginas = math.ceil(registros / 28)
+            pdf_path = os.path.join(rootPath, nomepdfcli)
+            var.report = canvas.Canvas(pdf_path)
+            Informes.topInformeFacturas(titulo)
+            Informes.footInformeFacturas(titulo, paginas, subtotal, iva, total)
+            items = ['ID VENTA', 'GESTIÓN', 'LOCALIDAD', 'TIPO', 'DIRECCION', 'GESTION', 'PRECIO']
+            var.report.setFont('Helvetica-Bold', size=10)
+            var.report.drawString(55, 650, str(items[0]))
+            var.report.drawString(110, 650, str(items[1]))
+            var.report.drawString(190, 650, str(items[2]))
+            var.report.drawString(240, 650, str(items[3]))
+            var.report.drawString(330, 650, str(items[4]))
+            var.report.drawString(440, 650, str(items[5]))
+            var.report.drawString(500, 650, str(items[6]))
+
+
+            var.report.line(50, 645, 525, 645)
+
+            query = QtSql.QSqlQuery()
+            query.prepare("""
+                                        SELECT    v.idventa AS "ID Venta",
+                                                  v.facventa AS "ID Factura",
+                                                  p.muniprop AS "Localidad",
+                                                  p.tipoprop AS "Tipo propiedad",
+                                                  p.dirprop AS "Dirección de la propiedad",
+                                                  p.prevenprop AS "Precio de venta"
+                                        FROM ventas AS v
+                                        INNER JOIN propiedades AS p
+                                        ON v.codprop = p.codigo
+                                        WHERE v.facventa = :facventa;
+                                        """)
+            query.bindValue(":facventa", facventa)
+            if query.exec():
+                x = 55
+                y = 635
+                while query.next():
+                    if y <= 90:
+                        var.report.setFont('Helvetica-Oblique', size=9)
+                        var.report.drawString(450, 70, "Pagina siguiente")
+                        var.report.showPage()
+                        Informes.footInformeFacturas(titulo, paginas, subtotal, iva, total)
+                        Informes.topInformeFacturas(titulo)
+                        items = ['ID VENTA', 'GESTIÓN', 'LOCALIDAD', 'TIPO', 'DIRECCION', 'GESTION', 'PRECIO']
+                        var.report.setFont('Helvetica-Bold', size=10)
+                        var.report.drawString(55, 645, str(items[0]))
+                        var.report.drawString(100, 645, str(items[1]))
+                        var.report.drawString(190, 645, str(items[2]))
+                        var.report.drawString(285, 645, str(items[3]))
+                        var.report.drawString(360, 645, str(items[4]))
+                        var.report.drawString(450, 645, str(items[5]))
+                        var.report.drawString(500, 645, str(items[6]))
+
+                        var.report.line(50, 645, 525, 645)
+                        x = 55
+                        y = 625
+
+                    var.report.setFont('Helvetica', size=9)
+                    var.report.drawCentredString(x + 15, y, str(query.value(0)))
+                    var.report.drawString(x + 46, y, str(query.value(1)))
+                    var.report.drawCentredString(x + 145, y, str(query.value(2)))
+
+                    y -= 20
+            else:
+
+                print(query.lastError().text())
+
+            var.report.save()
+            rootPath = '.\\informes'
+
+            for file in os.listdir(rootPath):
+                if file.endswith(nomepdfcli):
+                    os.startfile(pdf_path)
+        except Exception as e:
+            print(e)
+
+
+    def topInformeFacturas(titulo):
+        """
+
+        """
+        try:
+            ruta_logo = '.\\img\\inmoteis.ico'
+            logo = Image.open(ruta_logo)
+
+            if isinstance(logo, Image.Image):
+                var.report.line(50, 800, 525, 800)
+                var.report.setFont('Helvetica-Bold', size=14)
+                var.report.drawString(55, 785, 'InmoTeis')
+                var.report.drawString(230, 680, titulo)
+                var.report.line(50, 665, 525, 665)
+
+                var.report.drawImage(ruta_logo, 480, 725, width=40, height=40)
+
+                var.report.setFont('Helvetica', size=9)
+                var.report.drawString(55, 770, 'CIF: A12345678')
+                var.report.drawString(55, 755, 'Avda. Galicia - 101')
+                var.report.drawString(55, 740, 'Chapela, Vigo - 36320 - España')
+                var.report.drawString(55, 725, 'Teléfono: 654 333 979')
+                var.report.drawString(55, 710, 'e-mail: evanchapela@mail.com')
+            else:
+                print(f'Error: No se pudo cargar la imagen en {ruta_logo}')
+        except Exception as error:
+            print('Error en cabecera informe:', error)
+
+
+    def footInformeFacturas(titulo, paginas, subtotal, iva, total):
+        """
+
+        """
+        try:
+            total_pages = 0
+            var.report.line(50, 50, 525, 50)
+            fecha = datetime.today().strftime('%d-%m-%Y %H:%M:%S')
+            var.report.setFont('Helvetica-Oblique', size=7)
+            var.report.drawString(50, 40, str(fecha))
+            var.report.drawString(250, 40, str(titulo))
+            var.report.drawString(490, 40, str('Página %s' % var.report.getPageNumber() + '/' + str(paginas)))
+
+            var.report.drawString(50, 70, 'Subtotal: ' + str(subtotal) + ' €')
+            var.report.drawString(50, 90, 'IVA: ' + str(iva) + ' €')
+            var.report.drawString(50, 110, 'IVA: ' + str(total) + ' €')
+
+
+
+        except Exception as error:
+            print('Error en pie informe de cualquier tipo: ', error)

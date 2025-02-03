@@ -353,15 +353,14 @@ class Informes:
             var.report = canvas.Canvas(pdf_path)
             Informes.topInformeFacturas(titulo)
             Informes.footInformeFacturas(titulo, paginas, subtotal, iva, total)
-            items = ['ID VENTA', 'GESTIÓN', 'LOCALIDAD', 'TIPO', 'DIRECCION', 'GESTION', 'PRECIO']
+            items = ['ID VENTA', 'ID FACTURA', 'LOCALIDAD', 'TIPO', 'DIRECCION', 'PRECIO']
             var.report.setFont('Helvetica-Bold', size=10)
             var.report.drawString(55, 650, str(items[0]))
             var.report.drawString(110, 650, str(items[1]))
             var.report.drawString(190, 650, str(items[2]))
-            var.report.drawString(240, 650, str(items[3]))
-            var.report.drawString(330, 650, str(items[4]))
-            var.report.drawString(440, 650, str(items[5]))
-            var.report.drawString(500, 650, str(items[6]))
+            var.report.drawString(275, 650, str(items[3]))
+            var.report.drawString(340, 650, str(items[4]))
+            var.report.drawString(450, 650, str(items[5]))
 
 
             var.report.line(50, 645, 525, 645)
@@ -382,7 +381,7 @@ class Informes:
             query.bindValue(":facventa", facventa)
             if query.exec():
                 x = 55
-                y = 635
+                y = 630
                 while query.next():
                     if y <= 90:
                         var.report.setFont('Helvetica-Oblique', size=9)
@@ -390,24 +389,29 @@ class Informes:
                         var.report.showPage()
                         Informes.footInformeFacturas(titulo, paginas, subtotal, iva, total)
                         Informes.topInformeFacturas(titulo)
-                        items = ['ID VENTA', 'GESTIÓN', 'LOCALIDAD', 'TIPO', 'DIRECCION', 'GESTION', 'PRECIO']
+                        items = ['ID VENTA', 'ID FACTURA', 'LOCALIDAD', 'TIPO', 'DIRECCION', 'PRECIO']
                         var.report.setFont('Helvetica-Bold', size=10)
-                        var.report.drawString(55, 645, str(items[0]))
-                        var.report.drawString(100, 645, str(items[1]))
-                        var.report.drawString(190, 645, str(items[2]))
-                        var.report.drawString(285, 645, str(items[3]))
-                        var.report.drawString(360, 645, str(items[4]))
-                        var.report.drawString(450, 645, str(items[5]))
-                        var.report.drawString(500, 645, str(items[6]))
+                        var.report.drawString(55, 650, str(items[0]))
+                        var.report.drawString(100, 650, str(items[1]))
+                        var.report.drawString(190, 650, str(items[2]))
+                        var.report.drawString(310, 650, str(items[3]))
+                        var.report.drawString(360, 650, str(items[4]))
+                        var.report.drawString(450, 650, str(items[5]))
 
                         var.report.line(50, 645, 525, 645)
                         x = 55
                         y = 625
 
                     var.report.setFont('Helvetica', size=9)
-                    var.report.drawCentredString(x + 15, y, str(query.value(0)))
-                    var.report.drawString(x + 46, y, str(query.value(1)))
-                    var.report.drawCentredString(x + 145, y, str(query.value(2)))
+                    var.report.drawCentredString(x + 20, y, str(query.value(0)))
+                    var.report.drawString(x + 80, y, str(query.value(1)))
+                    var.report.drawCentredString(x + 163, y, str(query.value(2)))
+                    var.report.drawCentredString(x + 235, y, str(query.value(3)))
+                    var.report.drawCentredString(x + 312, y, str(query.value(4)))
+                    var.report.drawCentredString(x + 415, y, str(query.value(5)) + " €")
+
+
+
 
                     y -= 20
             else:
@@ -436,7 +440,7 @@ class Informes:
                 var.report.line(50, 800, 525, 800)
                 var.report.setFont('Helvetica-Bold', size=14)
                 var.report.drawString(55, 785, 'InmoTeis')
-                var.report.drawString(230, 680, titulo)
+                var.report.drawString(160, 680, titulo)
                 var.report.line(50, 665, 525, 665)
 
                 var.report.drawImage(ruta_logo, 480, 725, width=40, height=40)

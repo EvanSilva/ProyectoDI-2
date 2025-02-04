@@ -265,6 +265,12 @@ class Clientes:
             var.ui.txtFacNombre.setText(registro[3])
             var.ui.txtFacDir.setText(registro[6])
 
+            var.ui.txtDniAlq.setText(registro[0])
+            var.ui.txtAlqApel.setText(registro[2])
+            var.ui.txtAlqNombre.setText(registro[3])
+            var.ui.txtAlqDir.setText(registro[6])
+
+
             for i in range(len(listado)):
                 if i == 7 or i == 8:
                     listado[i].setCurrentText(registro[i])

@@ -462,6 +462,7 @@ class Informes:
 
         """
         try:
+
             total_pages = 0
             var.report.line(50, 50, 525, 50)
             fecha = datetime.today().strftime('%d-%m-%Y %H:%M:%S')
@@ -472,7 +473,7 @@ class Informes:
 
             var.report.drawString(50, 70, 'Subtotal: ' + str(subtotal) + ' €')
             var.report.drawString(50, 90, 'IVA: ' + str(iva) + ' €')
-            var.report.drawString(50, 110, 'IVA: ' + str(total) + ' €')
+            var.report.drawString(50, 110, 'Total: ' + str(total) + ' €')
 
 
 

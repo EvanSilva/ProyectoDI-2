@@ -3288,7 +3288,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                  <property name="placeholderText">
-                  <string>Impuesto del 21%</string>
+                  <string>Impuesto del 10%</string>
                  </property>
                 </widget>
                </item>
@@ -3796,7 +3796,7 @@ border: 2px solid rgb(170, 229, 255); </string>
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>70</x>
@@ -3880,7 +3880,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtFechaAlq">
+                <widget class="QLineEdit" name="txtFechaInicioAlq">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3902,7 +3902,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btnFechaFac_2">
+                <widget class="QPushButton" name="btnFechaInicioAlq">
                  <property name="maximumSize">
                   <size>
                    <width>32</width>
@@ -3961,7 +3961,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="txtFechaAlq_2">
+                <widget class="QLineEdit" name="txtFechaFinAlq">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3983,7 +3983,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="btnFechaFac_3">
+                <widget class="QPushButton" name="btnFechaFinAlq">
                  <property name="maximumSize">
                   <size>
                    <width>32</width>
@@ -4125,6 +4125,11 @@ border: 2px solid rgb(170, 229, 255); </string>
            <column>
             <property name="text">
              <string>DNI</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>GESTION</string>
             </property>
            </column>
           </widget>

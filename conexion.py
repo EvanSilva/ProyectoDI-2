@@ -947,3 +947,82 @@ class Conexion:
 
         except Exception as e:
             print("Error bajaVendedor", e)
+
+    def altaAlquiler(nuevoAlquiler):
+
+        try:
+            query = QtSql.QSqlQuery()
+
+            query.prepare('INSERT INTO facturas (Propiedad_ID, Cliente_DNI, Agente_ID, Fecha_Inicio, Fecha_fin, Precio_Alquiler,) VALUES (:Propiedad_ID, :Cliente_DNI, :Agente_ID, :Fecha_Inicio, :Fecha_fin, :Precio_Alquiler)')
+
+
+            query.bindValue(':Propiedad_ID', nuevoAlquiler[0])
+            query.bindValue(':Cliente_DNI', nuevoAlquiler[1])
+            query.bindValue(':Agente_ID', nuevoAlquiler[2])
+            query.bindValue(':Fecha_Inicio', nuevoAlquiler[3])
+            query.bindValue(':Fecha_fin', nuevoAlquiler[4])
+            query.bindValue(':Precio_Alquiler', nuevoAlquiler[5])
+
+
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as error:
+            print('Error al insertar factura2: %s' % str(error))
+
+    @staticmethod
+    def cargaAlquileres():
+
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM alquileres")
+
+            if query.exec():
+                while query.next():
+                    fila = [str(query.value(0)),
+                            str(query.value(1)),
+                            str(query.value(2)),
+                            str(query.value(3)),
+                            str(query.value(4)),
+                            str(query.value(5)),
+                            str(query.value(6))]
+
+                    registro.append(fila)
+
+                return registro
+            else:
+                print("Error al ejecutar la consulta:", query.lastError().text())
+                return []
+
+        except Exception as e:
+            print("Error en cargarFacturas:", e)
+            return []
+
+    def bajaAlquiler(id):
+
+        """
+
+        Método que da de baja una factura en concreto.
+
+        :return: True/False
+        :param id: id de la factura
+        :type id: str
+        :rtype: bool
+        """
+
+        try:
+
+
+            query = QtSql.QSqlQuery()
+            query.prepare("delete from alquileres where id = :id")
+            query.bindValue(":id", id)
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            print("Error bajaVendedor", e)

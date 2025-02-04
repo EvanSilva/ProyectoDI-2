@@ -134,6 +134,9 @@ class Vendedores:
             print(registro)
 
             var.ui.txtFacVendedor.setText(str(registro[0]))
+            var.ui.txtAlqVendedor.setText(str(registro[0]))
+
+
 
         except Exception as e:
             print("Error en cargaOneVendedor", e)

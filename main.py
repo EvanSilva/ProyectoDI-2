@@ -1,3 +1,4 @@
+import alquileres
 import facturas
 import vendedores
 from venAux import *
@@ -48,6 +49,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtIdVendedor.setDisabled(True)
 
         var.ui.txtFechaFac.setText(datetime.now().strftime("%d/%m/%Y"))
+        var.ui.txtFechaInicioAlq.setText(datetime.now().strftime("%d/%m/%Y"))
+
+
         '''
         
         EVENTOS DE TABLAS
@@ -98,6 +102,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAltaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 0))
         var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 1))
         var.ui.btnFechaFac.clicked.connect(lambda: eventos.Eventos.abrirCalendar(3, 0))
+        var.ui.btnFechaInicioAlq.clicked.connect(lambda: eventos.Eventos.abrirCalendar(4, 0))
+        var.ui.btnFechaFinAlq.clicked.connect(lambda: eventos.Eventos.abrirCalendar(4, 1))
         var.ui.btnModifcli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnDelcli.clicked.connect(clientes.Clientes.bajaCliente)
         var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
@@ -108,6 +114,13 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnGrabarFactura.clicked.connect(facturas.Facturas.altafactura)
         var.ui.btnGrabarVenta.clicked.connect(facturas.Facturas.altaVenta)
+
+
+        var.ui.btnGrabarAlquiler.clicked.connect(alquileres.Alquileres.altaAlquiler)
+
+
+
+
 
         var.ui.btnTablaAlante.clicked.connect(eventos.Eventos.avanzarTablaCli)
         var.ui.btnTablaAtras.clicked.connect(eventos.Eventos.retrocederTablaCli)

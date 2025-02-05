@@ -261,6 +261,22 @@ class Eventos():
         except Exception as error:
             print("error en resize tabla clientes ", error)
 
+    def resizeTablaAlquileres(self):
+        """
+
+        Método para redimensionar la tabla de ventas
+
+        :param self:
+        :return: None
+
+        """
+        try:
+            header = var.ui.tablaAlquiler.horizontalHeader()
+            for i in range(header.count()):
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+
+        except Exception as error:
+            print("error en resize tabla clientes ", error)
 
 
     def resizeTablaVendedor(self):

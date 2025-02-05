@@ -1,4 +1,5 @@
 import alquileres
+import eventos
 import facturas
 import vendedores
 from venAux import *
@@ -37,6 +38,7 @@ class Main(QtWidgets.QMainWindow):
         propiedades.Propiedades.cargaTablaPropiedades(self)
         vendedores.Vendedores.cargaTablaVendedores(self)
         facturas.Facturas.cargaTablaFacturas()
+        alquileres.Alquileres.cargaTablaAlquileres()
         facturas.Facturas.setBoldTitulosVenta()
         facturas.Facturas.setBoldTitulosFactura()
 
@@ -71,6 +73,8 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.tablaFactura.clicked.connect(facturas.Facturas.cargaOneFactura)
         eventos.Eventos.resizeTablaVentas(self)
+
+        eventos.Eventos.resizeTablaAlquileres(self)
 
 
         '''

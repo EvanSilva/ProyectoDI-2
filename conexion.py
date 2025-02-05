@@ -948,29 +948,63 @@ class Conexion:
         except Exception as e:
             print("Error bajaVendedor", e)
 
-    def altaAlquiler(nuevoAlquiler):
+    from PyQt6 import QtSql
+    from datetime import datetime
 
+    def altaAlquiler(nuevoAlquiler):
         try:
             query = QtSql.QSqlQuery()
 
-            query.prepare('INSERT INTO facturas (Propiedad_ID, Cliente_DNI, Agente_ID, Fecha_Inicio, Fecha_fin, Precio_Alquiler,) VALUES (:Propiedad_ID, :Cliente_DNI, :Agente_ID, :Fecha_Inicio, :Fecha_fin, :Precio_Alquiler)')
+            query.prepare(
+                'INSERT INTO alquileres (Propiedad_ID, Cliente_DNI, Agente_ID, Fecha_Inicio, Fecha_fin, Precio_Alquiler) '
+                'VALUES (:Propiedad_ID, :Cliente_DNI, :Agente_ID, :Fecha_Inicio, :Fecha_fin, :Precio_Alquiler)')
 
-
-            query.bindValue(':Propiedad_ID', nuevoAlquiler[0])
+            # Convertir los valores a sus tipos correctos
+            query.bindValue(':Propiedad_ID', int(nuevoAlquiler[0]))
             query.bindValue(':Cliente_DNI', nuevoAlquiler[1])
-            query.bindValue(':Agente_ID', nuevoAlquiler[2])
-            query.bindValue(':Fecha_Inicio', nuevoAlquiler[3])
-            query.bindValue(':Fecha_fin', nuevoAlquiler[4])
-            query.bindValue(':Precio_Alquiler', nuevoAlquiler[5])
+            query.bindValue(':Agente_ID', int(nuevoAlquiler[2]))
 
+            # Convertir fechas al formato correcto
+            fecha_inicio = datetime.strptime(nuevoAlquiler[3], "%d/%m/%Y").strftime("%Y-%m-%d")
+            fecha_fin = datetime.strptime(nuevoAlquiler[4], "%d/%m/%Y").strftime("%Y-%m-%d")
+
+            query.bindValue(':Fecha_Inicio', fecha_inicio)
+            query.bindValue(':Fecha_fin', fecha_fin)
+            query.bindValue(':Precio_Alquiler', float(nuevoAlquiler[5]))
 
             if query.exec():
                 return True
             else:
+                print(f'Error en la ejecución de la consulta suputamadre: {query.lastError().text()}')
                 return False
 
         except Exception as error:
-            print('Error al insertar factura2: %s' % str(error))
+            print(f'Error al insertar factura: {error}')
+            return False
+
+    def findLastAlquilerID():
+        """
+        Método que busca el último ID de alquiler en la base de datos.
+
+        :return: Último ID de alquiler
+        :rtype: int
+        """
+        try:
+            query = QtSql.QSqlQuery(QtSql.QSqlDatabase.database())
+
+            if  query.exec("SELECT id FROM alquileres order by id Desc limit 1"):
+                if query.next():
+                    return query.value(0)
+                else:
+                    print("No se encontraron registros en la tabla alquileres.")
+            else:
+                print("Error al ejecutar la consulta:", query.lastError().text())
+
+            return 0  # Si no hay registros en la tabla, devolver 0
+
+        except Exception as e:
+            print("Error en findLastAlquilerID:", e)
+            return 0
 
     @staticmethod
     def cargaAlquileres():

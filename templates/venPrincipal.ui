@@ -4539,7 +4539,7 @@ border: 2px solid rgb(170, 229, 255); </string>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="QTableWidget" name="tablaAlquileres">
+           <widget class="QTableWidget" name="tablaMensualidades">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -4572,6 +4572,11 @@ border: 2px solid rgb(170, 229, 255); </string>
             <column>
              <property name="text">
               <string>ID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Alquiler</string>
              </property>
             </column>
             <column>

@@ -975,7 +975,7 @@ class Conexion:
             if query.exec():
                 return True
             else:
-                print(f'Error en la ejecución de la consulta suputamadre: {query.lastError().text()}')
+                print(f'Error en la ejecución de la consulta : {query.lastError().text()}')
                 return False
 
         except Exception as error:
@@ -1060,3 +1060,102 @@ class Conexion:
 
         except Exception as e:
             print("Error bajaVendedor", e)
+
+    def altaMensualidades(nuevoAlquiler):
+        try:
+            query = QtSql.QSqlQuery()
+
+            query.prepare(
+                'INSERT INTO mensualidades (AlquilerAsociado, Mes, Precio, Abono ) '
+                'VALUES (:AlquilerAsociado, :Mes, :Precio, :Abono)')
+
+            query.bindValue(':AlquilerAsociado', int(nuevoAlquiler[0]))
+            query.bindValue(':Mes', str(nuevoAlquiler[1]))
+            query.bindValue(':Precio', int(float(nuevoAlquiler[2])))  # Convierte a float primero y luego a int
+            query.bindValue(':Abono', str(nuevoAlquiler[2]))
+
+            if query.exec():
+                return True
+            else:
+                print(f'Error en la ejecución de la consulta altaMensualidades: {query.lastError().text()}')
+                return False
+        except Exception as e:
+            print("Error en altaMensualidades:", e)
+
+    @staticmethod
+    def cargaMensualidades():
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM mensualidades")
+
+            if query.exec():
+                while query.next():
+                    fila = [str(query.value(0)),
+                            str(query.value(1)),
+                            str(query.value(2)),
+                            str(query.value(3)),
+                            str(query.value(4))]
+                    registro.append(fila)
+                return registro
+            else:
+                print("Error al ejecutar la consulta:", query.lastError().text())
+                return []
+
+        except Exception as e:
+            print("Error en cargarFacturas:", e)
+            return []
+
+    @staticmethod
+    def pagaMensualidad(id):
+        try:
+            # Crear el query de actualización
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE mensualidades SET abono = 'True' WHERE id = :id")
+            query.bindValue(":id", id)
+
+            # Ejecutar la consulta
+            if query.exec():
+                print(f"Abono actualizado correctamente para la mensualidad con ID {id_mensualidad}")
+            else:
+                print("Error al actualizar el abono:", query.lastError().text())
+        except Exception as e:
+            print(f"Se produjo un error: {e}")
+
+    @staticmethod
+    def desPagaMensualidad(id):
+        try:
+            # Crear el query de actualización
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE mensualidades SET abono = 'False' WHERE id = :id")
+            query.bindValue(":id", id)
+
+            # Ejecutar la consulta
+            if query.exec():
+                print(f"Abono actualizado correctamente para la mensualidad con ID {id_mensualidad}")
+            else:
+                print("Error al actualizar el abono:", query.lastError().text())
+        except Exception as e:
+            print(f"Se produjo un error: {e}")
+
+    @staticmethod
+    def mensualidadesOneAlquiler(id):
+        """
+
+
+        """
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM mensualidades WHERE AlquilerAsociado = :id")
+            query.bindValue(":id", str(id))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(query.value(i))
+            print(registro)
+            return registro
+
+        except Exception as e:
+            print("Error datos un Cliente", e)
+

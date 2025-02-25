@@ -1,6 +1,6 @@
 import alquileres
 import eventos
-import facturas
+import ventas
 import vendedores
 from venAux import *
 from venPrincipal import *
@@ -37,10 +37,10 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.cargarMuniProp(self)
         propiedades.Propiedades.cargaTablaPropiedades(self)
         vendedores.Vendedores.cargaTablaVendedores(self)
-        facturas.Facturas.cargaTablaFacturas()
+        ventas.Ventas.cargaTablaFacturas()
         alquileres.Alquileres.cargaTablaAlquileres()
-        facturas.Facturas.setBoldTitulosVenta()
-        facturas.Facturas.setBoldTitulosFactura()
+        ventas.Ventas.setBoldTitulosVenta()
+        ventas.Ventas.setBoldTitulosFactura()
 
         var.ui.chkVentaprop.setEnabled(False)
         var.ui.chkAlquiprop.setEnabled(False)
@@ -71,10 +71,13 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tablaVendedor.clicked.connect(vendedores.Vendedores.cargaOneVendedor)
         eventos.Eventos.resizeTablaVendedor(self)
 
-        var.ui.tablaFactura.clicked.connect(facturas.Facturas.cargaOneFactura)
+        var.ui.tablaFactura.clicked.connect(ventas.Ventas.cargaOneFactura)
         eventos.Eventos.resizeTablaVentas(self)
 
+        var.ui.tablaAlquiler.clicked.connect(alquileres.Alquileres.cargaTablaMensualidades)
         eventos.Eventos.resizeTablaAlquileres(self)
+        eventos.Eventos.resizeTablaMensualidades(self)
+
 
 
         '''
@@ -116,8 +119,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBuscaTipoProp.clicked.connect(propiedades.Propiedades.cargaTablaPropiedades)
         var.ui.btnBuscarCli.clicked.connect(clientes.Clientes.buscarOneCliente)
 
-        var.ui.btnGrabarFactura.clicked.connect(facturas.Facturas.altafactura)
-        var.ui.btnGrabarVenta.clicked.connect(facturas.Facturas.altaVenta)
+        var.ui.btnGrabarFactura.clicked.connect(ventas.Ventas.altafactura)
+        var.ui.btnGrabarVenta.clicked.connect(ventas.Ventas.altaVenta)
 
 
         var.ui.btnGrabarAlquiler.clicked.connect(alquileres.Alquileres.altaAlquiler)
@@ -134,6 +137,10 @@ class Main(QtWidgets.QMainWindow):
 
 
         var.ui.btnGenFac.clicked.connect(lambda: informes.Informes.reportFacturaActual(var.ui.txtNumFac.text(), var.ui.txtFacSubtotal.text(), var.ui.txtFacIVA.text(), var.ui.txtFacTotal.text()))
+
+        var.ui.btnGenAlq.clicked.connect(lambda: alquileres.Alquileres.generaInformeMensualidad())
+
+
 
 
 

@@ -261,15 +261,11 @@ class Clientes:
             listado = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli, var.ui.txtNomecli, var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli, var.ui.cmbProvcli, var.ui.cmbMunicli]
 
             var.ui.txtDniFac.setText(registro[0])
+            var.ui.txtDniAlq.setText(registro[0])
+
             var.ui.txtFacApel.setText(registro[2])
             var.ui.txtFacNombre.setText(registro[3])
             var.ui.txtFacDir.setText(registro[6])
-
-            var.ui.txtDniAlq.setText(registro[0])
-            var.ui.txtAlqApel.setText(registro[2])
-            var.ui.txtAlqNombre.setText(registro[3])
-            var.ui.txtAlqDir.setText(registro[6])
-
 
             for i in range(len(listado)):
                 if i == 7 or i == 8:

@@ -1048,8 +1048,6 @@ class Conexion:
         """
 
         try:
-
-
             query = QtSql.QSqlQuery()
             query.prepare("delete from alquileres where id = :id")
             query.bindValue(":id", id)
@@ -1061,18 +1059,38 @@ class Conexion:
         except Exception as e:
             print("Error bajaVendedor", e)
 
+    @staticmethod
+    def bajaMensualidades(idAlquiler):
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("delete from mensualidades where AlquilerAsociado = :idAlquiler")
+            query.bindValue(":idAlquiler", idAlquiler)
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            print("Error bajaVendedor", e)
+
+
+
+
+
+
     def altaMensualidades(nuevoAlquiler):
         try:
             query = QtSql.QSqlQuery()
 
             query.prepare(
-                'INSERT INTO mensualidades (AlquilerAsociado, Mes, Precio, Abono ) '
+                'INSERT INTO mensualidades (AlquilerAsociado, Mes, Precio, Abono) '
                 'VALUES (:AlquilerAsociado, :Mes, :Precio, :Abono)')
 
             query.bindValue(':AlquilerAsociado', int(nuevoAlquiler[0]))
             query.bindValue(':Mes', str(nuevoAlquiler[1]))
             query.bindValue(':Precio', int(float(nuevoAlquiler[2])))  # Convierte a float primero y luego a int
-            query.bindValue(':Abono', str(nuevoAlquiler[2]))
+            query.bindValue(':Abono', nuevoAlquiler[3])  # Asegúrate de pasar el valor correcto, ya sea "False" o "True"
 
             if query.exec():
                 return True
@@ -1108,6 +1126,8 @@ class Conexion:
 
     @staticmethod
     def pagaMensualidad(id):
+
+
         try:
             # Crear el query de actualización
             query = QtSql.QSqlQuery()
@@ -1116,7 +1136,7 @@ class Conexion:
 
             # Ejecutar la consulta
             if query.exec():
-                print(f"Abono actualizado correctamente para la mensualidad con ID {id_mensualidad}")
+                print(f"Abono actualizado correctamente para la mensualidad con ID {id}")
             else:
                 print("Error al actualizar el abono:", query.lastError().text())
         except Exception as e:
@@ -1132,7 +1152,7 @@ class Conexion:
 
             # Ejecutar la consulta
             if query.exec():
-                print(f"Abono actualizado correctamente para la mensualidad con ID {id_mensualidad}")
+                print(f"Abono actualizado correctamente para la mensualidad con ID {id}")
             else:
                 print("Error al actualizar el abono:", query.lastError().text())
         except Exception as e:
@@ -1140,14 +1160,39 @@ class Conexion:
 
     @staticmethod
     def mensualidadesOneAlquiler(id):
-        """
-
-
-        """
         try:
-            registro = []
+            listado = []
             query = QtSql.QSqlQuery()
             query.prepare("SELECT * FROM mensualidades WHERE AlquilerAsociado = :id")
+            query.bindValue(":id", str(id))
+            if query.exec():
+                while query.next():
+                    fila = []
+                    for i in range(query.record().count()):
+                        fila.append(query.value(i))  # Guarda los valores en una lista separada
+                    listado.append(fila)  # Agrega la fila completa a la lista
+            print(listado)
+            return listado  # Devuelve una lista de listas
+
+        except Exception as e:
+            print("Error datos un Cliente", e)
+
+    def datosOneAlquiler(id):
+        """
+
+        Método que devuelve los datos de un alquiler en concreto.
+
+        :return: registro
+        :param id: id de la factura
+        :type id: str
+        :rtype: list
+        """
+
+        try:
+
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM facturas WHERE id = :id")
             query.bindValue(":id", str(id))
             if query.exec():
                 while query.next():
@@ -1157,5 +1202,6 @@ class Conexion:
             return registro
 
         except Exception as e:
-            print("Error datos un Cliente", e)
+            print("Error datos una factura", e)
+
 

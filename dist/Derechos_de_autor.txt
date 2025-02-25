@@ -1,0 +1,87 @@
+ACUERDO DE LICENCIA DE USUARIO FINAL (ALUF) - VERSIÓN 42.0.1
+
+IMPORTANTE: LEA ESTE DOCUMENTO DETENIDAMENTE ANTES DE UTILIZAR EL SOFTWARE.
+
+Al instalar, ejecutar o simplemente pensar en utilizar este software, usted acepta las condiciones descritas en este Acuerdo de Licencia de Usuario Final (en adelante, "ALUF"). Si no está de acuerdo, puede proceder a destruir su dispositivo de forma ceremonial lanzándolo a un volcán (no nos hacemos responsables de los costos del viaje).
+
+1. DEFINICIONES
+
+1.1. "Software" se refiere a este código mágico que convierte el silicio en algo útil, creado con sangre, sudor y café por programadores con menos vida social que un NPC de Dark Souls.
+
+1.2. "Usuario" o "usted" es esa persona que cree que leer un contrato de licencia es opcional y simplemente hace clic en "Aceptar" sin pensarlo dos veces.
+
+1.3. "Desarrollador" es ese ente místico que vive en la sombra, subsistiendo a base de pizza recalentada y depurando código a las 3 AM.
+
+1.4. "Bug" es una funcionalidad no documentada que probablemente fue puesta ahí intencionalmente para probar su paciencia.
+
+2. CONCESIÓN DE LICENCIA
+
+2.1. Le concedemos una licencia no exclusiva, no transferible, no revendible y absolutamente inquebrantable (excepto si lo dice un abogado) para usar este Software según los términos de este acuerdo. No incluye bonus de XP ni mejoras en su skill de programación.
+
+2.2. Usted no puede:
+
+Descompilar, desmontar, hackear o utilizar la Fuerza para intentar comprender el código fuente.
+
+Usar este Software para propósitos malvados, incluyendo pero no limitado a la dominación mundial, la invocación de Cthulhu o la programación en PHP.
+
+Revender, subarrendar o intercambiar este Software por skins en Counter-Strike.
+
+Utilizar este Software para propósitos relacionados con el Imperio Galáctico.
+
+3. PROPIEDAD Y DERECHOS DE AUTOR
+
+3.1. El Software sigue siendo propiedad exclusiva de los desarrolladores. No importa cuánto intente cambiar el nombre de los archivos o borrar las marcas de agua.
+
+3.2. Al utilizar este Software, usted otorga automáticamente su lealtad a los programadores y se compromete a sacrificar su primera taza de café de la mañana en su honor.
+
+4. GARANTÍA Y DESCARGO DE RESPONSABILIDAD
+
+4.1. Este Software se proporciona "TAL CUAL". No garantizamos que funcione, que no explote o que no invoque accidentalmente un agujero negro en su habitación.
+
+4.2. No somos responsables de:
+
+Pérdida de datos, sanidad mental o respeto por la humanidad.
+
+Fallos de seguridad causados por usar "123456" como contraseña.
+
+Fenómenos paranormales que puedan ocurrir debido al uso de este Software.
+
+4.3. Si el Software causa un apocalipsis zombi, un ataque de kaijus o la aparición de una horda de gremlins hambrientos, usted acepta que es completamente su problema.
+
+5. ACTUALIZACIONES Y SOPORTE
+
+5.1. No prometemos actualizaciones, pero si las hay, vendrán con más bugs y menos funcionalidades útiles.
+
+5.2. Si necesita soporte, envíe un cuervo mensajero con una ofrenda adecuada o grite "¡Ayuda!" en una sala oscura tres veces. No garantizamos que funcione.
+
+6. RESCISIÓN
+
+6.1. Podemos rescindir esta licencia en cualquier momento y por cualquier motivo, incluyendo pero no limitado a:
+
+Intentar usar el Software en Windows XP.
+
+Decir que "Python es mejor que Java" (esto será debatido en un tribunal de programadores).
+
+No haber visto Star Wars, El Señor de los Anillos o Firefly.
+
+6.2. Si este acuerdo es rescindido, debe desinstalar el Software de inmediato, borrar todos los rastros y realizar un ritual de limpieza con incienso para evitar maldiciones informáticas.
+
+7. CLÁUSULAS SECRETAS QUE NO DEBERÍA LEER
+
+7.1. Al aceptar este acuerdo, acepta implícitamente que, si alguna vez un apocalipsis zombi ocurre, usted será el primero en enfrentarlos mientras nosotros escapamos en un helicóptero.
+
+7.2. Si descubre un bug crítico, debe informarlo de inmediato. Si lo reporta con un meme gracioso, su reporte será atendido con prioridad.
+
+7.3. Si encuentra la referencia oculta a Futurama en este documento, felicidades, tiene buen gusto.
+
+8. JURISDICCIÓN Y LEY APLICABLE
+
+8.1. Este acuerdo está regido por las leyes del Reino de Hyrule y el Tratado de Paz de Rohan. En caso de disputas, se resolverá en un duelo de espadas al amanecer o una partida de Magic: The Gathering.
+
+8.2. Si alguna parte de este acuerdo es declarada inválida por un tribunal, el resto del documento seguirá siendo válido y se aplicará de acuerdo con la Regla del Uno ("There can be only one").
+
+9. CLÁUSULA FINAL
+
+9.1. Si ha leído hasta aquí, se merece un aplauso. Pero no se lo daremos porque no lo podemos ver.
+
+9.2. Al hacer clic en "Aceptar", está formalizando su compromiso con los términos aquí expuestos y se convierte en un usuario oficial. No olvide su misión: usar el Software con sabiduría y no caer en el Lado Oscuro.

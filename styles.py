@@ -8,5 +8,5 @@ def load_stylesheet():
     '''
 
 
-    with open("styles.qss", "r") as stylesheet:
+    with open("dist/styles.qss", "r") as stylesheet:
         return stylesheet.read()

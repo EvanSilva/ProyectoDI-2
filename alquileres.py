@@ -1,6 +1,6 @@
 import calendar
 from datetime import datetime
-
+from functools import partial
 
 from PyQt6.QtCore import Qt
 
@@ -11,6 +11,8 @@ from PyQt6.QtWidgets import QWidget, QHBoxLayout, QCheckBox, QTableWidgetItem
 
 import eventos
 import var
+from var import informes
+
 
 class Alquileres:
 
@@ -59,7 +61,7 @@ class Alquileres:
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
-            elif var.ui.txtAlqCodigo.text() == '':
+            elif var.ui.txtPropAlq.text() == '':
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
@@ -84,7 +86,7 @@ class Alquileres:
 
 
             else:
-                nuevoalquiler = [var.ui.txtAlqCodigo.text(), var.ui.txtDniAlq.text(), var.ui.txtAlqVendedor.text(), var.ui.txtFechaInicioAlq.text(), var.ui.txtFechaFinAlq.text(), var.ui.txtAlqPrecio.text()]
+                nuevoalquiler = [var.ui.txtPropAlq.text(), var.ui.txtDniAlq.text(), var.ui.txtAlqVendedor.text(), var.ui.txtFechaInicioAlq.text(), var.ui.txtFechaFinAlq.text(), var.ui.txtAlqPrecio.text()]
                 print("LISTA DE ATRIBUTOS DEL ALQUILER:" + str(nuevoalquiler))
 
                 if conexion.Conexion.altaAlquiler(nuevoalquiler):
@@ -110,7 +112,6 @@ class Alquileres:
             print('Error al guardar alquiler: %s' % str(error))
 
     def altaMensualidades(self):
-
         meses = Alquileres.diferenciaFechasEnMeses()
         fecha_inicio = datetime.strptime(var.ui.txtFechaInicioAlq.text(), "%d/%m/%Y")
 
@@ -120,6 +121,7 @@ class Alquileres:
 
             nombre_mes = calendar.month_name[mes_actual]
 
+            # Asegurarte de que Abono sea "False" inicialmente
             mensualidad = [var.ui.txtNumAlq.text(), f"{nombre_mes} {ano_actual}", var.ui.txtAlqPrecio.text(), "False"]
 
             conexion.Conexion.altaMensualidades(mensualidad)
@@ -141,7 +143,7 @@ class Alquileres:
 
         try:
 
-            if conexion.Conexion.bajaAlquiler(id):
+            if conexion.Conexion.bajaMensualidades(id):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
@@ -153,8 +155,46 @@ class Alquileres:
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
 
-                Alquileres.cargaTablaAlquileres()
-                Alquileres.cargaTablaMensualidades()
+                if conexion.Conexion.bajaAlquiler(id):
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                    mbox.setWindowTitle('Factura eliminada')
+                    mbox.setText('Se ha eliminado el alquiler correctamente')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
+
+                    Alquileres.cargaTablaAlquileres()
+                    var.ui.tablaMensualidades.clearContents()
+
+                else:
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                    mbox.setWindowTitle('Error')
+                    mbox.setText('Error al eliminar el alquiler')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
+
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                mbox.setWindowTitle('Error')
+                mbox.setText('Error al eliminar las mensualidades')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+
+
 
 
         except Exception as error:
@@ -208,30 +248,63 @@ class Alquileres:
         except Exception as e:
             print("Error en cargaTablaFacturas:", e)
 
+    from functools import partial
+
     @staticmethod
     def cargaTablaMensualidades():
+        print("hola desde mensualidades")
         try:
-            listado = conexion.Conexion.mensualidadesOneAlquiler()
-            var.ui.tablaMensualidades.setRowCount(0)  # Limpia la tabla antes de cargar nuevos datos
+            fila = var.ui.tablaAlquiler.currentRow()
+
+            total = 0
+
+
+            if fila == -1:
+                print("No hay ninguna fila seleccionada en la tabla de alquileres.")
+                return
+
+            id_alquiler_item = var.ui.tablaAlquiler.item(fila, 0)
+
+
+
+            if id_alquiler_item is None:
+                print("No se pudo obtener el ID del alquiler.")
+                return
+
+            id_alquiler = id_alquiler_item.text()
+            print("Fila seleccionada - ID Alquiler:", id_alquiler)
+
+            listado = conexion.Conexion.mensualidadesOneAlquiler(id_alquiler)
+            print("Mensualidades encontradas:", listado)
+
+            # Limpiar la tabla antes de cargar nuevos datos
+            var.ui.tablaMensualidades.setRowCount(0)
 
             for index, registro in enumerate(listado):
                 var.ui.tablaMensualidades.setRowCount(index + 1)
-                var.ui.tablaMensualidades.setItem(index, 0, QTableWidgetItem(registro[0]))
-                var.ui.tablaMensualidades.setItem(index, 1, QTableWidgetItem(registro[1]))
-                var.ui.tablaMensualidades.setItem(index, 2, QTableWidgetItem(registro[2]))
-                var.ui.tablaMensualidades.setItem(index, 3, QTableWidgetItem(registro[3]))
+                var.ui.tablaMensualidades.setItem(index, 0, QTableWidgetItem(str(registro[0])))
+                var.ui.tablaMensualidades.setItem(index, 1, QTableWidgetItem(str(registro[1])))
+                var.ui.tablaMensualidades.setItem(index, 2, QTableWidgetItem(str(registro[2]).title()))
+                var.ui.tablaMensualidades.setItem(index, 3, QTableWidgetItem(str(registro[3])))
 
+                total += registro[3];var.ui.txtFacSubtotal.setText(str(total) + " €")
+                var.ui.txtFacIVA.setText(str(total * 0.1) + " €")
+                var.ui.txtFacTotal.setText(str(total * 1.1) + " €")
+
+                # Crear checkbox de pago
                 checkbox = QCheckBox()
                 checkbox.setChecked(registro[4] == "True")  # Marcar si el valor es "True"
 
-                def togglePago(checked, id=registro[0]):
+                # Usar partial para pasar el parámetro `id` de forma segura
+                def togglePago(checked, id):
                     if checked:
+                        print("Suputamadre")
                         Alquileres.pagaMensualidad(id)
                     else:
-                        Alquileres.despagaMensualidad(id)
+                        Alquileres.desPagaMensualidad(id)
 
-                checkbox.stateChanged.connect(
-                    lambda state, id=registro[0]: togglePago(state == Qt.CheckState.Checked, id))
+                # Conectar la señal `stateChanged` y usar `partial` para pasar el id correctamente
+                checkbox.stateChanged.connect(partial(togglePago, id=registro[0]))
 
                 container = QWidget()
                 layout = QHBoxLayout()
@@ -242,6 +315,10 @@ class Alquileres:
 
                 var.ui.tablaMensualidades.setCellWidget(index, 4, container)
 
+            var.ui.txtAlqSubtotal.setText(str(total) + " €")
+            var.ui.txtAlqIVA.setText(str(total * 0.1) + " €")
+            var.ui.txtAlqTotal.setText(str(round(total * 1.1)) + " €")
+
         except Exception as e:
             print("Error en cargaTablaMensualidades:", e)
 
@@ -249,6 +326,8 @@ class Alquileres:
     def pagaMensualidad(id):
 
         try:
+
+
 
             if conexion.Conexion.pagaMensualidad(id):
                 mbox = QtWidgets.QMessageBox()
@@ -263,6 +342,8 @@ class Alquileres:
                 mbox.exec()
 
                 Alquileres.cargaTablaMensualidades()
+
+
 
         except Exception as error:
             print('Error al bajar factura: %s' % str(error))
@@ -287,4 +368,21 @@ class Alquileres:
 
         except Exception as error:
             print('Error al bajar factura: %s' % str(error))
+
+    @staticmethod
+    def generaInformeMensualidad():
+
+        print("informemensualidades: -----------------")
+
+        fila = var.ui.tablaMensualidades.selectedItems()
+        idFila = fila[0].text()
+
+
+        print("LA FILA ACTUAL DE LA MENSUALIDAD ES: " + idFila)
+
+        informes.Informes.reportMensualidadActual(idFila)
+
+        print(var.ui.txtAlqSubtotal.text())
+
+
 

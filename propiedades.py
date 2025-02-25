@@ -422,13 +422,10 @@ class Propiedades():
                                 subcasilla.setChecked(False)
 
             var.ui.txtFacCodigo.setText(str(registro[0]))
+            var.ui.txtPropAlq.setText(str(registro[0]))
             var.ui.txtFacTipo.setText(str(registro[6]))
             var.ui.txtFacLocalidad.setText(str(registro[5]))
             var.ui.txtFacPrecio.setText(str(registro[11]))
-
-            var.ui.txtAlqCodigo.setText(str(registro[0]))
-            var.ui.txtAlqTipo.setText(str(registro[6]))
-            var.ui.txtAlqLocalidad.setText(str(registro[5]))
             var.ui.txtAlqPrecio.setText(str(registro[10]))
 
 

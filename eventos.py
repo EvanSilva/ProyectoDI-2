@@ -278,6 +278,27 @@ class Eventos():
         except Exception as error:
             print("error en resize tabla clientes ", error)
 
+    def resizeTablaMensualidades(self):
+        """
+        Método para redimensionar la tabla de mensualidades y centrar el texto.
+        """
+        try:
+            header = var.ui.tablaMensualidades.horizontalHeader()
+            for i in range(header.count()):
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+
+            # Recorrer todas las filas y columnas para centrar el texto
+            filas = var.ui.tablaMensualidades.rowCount()
+            columnas = var.ui.tablaMensualidades.columnCount()
+
+            for fila in range(filas):
+                for columna in range(columnas):
+                    item = var.ui.tablaMensualidades.item(fila, columna)
+                    if item:
+                        item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        except Exception as error:
+            print("Error en resizeTablaMensualidades:", error)
 
     def resizeTablaVendedor(self):
         """

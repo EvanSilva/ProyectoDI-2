@@ -76,6 +76,7 @@ class Conexion:
         if query.exec():
             while query.next():
                 listarProv.append(query.value(1))
+        print(listarProv)
         return listarProv
 
     def listarMunicli(provincia):
@@ -95,7 +96,13 @@ class Conexion:
         if query.exec():
             while query.next():
                 listamunicipios.append(query.value(1))
+        print("Listamunicipios")
+        print(listamunicipios)
+        print("Provincias")
+        print(provincia)
+        print("-----------")
         return listamunicipios
+
 
     def listarMunicipios():
         """

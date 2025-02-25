@@ -43,7 +43,7 @@ class Ventas:
                     mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                     mbox.exec()
 
-                    Facturas.cargaTablaFacturas()
+                    Ventas.cargaTablaFacturas()
 
         except Exception as error:
             print('Error al insertar factura: %s' % str(error))
@@ -73,8 +73,8 @@ class Ventas:
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
 
-                Facturas.cargaTablaFacturas()
-                Facturas.cargaTablaVentas(id)
+                Ventas.cargaTablaFacturas()
+                Ventas.cargaTablaVentas(id)
 
 
         except Exception as error:
@@ -105,7 +105,7 @@ class Ventas:
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
 
-                Facturas.cargaTablaVentas(id)
+                Ventas.cargaTablaVentas(id)
 
 
         except Exception as error:
@@ -154,7 +154,7 @@ class Ventas:
                 container = QWidget()
                 container.setLayout(layout)
                 var.ui.tablaFactura.setCellWidget(index, 3, container)
-                botondelfac.clicked.connect(lambda checked, id=registro[0]: Facturas.bajaFactura(id))
+                botondelfac.clicked.connect(lambda checked, id=registro[0]: Ventas.bajaFactura(id))
 
 
 
@@ -189,7 +189,7 @@ class Ventas:
             var.ui.txtFechaFac.setText(str(registro[1]))
             var.ui.txtDniFac.setText(str(registro[2]))
 
-            Facturas.cargaTablaVentas(registro[0])
+            Ventas.cargaTablaVentas(registro[0])
 
         except Exception as error:
             print(f"Error en cargaOneFactura: {error}")
@@ -254,7 +254,7 @@ class Ventas:
                     mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                     mbox.exec()
 
-                    Facturas.cargaTablaVentas(var.ui.txtNumFac.text())
+                    Ventas.cargaTablaVentas(var.ui.txtNumFac.text())
 
         except Exception as error:
             print('Error al insertar venta: %s' % str(error))
@@ -323,7 +323,7 @@ class Ventas:
                 container = QWidget()
                 container.setLayout(layout)
                 var.ui.tablaVenta.setCellWidget(index, 6, container)
-                botondelfac.clicked.connect(lambda checked, id=registro[0]: Facturas.bajaVenta(id))
+                botondelfac.clicked.connect(lambda checked, id=registro[0]: Ventas.bajaVenta(id))
 
                 var.ui.txtFacSubtotal.setText(str(total) + " €")
                 var.ui.txtFacIVA.setText(str(total * 0.1) + " €")

@@ -8,6 +8,7 @@ from datetime import datetime
 import os
 from PyQt6 import QtWidgets, QtGui, QtSql
 
+
 import clientes
 import conexion
 import eventos
@@ -73,21 +74,19 @@ class Eventos():
 
         """
         var.ui.cmbMunicli.clear()
-        municipios = conexion.Conexion.listarMunicipios()
+        provincia = var.ui.cmbProvcli.currentText()
+        print(provincia)
+        municipios = conexion.Conexion.listarMunicli(provincia)
         var.ui.cmbMunicli.addItems(municipios)
 
     # ARREGLAR ESTO
-
     def cargarProvProp(self):
         """
-
         Método para cargar las provincias en los ComboBox de propiedades
 
         :param self:
         :return: None
         :rtype: None
-
-
         """
         var.ui.cmbProvprop.clear()
         listado = conexion.Conexion.listarProv(self)
@@ -95,17 +94,20 @@ class Eventos():
 
     def cargarMuniProp(self):
         """
-
         Método para cargar los municipios en los ComboBox de propiedades
 
         :param self:
         :return: None
         :rtype: None
-
         """
+
         var.ui.cmbMuniprop.clear()
-        municipios = conexion.Conexion.listarMunicli(var.ui.cmbProvprop.currentText())
+        provincia = var.ui.cmbProvprop.currentText()
+        municipios = conexion.Conexion.listarMunicli(provincia)
         var.ui.cmbMuniprop.addItems(municipios)
+
+
+
 
     def cargarProvVendedores(self):
         """
@@ -118,7 +120,7 @@ class Eventos():
 
 
         """
-        var.ui.cmbProvprop.clear()
+        var.ui.cmbProvVendedor.clear()
         listado = conexion.Conexion.listarProv(self)
         var.ui.cmbProvVendedor.addItems(listado)
 

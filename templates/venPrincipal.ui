@@ -72,7 +72,7 @@
        <string notr="true">background-color:rgb(237, 251, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pesClientes">
        <attribute name="title">
@@ -1132,6 +1132,9 @@ border: 2px solid rgb(170, 229, 255); </string>
                   <height>16777215</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                </widget>
               </item>
               <item row="0" column="8" rowspan="2" colspan="2">
@@ -1575,6 +1578,9 @@ border: 2px solid rgb(170, 229, 255); </string>
               </item>
               <item row="1" column="4">
                <widget class="QCheckBox" name="chkAlquiprop">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="text">
                  <string>Alquiler</string>
                 </property>
@@ -1582,6 +1588,9 @@ border: 2px solid rgb(170, 229, 255); </string>
               </item>
               <item row="3" column="4">
                <widget class="QRadioButton" name="rbtDisponprop">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="text">
                  <string>Disponible</string>
                 </property>
@@ -1595,6 +1604,9 @@ border: 2px solid rgb(170, 229, 255); </string>
               </item>
               <item row="3" column="5">
                <widget class="QRadioButton" name="rbtAlquiprop">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="text">
                  <string>Alquilado</string>
                 </property>
@@ -1621,6 +1633,9 @@ border: 2px solid rgb(170, 229, 255); </string>
               </item>
               <item row="1" column="5">
                <widget class="QCheckBox" name="chkVentaprop">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="text">
                  <string>Venta</string>
                 </property>
@@ -1654,6 +1669,9 @@ border: 2px solid rgb(170, 229, 255); </string>
               </item>
               <item row="3" column="6">
                <widget class="QRadioButton" name="rbtVentaprop">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="text">
                  <string>Vendido</string>
                 </property>
@@ -1785,6 +1803,9 @@ border: 2px solid rgb(170, 229, 255); </string>
               </item>
               <item row="1" column="6">
                <widget class="QCheckBox" name="chkInterprop">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="text">
                  <string>Intercambio</string>
                 </property>
@@ -1832,6 +1853,9 @@ border: 2px solid rgb(170, 229, 255); </string>
               </item>
               <item row="3" column="8">
                <widget class="QCheckBox" name="chkHistoricoprop">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
                 <property name="text">
                  <string>Historico</string>
                 </property>
@@ -1933,6 +1957,9 @@ border: 2px solid rgb(170, 229, 255); </string>
           </property>
           <property name="autoFillBackground">
            <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
           </property>
           <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>

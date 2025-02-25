@@ -176,12 +176,10 @@ class Main(QtWidgets.QMainWindow):
         
         '''
         eventos.Eventos.cargarProv(self)
-        eventos.Eventos.cargarProvProp(self)
         eventos.Eventos.cargarProvVendedores(self)
+
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMuni)
         var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniProp)
-
-
 
 
         '''

@@ -105,8 +105,6 @@ class Vendedores:
 
         except Exception as e:
             print("error cargaTablaCientes", e)
-            import traceback
-            print(traceback.format_exc())
 
     def cargaOneVendedor(self):
         """
@@ -131,8 +129,6 @@ class Vendedores:
 
             for i in range(len(listado)):
                     listado[i].setText(str(registro[i]))
-            print(registro)
-
             var.ui.txtFacVendedor.setText(str(registro[0]))
             var.ui.txtAlqVendedor.setText(str(registro[0]))
 

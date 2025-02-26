@@ -76,7 +76,6 @@ class Conexion:
         if query.exec():
             while query.next():
                 listarProv.append(query.value(1))
-        print(listarProv)
         return listarProv
 
     def listarMunicli(provincia):
@@ -96,11 +95,6 @@ class Conexion:
         if query.exec():
             while query.next():
                 listamunicipios.append(query.value(1))
-        print("Listamunicipios")
-        print(listamunicipios)
-        print("Provincias")
-        print(provincia)
-        print("-----------")
         return listamunicipios
 
 
@@ -185,7 +179,6 @@ class Conexion:
                         listado.append(fila)
                 return listado
 
-            print(listado)
             return listado
 
         except Exception as e:
@@ -210,7 +203,6 @@ class Conexion:
                 while query.next():
                     for i in range(query.record().count()):
                         registro.append(query.value(i))
-            print(registro)
             return registro
 
         except Exception as e:
@@ -563,7 +555,6 @@ class Conexion:
                 while query.next():
                     for i in range(query.record().count()):
                         registro.append(query.value(i))
-            print(registro)
             return registro
 
         except Exception as e:
@@ -725,7 +716,6 @@ class Conexion:
         """
         try:
 
-            print(datos)
 
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE vendedores SET bajaVendedor = :bajaVendedor WHERE idVendedor = :idVendedor")
@@ -788,7 +778,6 @@ class Conexion:
                             str(query.value(1)),  # fechafac
                             str(query.value(2))]  # dnifac
                     registro.append(fila)
-                print(registro)  # Depuración: muestra las filas cargadas
                 return registro
             else:
                 print("Error al ejecutar la consulta:", query.lastError().text())
@@ -819,7 +808,6 @@ class Conexion:
                 while query.next():
                     for i in range(query.record().count()):
                         registro.append(query.value(i))
-            print(registro)
             return registro
 
         except Exception as e:
@@ -917,7 +905,6 @@ class Conexion:
                     ]
                     registro.append(fila)  # Agregar la lista de valores a la lista principal
 
-                print(registro)
                 return registro
 
             else:
@@ -1178,7 +1165,6 @@ class Conexion:
                     for i in range(query.record().count()):
                         fila.append(query.value(i))  # Guarda los valores en una lista separada
                     listado.append(fila)  # Agrega la fila completa a la lista
-            print(listado)
             return listado  # Devuelve una lista de listas
 
         except Exception as e:
@@ -1205,10 +1191,30 @@ class Conexion:
                 while query.next():
                     for i in range(query.record().count()):
                         registro.append(query.value(i))
-            print(registro)
             return registro
 
         except Exception as e:
             print("Error datos una factura", e)
+
+    @staticmethod
+    def bbddModificarPropiedadVendida(idPropiedad):
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE propiedades SET estadoprop = :estadoprop, prealquiprop = :prealquiprop WHERE codigo = :codigo")
+
+            print(" LLEGO A bbddModificarPropiedadVendida ")
+            print(idPropiedad)
+
+            query.bindValue(":estadoprop", "Vendido")
+            query.bindValue(":prealquiprop", "")
+            query.bindValue(":codigo", int(idPropiedad))
+            query.exec()
+            return True
+
+        except Exception as e:
+            print("Error bbddModificarPropiedadVendida, ", e)
+
+
 
 

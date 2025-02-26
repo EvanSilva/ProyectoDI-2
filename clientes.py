@@ -204,8 +204,6 @@ class Clientes:
 
         except Exception as e:
             print("error cargaTablaCientes", e)
-            import traceback
-            print(traceback.format_exc())
 
     def cargaTablaCincoClientes(self, listado):
         """
@@ -241,8 +239,6 @@ class Clientes:
 
         except Exception as e:
             print("error cargaTablaCientes", e)
-            import traceback
-            print(traceback.format_exc())
 
     def cargaOneCliente(self):
         """
@@ -272,7 +268,6 @@ class Clientes:
                     listado[i].setCurrentText(registro[i])
                 else:
                     listado[i].setText(registro[i])
-            print(registro)
 
         except Exception as e:
             print("Error en cargaOneCliente", e)

@@ -226,8 +226,6 @@ class Propiedades():
 
         except Exception as e:
             print("error cargaTablaCientes", e)
-            import traceback
-            print(traceback.format_exc())
 
     def cargaDosPropiedades(self, listado):
         """
@@ -277,8 +275,7 @@ class Propiedades():
 
         except Exception as e:
             print("error cargaTablaCientes", e)
-            import traceback
-            print(traceback.format_exc())
+
 
     def modifPropiedad(self):
         """

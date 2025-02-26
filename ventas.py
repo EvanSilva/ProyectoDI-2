@@ -3,7 +3,11 @@ import conexion
 
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtWidgets import QWidget, QHBoxLayout
+
+import propiedades
 import var
+from propiedades import Propiedades
+
 
 class Ventas:
 
@@ -254,7 +258,10 @@ class Ventas:
                     mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                     mbox.exec()
 
+                    conexion.Conexion.bbddModificarPropiedadVendida(var.ui.txtFacCodigo.text())
+                    propiedades.Propiedades.cargaTablaPropiedades(self)
                     Ventas.cargaTablaVentas(var.ui.txtNumFac.text())
+
 
         except Exception as error:
             print('Error al insertar venta: %s' % str(error))
@@ -366,6 +373,11 @@ class Ventas:
                 font = QtGui.QFont()
                 font.setBold(True)
                 item.setFont(font)
+
+
+
+
+
 
 
 

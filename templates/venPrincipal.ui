@@ -72,7 +72,7 @@
        <string notr="true">background-color:rgb(237, 251, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="pesClientes">
        <attribute name="title">
@@ -3756,79 +3756,12 @@ border: 2px solid rgb(170, 229, 255); </string>
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <widget class="QWidget" name="layoutWidget_4">
-            <property name="geometry">
-             <rect>
-              <x>40</x>
-              <y>150</y>
-              <width>281</width>
-              <height>61</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_26">
-             <item>
-              <widget class="QPushButton" name="btnGrabarAlquiler">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(222, 245, 255);
-color: rgb(59, 59, 59);
-border: 2px solid rgb(170, 229, 255); </string>
-               </property>
-               <property name="text">
-                <string>Grabar Alquiler</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btnGenAlq">
-               <property name="minimumSize">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="autoFillBackground">
-                <bool>false</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(222, 245, 255);
-color: rgb(59, 59, 59);
-border: 2px solid rgb(170, 229, 255); </string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset>
-                 <normaloff>../img/informe.ico</normaloff>../img/informe.ico</iconset>
-               </property>
-               <property name="checkable">
-                <bool>false</bool>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>10</x>
+              <x>0</x>
               <y>10</y>
-              <width>351</width>
+              <width>377</width>
               <height>141</height>
              </rect>
             </property>
@@ -4185,7 +4118,7 @@ border: 2px solid rgb(170, 229, 255); </string>
                   <widget class="QLabel" name="label_26">
                    <property name="minimumSize">
                     <size>
-                     <width>72</width>
+                     <width>73</width>
                      <height>0</height>
                     </size>
                    </property>
@@ -4311,6 +4244,115 @@ border: 2px solid rgb(170, 229, 255); </string>
              </item>
             </layout>
            </widget>
+           <widget class="QWidget" name="">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>150</y>
+              <width>311</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_26">
+             <item>
+              <widget class="QPushButton" name="btnGrabarAlquiler">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+               </property>
+               <property name="text">
+                <string>Grabar Alquiler</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnGenAlq">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>40</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../img/informe.ico</normaloff>../img/informe.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnElimMensualidades">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>40</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(222, 245, 255);
+color: rgb(59, 59, 59);
+border: 2px solid rgb(170, 229, 255); </string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../img/borrarFile.ico</normaloff>../img/borrarFile.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <zorder>layoutWidget_4</zorder>
+           <zorder>layoutWidget</zorder>
+           <zorder>btnGrabarAlquiler</zorder>
+           <zorder>btnGenAlq</zorder>
+           <zorder>btnElimMensualidades</zorder>
           </widget>
          </item>
          <item>

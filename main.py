@@ -139,6 +139,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnGenFac.clicked.connect(lambda: informes.Informes.reportFacturaActual(var.ui.txtNumFac.text(), var.ui.txtFacSubtotal.text(), var.ui.txtFacIVA.text(), var.ui.txtFacTotal.text()))
 
         var.ui.btnGenAlq.clicked.connect(lambda: alquileres.Alquileres.generaInformeMensualidad())
+        var.ui.btnElimMensualidades.clicked.connect(lambda: alquileres.Alquileres.borrarMensualidadesNoPagadas())
 
 
 

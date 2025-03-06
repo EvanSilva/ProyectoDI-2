@@ -1,6 +1,7 @@
 import calendar
 from datetime import datetime
 from functools import partial
+from logging import exception
 
 from PyQt6.QtCore import Qt
 
@@ -10,6 +11,7 @@ from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QCheckBox, QTableWidgetItem
 
 import eventos
+import propiedades
 import var
 from var import informes
 
@@ -106,6 +108,9 @@ class Alquileres:
 
                     Alquileres.altaMensualidades(self)
                     Alquileres.cargaTablaMensualidades()
+                    conexion.Conexion.bbddModificarPropiedadAlquilada(var.ui.txtPropAlq.text())
+                    propiedades.Propiedades.cargaTablaPropiedades(self)
+
 
 
         except Exception as error:
@@ -254,18 +259,15 @@ class Alquileres:
     def cargaTablaMensualidades():
         print("hola desde mensualidades")
         try:
+
+
             fila = var.ui.tablaAlquiler.currentRow()
-
             total = 0
-
-
             if fila == -1:
                 print("No hay ninguna fila seleccionada en la tabla de alquileres.")
                 return
 
             id_alquiler_item = var.ui.tablaAlquiler.item(fila, 0)
-
-
 
             if id_alquiler_item is None:
                 print("No se pudo obtener el ID del alquiler.")
@@ -298,10 +300,29 @@ class Alquileres:
                 # Usar partial para pasar el parámetro `id` de forma segura
                 def togglePago(checked, id):
                     if checked:
-                        print("Suputamadre")
-                        Alquileres.pagaMensualidad(id)
+
+                        mbox = Alquileres.crearMensajeConfirmacion('Pagar Mensualidad',
+                                                                        "¿Marcar como pagado? Esta acción es irreversible.")
+                        if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
+                            Alquileres.pagaMensualidad(id)
+                            Alquileres.cargaTablaMensualidades()
+                        else:
+                            Alquileres.cargaTablaMensualidades()
+
                     else:
-                        Alquileres.desPagaMensualidad(id)
+
+                        mbox = QtWidgets.QMessageBox()
+                        mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                        mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                        mbox.setWindowTitle('Error')
+                        mbox.setText('No se puede modificar el abono una vez pagado')
+                        mbox.setStandardButtons(
+                            QtWidgets.QMessageBox.StandardButton.Ok)
+                        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                        mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                        mbox.exec()
+
+                        Alquileres.cargaTablaMensualidades()
 
                 # Conectar la señal `stateChanged` y usar `partial` para pasar el id correctamente
                 checkbox.stateChanged.connect(partial(togglePago, id=registro[0]))
@@ -318,6 +339,8 @@ class Alquileres:
             var.ui.txtAlqSubtotal.setText(str(total) + " €")
             var.ui.txtAlqIVA.setText(str(total * 0.1) + " €")
             var.ui.txtAlqTotal.setText(str(round(total * 1.1)) + " €")
+
+            var.ui.txtNumAlq.setText(str(registro[1]))
 
         except Exception as e:
             print("Error en cargaTablaMensualidades:", e)
@@ -348,41 +371,114 @@ class Alquileres:
         except Exception as error:
             print('Error al bajar factura: %s' % str(error))
 
+
     @staticmethod
-    def desPagaMensualidad(id):
+    def generaInformeMensualidad():
 
         try:
-            if conexion.Conexion.desPagaMensualidad(id):
+
+            fila = var.ui.tablaMensualidades.selectedItems()
+            idFila = fila[0].text()
+
+            print("LA FILA ACTUAL DE LA MENSUALIDAD ES: " + idFila)
+
+            informes.Informes.reportMensualidadActual(idFila)
+
+        except Exception as error:
+            mbox = QtWidgets.QMessageBox()
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+            mbox.setWindowTitle('Aviso')
+            mbox.setText('No se ha seleccionado una mensualidad')
+            mbox.setStandardButtons(
+                QtWidgets.QMessageBox.StandardButton.Ok)
+            mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+            mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+            mbox.exec()
+
+    @staticmethod
+    def borrarMensualidadesNoPagadas():
+        try:
+
+
+            if (conexion.Conexion.bbddBorrarMensualidadesNoPagadas(var.ui.txtNumAlq.text())):
+
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
                 mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
-                mbox.setWindowTitle('Factura eliminada')
-                mbox.setText('Se ha retirado el pago la mensualidad')
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Se han eliminado las mensualidades no pagadas y se ha cancelado el contrato')
                 mbox.setStandardButtons(
                     QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
 
+                var.ui.tablaMensualidades.setRowCount(0)
                 Alquileres.cargaTablaMensualidades()
 
+            else:
+
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Ha habido un problema al eliminar las mensualidades, prueba a seleccionar un alquiler antes de pulsar este boton.')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+
+
         except Exception as error:
-            print('Error al bajar factura: %s' % str(error))
+
+            mbox = QtWidgets.QMessageBox()
+            mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+            mbox.setWindowIcon(QtGui.QIcon('./img/inmoteis.ico'))
+            mbox.setWindowTitle('Aviso')
+            mbox.setText('Selecciona un alquiler para eliminar sus mensualidades')
+            mbox.setStandardButtons(
+                QtWidgets.QMessageBox.StandardButton.Ok)
+            mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+            mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+            mbox.exec()
+
+
+
 
     @staticmethod
-    def generaInformeMensualidad():
+    def crearMensajeConfirmacion(titulo_ventana, mensaje):
+        """
 
-        print("informemensualidades: -----------------")
+        :param titulo_ventana: nombre de la ventana a crear
+        :type titulo_ventana: str
+        :param mensaje: mensaje de aviso en la ventana
+        :type mensaje: str
+        :return: devuelve la ventana de confirmación
+        :rtype: QMessageBox
 
-        fila = var.ui.tablaMensualidades.selectedItems()
-        idFila = fila[0].text()
+        Método que crea una ventana emergente que permite al usuario confirmar una acción crítica
+
+        """
+        mbox = QtWidgets.QMessageBox()
+        mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
+        mbox.setWindowIcon(QtGui.QIcon('./img/icono.png'))
+        mbox.setText(mensaje)
+        mbox.setWindowTitle(titulo_ventana)
+        mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
+        mbox.button(QtWidgets.QMessageBox.StandardButton.Yes).setText('Sí')
+        mbox.button(QtWidgets.QMessageBox.StandardButton.No).setText('No')
+        return mbox
 
 
-        print("LA FILA ACTUAL DE LA MENSUALIDAD ES: " + idFila)
 
-        informes.Informes.reportMensualidadActual(idFila)
 
-        print(var.ui.txtAlqSubtotal.text())
+
+
+
+
 
 
 

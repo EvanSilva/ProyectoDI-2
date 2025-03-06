@@ -189,6 +189,7 @@ class Propiedades():
 
         """
         try:
+
             listado = conexion.Conexion.listadoPropiedades()
             index = 0
             var.ui.tablaProp.setRowCount(len(listado))

@@ -4,6 +4,7 @@ from csv import excel
 from datetime import datetime
 from http.cookiejar import strip_quotes
 from idlelib import query
+from logging import fatal
 
 from PyQt6 import QtSql, QtWidgets, QtCore
 
@@ -1201,7 +1202,7 @@ class Conexion:
 
         try:
             query = QtSql.QSqlQuery()
-            query.prepare("UPDATE propiedades SET estadoprop = :estadoprop, prealquiprop = :prealquiprop WHERE codigo = :codigo")
+            query.prepare("UPDATE propiedades SET estadoprop = :estadoprop, prealquiprop = :prealquiprop, bajaprop = :bajaprop WHERE codigo = :codigo")
 
             print(" LLEGO A bbddModificarPropiedadVendida ")
             print(idPropiedad)
@@ -1209,12 +1210,43 @@ class Conexion:
             query.bindValue(":estadoprop", "Vendido")
             query.bindValue(":prealquiprop", "")
             query.bindValue(":codigo", int(idPropiedad))
+            query.bindValue(":bajaprop", datetime.now().strftime("%d/%m/%Y"))
+
             query.exec()
             return True
 
         except Exception as e:
             print("Error bbddModificarPropiedadVendida, ", e)
 
+    @staticmethod
+    def bbddModificarPropiedadAlquilada(idPropiedad):
 
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                "UPDATE propiedades SET estadoprop = :estadoprop, prevenprop = :prevenprop, bajaprop = :bajaprop WHERE codigo = :codigo")
 
+            query.bindValue(":estadoprop", "Vendido")
+            query.bindValue(":prevenprop", "")
+            query.bindValue(":codigo", int(idPropiedad))
+            query.bindValue(":bajaprop", datetime.now().strftime("%d/%m/%Y"))
+
+            query.exec()
+            return True
+
+        except Exception as e:
+            print("Error bbddModificarPropiedadVendida, ", e)
+
+    @staticmethod
+    def bbddBorrarMensualidadesNoPagadas(idAlquiler):
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE FROM mensualidades WHERE AlquilerAsociado = :AlquilerAsociado and abono = 'False' ")
+            query.bindValue(":AlquilerAsociado", int(idAlquiler))
+            query.exec()
+            return True
+
+        except Exception as error:
+            return False
 
